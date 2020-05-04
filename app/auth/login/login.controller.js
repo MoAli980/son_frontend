@@ -44,6 +44,7 @@ export default class LoginCtrl {
             // callback for success
             (res) => {
                 this.user = res.data;
+                console.log('caller');
                 this.PermPermissionStore.definePermission('hasValidSession', () => this._UserService.checkSession());
                 const permissions = this._UserService.getUserPermissions();
 

@@ -10,7 +10,7 @@
         "contactUS": "Contact us"
     },
     "footer": {
-        "copyright": "Copyright © 2018",
+        "copyright": "Copyright © 2020",
         "rights": "All rights reserved",
         "hand_craft_statement": "Hand-crafted by",
         "made_statement": "& Made with Love ®",
@@ -24,6 +24,8 @@
         "reports": "Reports",
         "suppliers": "Suppliers",
         "inventory": "Inventory",
+        "recipesItems": "Recipes / Items",
+        "ingredients": "Ingredients",
         "account": "Account",
         "settings": "Settings",
         "messages": "Messages",

@@ -10,7 +10,7 @@
     "contactUS": "Contact us"
   },
   "footer": {
-    "copyright": "Copyright © 2018",
+    "copyright": "Copyright © 2020",
     "rights": "All rights reserved",
     "hand_craft_statement": "Hand-crafted by",
     "made_statement": "& Made with Love ®",
@@ -248,7 +248,7 @@
             "update": "User Updated Successfully",
             "add": "User has been added Successfully"
           },
-          "existFailure": "Staff Email or Mobile Phone already exists",          
+          "existFailure": "Staff Email or Mobile Phone already exists",
           "failure": "Error in saving data...please try again later",
           "change_password_success": "Password has been reset successfully, Email is sent to the user",
           "change_password_failure": "Failure while reseting password"

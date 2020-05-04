@@ -7,27 +7,29 @@
         </div>
         <div class="secondary-side light" data-init="secondary-sidebar">
             <p class="menu-title d-flex align-items-center text-uppercase">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                     class="m-r-10 feather feather-users">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="m-r-10 feather feather-shield">
+                    <path d="M12 22s8-4 8-10V4l-8-2-8 2v8c0 6 8 10 8 10z"></path>
                 </svg>
-                {{"m.suppliers" | translate }}
+                {{'m.inventory' | translate }}
             </p>
             <ul class="main-menu">
-                <li permission permission-only="'manageSuppliers'" ui-sref-active="active top-level bold">
-                    <a ui-sref="app.admin.supplier.list" class=" m-l-25">
-                        <span class="title">{{"m.suppliersList" | translate }}</span>
+                <li permission permission-only="'manageInventory'" ui-sref-active="active top-level bold">
+                    <a ui-sref="app.admin.inventories.recipes" class=" m-l-25">
+                        <span class="title">{{"m.recipesItems" | translate }}</span>
                     </a>
                 </li>
-                <li permission permission-only="'managePayments'" ui-sref-active="active top-level bold">
-                    <a ui-sref="app.admin.supplier.payment" class="m-l-25 p-r-5">
-                        <span class="title">{{"m.paymentsClaims" | translate }}</span>
-                        <span class="badge badge-success pull-right">{{$ctrl.pendingPaymentsCount}}</span>
-
+                <li permission permission-only="'manageInventory'" ui-sref-active="active top-level bold">
+                    <a class="m-l-25 p-r-5">
+                        <span class="title">{{"m.ingredients" | translate }}</span>
                     </a>
                 </li>
             </ul>
@@ -65,4 +67,3 @@
         $(".secondary-side").toggleClass("active");
     });
 </script>
-

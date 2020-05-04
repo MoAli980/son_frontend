@@ -1,0 +1,134 @@
+<div class="modal fade stick-up"
+     id="categoryModal"
+     tabindex="-1"
+     role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header clearfix text-left">
+                <button
+                        type="button"
+                        class="close"
+                        ng-click="$ctrl.closeCategoryModalPopup(categoryForm)"
+                        data-dismiss="modal"
+                        aria-hidden="true">
+                    <i class="pg-close fs-14"></i>
+                </button>
+                <h5><span class="semi-bold">{{$ctrl.title}}</span></h5>
+                <p></p>
+            </div>
+            <div class="modal-body">
+                <form role="form"
+                      name="categoryForm"
+                      ng-submit="$ctrl.onSubmit(categoryForm)"
+                      accessible-form>
+                    <div class="">
+                        <div class="row m-b-5">
+                            <div class="col-md-12">
+                                <div
+                                        class="form-group form-group-default"
+                                        ng-class="{ 'has-error' : categoryForm.arabicName.$invalid && !categoryForm.arabicName.$pristine }">
+                                    <label>{{"admin.categories.arabicName" | translate }}</label>
+                                    <input ng-model="$ctrl.formData.arabicName"
+                                           name="arabicName"
+                                           id="arabicName"
+                                           ng-minlength="2"
+                                           ng-maxlength="20"
+                                           type="text"
+                                           class="form-control"
+                                           required/>
+                                </div>
+                                <div ng-messages="categoryForm.arabicName.$error">
+                                    <span class="error"
+                                          ng-message="required"
+                                          ng-if="!categoryForm.arabicName.$pristine">
+                                        {{'admin.categories.field.arabicName.required' | translate}}
+                                    </span>
+                                    <span class="error" ng-message="minlength">
+                                        {{'admin.categories.field.arabicName.minLength' |
+                                        translate}}
+                                      </span>
+                                    <span class="error" ng-message="maxlength">{{'admin.categories.field.arabicName.maxLength' | translate}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row m-b-5">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-default"
+                                     ng-class="{ 'has-error' : categoryForm.englishName.$invalid && !categoryForm.englishName.$pristine }">
+                                    <label>{{"admin.categories.englishName" | translate }}</label>
+                                    <input ng-model="$ctrl.formData.englishName"
+                                           type="text"
+                                           name="englishName"
+                                           id="englishName"
+                                           ng-minlength="2"
+                                           ng-maxlength="20"
+                                           class="form-control"
+                                           required/>
+                                </div>
+                                <div ng-messages="categoryForm.englishName.$error">
+                                    <span class="error"
+                                          ng-message="required"
+                                          ng-if="!categoryForm.englishName.$pristine">{{'admin.categories.field.englishName.required' | translate}}
+                                    </span>
+                                    <span class="error" ng-message="minlength">{{'admin.categories.field.englishName.minLength' | translate}}</span>
+                                    <span class="error" ng-message="maxlength">{{'admin.categories.field.englishName.maxLength' | translate}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="$ctrl.mode=='Update'" class="row m-b-5">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-custom form-group-default form-group-default-select2"
+                                     ng-class="{ 'has-error' : categoryForm.status.$invalid && !categoryForm.status.$pristine }">
+                                    <label class="label-custom">{{"admin.categories.role" | translate }}</label>
+                                    <select ng-model="$ctrl.formData.status"
+                                            name="status"
+                                            class="full-width"
+                                            data-placeholder="Select Status"
+                                            data-disable-search="true"
+                                            id="status"
+                                            data-init-plugin="select2">
+                                        <option value="Active">{{"admin.categories.active" | translate }}
+                                        </option>
+                                        <option value="Hidden">{{"admin.categories.hidden" | translate }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div ng-messages="categoryForm.status.$error">
+                                      <span class="error"
+                                            ng-message="required"
+                                            ng-if="!categoryForm.status.$pristine">
+                                        {{'admin.categories.field.englishName.required' |
+                                        translate}}
+                                      </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <button type="submit"
+                                    class="btn btn-primary btn-block m-t-5"
+                                    ng-disabled="categoryForm.$invalid">
+                                {{$ctrl.action}}
+                            </button>
+                        </div>
+                        <div class="col-sm">
+                            <button permission
+                                    permission-only="'canDelete'"
+                                    type="button"
+                                    ng-if="$ctrl.mode==='Update'"
+                                    ng-click="$ctrl.openConfirmMessage($ctrl.formData._id, 'mainCategory'); "
+                                    class="btn btn-danger btn-block m-t-5"
+                                    ng-disabled="categoryForm.$invalid">
+                                {{"admin.categories.delete" | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

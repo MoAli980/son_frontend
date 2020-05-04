@@ -10,7 +10,7 @@
     "contactUS": "Contact us"
   },
   "footer": {
-    "copyright": "Copyright © 2018",
+    "copyright": "Copyright © 2020",
     "rights": "All rights reserved",
     "hand_craft_statement": "Hand-crafted by",
     "made_statement": "& Made with Love ®",
@@ -91,7 +91,7 @@
             "hint": "Expire date Hijri",
             "placeholder": "11"
           },
-          
+
           "cr_photo": {
             "required": "This field is required",
             "label": "C.R. Photo",
