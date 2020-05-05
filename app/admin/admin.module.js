@@ -2,7 +2,6 @@ import angular from 'angular';
 import adminConfig from './admin.route';
 import AdminCtrl from './admin.controller';
 import AdminProductCategoryCtrl from './product/adminProductCategory.controller';
-import AdminProductInventoryCtrl from './inventory/adminProductInventory.controller';
 import AdminInventoriesCtrl from './inventories/adminInventories.controller';
 import AdminRecipesListCtrl from './inventories/recipes-items-list/recipesList.controller';
 import ReceiptFormComponent from './inventories/receipt-form/receipt-form.component';
@@ -31,7 +30,6 @@ const adminModule = angular.module('app.adminModule', []);
 adminModule.config(adminConfig);
 adminModule.controller('AdminCtrl', AdminCtrl);
 adminModule.controller('AdminProductCategoryCtrl', AdminProductCategoryCtrl);
-adminModule.controller('AdminProductInventoryCtrl', AdminProductInventoryCtrl);
 adminModule.controller('AdminRecipesListCtrl', AdminRecipesListCtrl);
 adminModule.controller('AdminInventoriesCtrl', AdminInventoriesCtrl);
 

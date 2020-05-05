@@ -3,6 +3,8 @@ import angular from 'angular';
 import UserService from './user.service';
 import JwtService from './jwt.service';
 import SupplierService from './supplier.service';
+import InventoryService from './inventories.service';
+import RecipeService from './recipe.service';
 import CustomerService from './customer.service';
 import AdminService from './admin.service';
 import RoleService from './role.service';
@@ -33,6 +35,8 @@ servicesModule.constant('AppConstants', {
 servicesModule.service('UserService', UserService);
 servicesModule.service('JwtService', JwtService);
 servicesModule.service('SupplierService', SupplierService);
+servicesModule.service('InventoryService', InventoryService);
+servicesModule.service('RecipeService', RecipeService);
 servicesModule.service('CustomerService', CustomerService);
 servicesModule.service('AdminService', AdminService);
 servicesModule.service('RoleService', RoleService);
@@ -65,32 +69,32 @@ servicesModule.factory('RetryRequest', ['$http', '$q', '$rootScope', '$window', 
         const request = () => {
             $http(req)
                 .then((response) => {
-                    results.resolve(response);
-                }, (err) => {
-                  /*  if (err.data === 'Unauthorized') {
-                        $('body')
-                            .pgNotification({
-                                style: 'bar',
-                                message: 'Sorry,You are not Authorized to access this',
-                                position: 'top',
-                                timeout: 5000,
-                                type: 'danger'
-                            })
-                            .show();
-                    }*/
-                    results.reject(err);
-                }
-                    )
+                        results.resolve(response);
+                    }, (err) => {
+                        /*  if (err.data === 'Unauthorized') {
+                              $('body')
+                                  .pgNotification({
+                                      style: 'bar',
+                                      message: 'Sorry,You are not Authorized to access this',
+                                      position: 'top',
+                                      timeout: 5000,
+                                      type: 'danger'
+                                  })
+                                  .show();
+                          }*/
+                        results.reject(err);
+                    }
+                )
                 .catch(() => {
                     if ($rootScope.online) {
                         if (counter < MAX_REQUESTS) {
                             request();
                             counter += 1;
                         } else {
-                            results.reject({ code: 500, message: 'Could not load after multiple tries' });
+                            results.reject({code: 500, message: 'Could not load after multiple tries'});
                         }
                     } else {
-                        results.reject({ code: 501, message: 'No Internet Connection' });
+                        results.reject({code: 501, message: 'No Internet Connection'});
                     }
                 });
         };

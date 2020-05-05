@@ -84,17 +84,6 @@ export default function adminConfig(
                 },
             },
         })
-        .state('app.admin.inventory', {
-            url: '/inventory',
-            templateUrl: 'app/admin/inventory/index.html',
-            controller: 'AdminProductInventoryCtrl as $ctrl',
-            data: {
-                permissions: {
-                    only: ['manageInventory'],
-                    redirectTo: AuthorizationMethods.redirectTo404(),
-                },
-            },
-        })
         .state('app.admin.inventories', {
             url: '/inventories',
             templateUrl: 'app/admin/inventories/index.html',

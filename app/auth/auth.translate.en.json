@@ -51,7 +51,7 @@
           "cr_photo": {
             "invalid": "Accepted formats  PNG - GIF - JPEG - JPG and maximum size of 4 MB",
             "label": "C.R. Photo",
-            "you_upload":"You upload ",
+            "you_upload": "You upload ",
             "required": "This field is required",
             "photoErr": "image size exceeded 4 MB",
             "placeholder": "No file chosen"
@@ -63,9 +63,9 @@
             "photoErr": "image size exceeded 4 MB",
             "placeholder": "No file chosen"
           },
-          "vatConfirm":{
-            "vat_message":"VAT is not provided, Are you sure you want to register ?",
-            "cancel":"Cancel"
+          "vatConfirm": {
+            "vat_message": "VAT is not provided, Are you sure you want to register ?",
+            "cancel": "Cancel"
           },
           "password": {
             "invalid": "password must be from 6 to 20 characters long including numbers ",
@@ -79,16 +79,16 @@
             "required": "This field is required",
             "label": "VAT",
             "placeholder": "VAT",
-            "invalid":"vat must be number or decimal"
+            "invalid": "vat must be number or decimal"
           },
-          "select_date":{
-            "label":"Select date :",
-            "hijri":"Hijri",
-            "gregorian":"Gregorian"
+          "select_date": {
+            "label": "Select date :",
+            "hijri": "Hijri",
+            "gregorian": "Gregorian"
           },
           "cr_Expdate": {
             "required": "This field is required",
-            "placeholder": "DD\/MM\/YYYY",
+            "placeholder": "DD/MM/YYYY",
             "label": "Expire date Gregorian",
             "labelHijri": "Expire date Hijri"
           },
@@ -97,10 +97,11 @@
             "placeholder": "Confirm password",
             "invalid": "Password and confirm password must be identical",
             "required": "This field is required"
-          }, "privacy_policy":{
-            "label":"I accept ",
-            "privacy_terms":"Terms of use & Privacy policy",
-            "must_accept":"You must accept Terms of use & Privacy policy to join SuppliesOn.com"
+          },
+          "privacy_policy": {
+            "label": "I accept ",
+            "privacy_terms": "Terms of use & Privacy policy",
+            "must_accept": "You must accept Terms of use & Privacy policy to join SuppliesOn.com"
           }
         },
         "text": {
@@ -129,7 +130,7 @@
           "invalidFileSize": "File size must be less than 12 MB.",
           "commercialRegisterIsDuplicate": "Commercial Register is duplicate",
           "emailOrMobilePhoneIsDuplicate": "Email Or MobilePhone Is Duplicate",
-          "success_change_password":"Password changed successfully, you can login via it now",
+          "success_change_password": "Password changed successfully, you can login via it now",
           "expireDate_exceed": "Gregorian Expire Date Exceeds 5 Years",
           "expireDate_todayOrLess": "Gregorian Expire Date can't be today's date or before",
           "expireDateHijri_exceed": "Hijri Expire Date Exceeds 5 Years",
@@ -202,14 +203,14 @@
             "min_length": "Minimum length 6",
             "max_length": "Maximum length 20"
           },
-          "select_date":{
-            "label":"Select date :",
-            "hijri":"Hijri",
-            "gregorian":"Gregorian"
+          "select_date": {
+            "label": "Select date :",
+            "hijri": "Hijri",
+            "gregorian": "Gregorian"
           },
           "cr_Expdate": {
             "required": "This field is required",
-            "placeholder": "DD\/MM\/YYYY",
+            "placeholder": "DD/MM/YYYY",
             "label": "Expire date Gregorian",
             "labelHijri": "Expire date Hijri"
           },
