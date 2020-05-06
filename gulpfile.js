@@ -70,14 +70,13 @@ gulp.task('server', ['bundle-css'], () => {
         }));
 });
 
-
-
-gulp.task('default', () => {
-    // console.log( "\nPage - Gulp Command List \n" );
-    // console.log( "----------------------------\n" );
-    // console.log( "gulp watch" );
-    // console.log( "gulp less" );
-    // console.log( "gulp build \n" );
-    // console.log( "----------------------------\n" );
+gulp.task('default', ['bundle-css'], () => {
+    gulp.src('./')
+        .pipe(webserver({
+            fallback: 'index.html',
+            // livereload: true,
+            // directoryListing: true,
+            open: true
+        }));
 });
 
