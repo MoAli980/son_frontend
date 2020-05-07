@@ -5,6 +5,9 @@ import AdminProductCategoryCtrl from './product/adminProductCategory.controller'
 import AdminInventoriesCtrl from './inventories/adminInventories.controller';
 import AdminRecipesListCtrl from './inventories/recipes-items-list/recipesList.controller';
 import ReceiptFormComponent from './inventories/receipt-form/receipt-form.component';
+import adminRecipesItemDetailCtrl from './inventories/recipes-items-detail/recipesItemsDetail.controller';
+import ingredientFormComponent from './inventories/ingredient-form/ingredient-form.component';
+import editReceiptFormComponent from './inventories/receipt-form/edit-receipt-form.component';
 
 import AdminSupplierCtrl from './supplier/adminSupplier.controller';
 import AdminReportOrdersCtrl from './reports/orders/adminReportOrders.controller';
@@ -32,33 +35,39 @@ adminModule.controller('AdminCtrl', AdminCtrl);
 adminModule.controller('AdminProductCategoryCtrl', AdminProductCategoryCtrl);
 adminModule.controller('AdminRecipesListCtrl', AdminRecipesListCtrl);
 adminModule.controller('AdminInventoriesCtrl', AdminInventoriesCtrl);
+adminModule.controller(
+  'adminRecipesItemDetailCtrl',
+  adminRecipesItemDetailCtrl
+);
 
 adminModule.controller('AdminSupplierCtrl', AdminSupplierCtrl);
 adminModule.controller('adminSupplierListCtrl', adminSupplierListCtrl);
 adminModule.controller('adminSupplierDetailCtrl', adminSupplierDetailCtrl);
 adminModule.controller(
-    'AdminSupplierPaymentListCtrl',
-    AdminSupplierPaymentListCtrl
+  'AdminSupplierPaymentListCtrl',
+  AdminSupplierPaymentListCtrl
 );
 adminModule.controller('AdminReportOrdersCtrl', AdminReportOrdersCtrl);
 adminModule.controller(
-    'AdminReportTransactionsCtrl',
-    AdminReportTransactionsCtrl
+  'AdminReportTransactionsCtrl',
+  AdminReportTransactionsCtrl
 );
 adminModule.controller('AdminAccountProfileCtrl', AdminAccountProfileCtrl);
 adminModule.controller('AdminAccountRolesCtrl', AdminAccountRolesCtrl);
 adminModule.controller('AdminAccountUserCtrl', AdminAccountUserCtrl);
 adminModule.controller('AdminAccountOthersCtrl', AdminAccountOthersCtrl);
 adminModule.controller(
-    'AdminReportOrderDetailsCtrl',
-    AdminReportOrderDetailsCtrl
+  'AdminReportOrderDetailsCtrl',
+  AdminReportOrderDetailsCtrl
 );
 adminModule.controller(
-    'AdminSupplierPaymentDetailCtrl',
-    AdminSupplierPaymentDetailCtrl
+  'AdminSupplierPaymentDetailCtrl',
+  AdminSupplierPaymentDetailCtrl
 );
 adminModule.component('supplierForm', supplierFormComponent);
 adminModule.component('receiptForm', ReceiptFormComponent);
+adminModule.component('ingredientForm', ingredientFormComponent);
+adminModule.component('editRecipeForm', editReceiptFormComponent);
 adminModule.controller('InboxCtrl', InboxCtrl);
 
 adminModule.controller('EmailTemplatesCtrl', EmailTemplatesCtrl);

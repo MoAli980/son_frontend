@@ -578,7 +578,7 @@
 
     "recipes": {
       "breadcrumb": {
-        "supplierDetails": "Supplier Detail"
+        "recipeDetails": "Recipe Detail"
       },
       "list": {
         "title": "Recipes",
@@ -595,21 +595,10 @@
             "blocked": "Blocked",
             "deleted": "Deleted"
           },
-          "payment": {
-            "label": "Payment",
-            "placeholder": "Payment",
-            "payingSoon": {
-              "label": "Paying Soon",
-              "placeholder": "Paying Soon"
-            },
-            "missedPayment": {
-              "label": "Missed Payment",
-              "placeholder": "Missed Payment"
-            }
-          },
-          "supplierName": {
-            "label": "Supplier Name",
-            "placeholder": "Supplier Name"
+
+          "recipeName": {
+            "label": "Recipes/Items Name",
+            "placeholder": "Recipes/Items Name"
           }
         },
         "table": {
@@ -628,7 +617,8 @@
           "close": "close",
           "save": "Create",
           "reset": "Reset",
-          "new_recipe": "New Receipe/Item"
+          "new_recipe": "New Receipe/Item",
+          "view_recipe": "View/Edit"
         },
         "title": "Recipes/Items",
         "field": {
@@ -641,14 +631,14 @@
           "sku": {
             "invalid": "Invalid sku format",
             "label": "SKU",
-            "placeholder": "9665XXXXXXXX",
+            "placeholder": "SKU1234",
             "required": "This field is required"
           },
           "bar_code": {
             "required": "This field is required",
             "placeholder": "Bar Code",
             "label": "Bar Code",
-            "invalid": "should contain 10 numbers only "
+            "invalid": "should contain 3 to 48 numbers only"
           },
           "select_recipe": {
             "label": "Select Type :",
@@ -663,7 +653,7 @@
           }
         },
         "message": {
-          "success_creation": "Account created successfully",
+          "success_creation": "Recipe Item created successfully",
           "failed_creation": "Failure occurred , please try again later",
           "already_have_account": "You Already have Account",
           "invalidFile": "Only images are allowed (Formats supported: png, jpg, jpeg).",
@@ -673,8 +663,23 @@
           "expireDate_todayOrLess": "Gregorian Expire Date can't be today's date or before",
           "expireDateHijri_exceed": "Hijri Expire Date Exceeds 5 Years",
           "expireDateHijri_todayOrLess": "Hijri Expire Date can't be today's date or before"
+        },
+        "recipe": {
+          "suspended": "Suspended",
+          "active": "Active",
+          "blocked": "Blocked",
+          "deleted": "Deleted",
+          "activate": "Activate",
+          "block": "Block",
+          "suspend": "Suspend",
+          "unblock": "UnBlock",
+          "approve": "Approve",
+          "delete": "Delete",
+          "recipe_updated": "recipe updated successfully",
+          "recipe_item_exists": "Item already exists"
         }
       },
+
       "payment": {
         "repName": "Rep. Name",
         "phone": "Phone",
@@ -757,6 +762,226 @@
         "recipe_updated": "Recipe updated successfully",
         "recipe_email_exists": "Email already exists",
         "recipe_mobilePhone_exists": "Mobile Number already exists"
+      }
+    },
+    "ingredients": {
+      "breadcrumb": {
+        "ingredientDetails": "ingredient Detail"
+      },
+      "list": {
+        "title": "Ingredient",
+        "button": {
+          "new_ingredient": "New Ingredients",
+          "showDetails": "Show Details"
+        },
+        "search": {
+          "status": {
+            "label": "Status",
+            "placeholder": "status",
+            "active": "Active",
+            "suspended": "Suspended",
+            "blocked": "Blocked",
+            "deleted": "Deleted"
+          },
+          "ingredientName": {
+            "label": "Ingredients",
+            "placeholder": "Ingredients"
+          }
+        },
+        "table": {
+          "header": {
+            "barcode": "Bar Code",
+            "inventory_sku": "SKU",
+            "ingredient_name": "Ingredient",
+            "inventoryType": "Inventory Type",
+            "available_quantity": "Quantity",
+            "unit": "Unit",
+            "actions": "Actions",
+            "delete_recipe": "Delete"
+          }
+        }
+      },
+      "create-ingredient": {
+        "button": {
+          "close": "close",
+          "save": "Save Ingredients",
+          "cancel": "Cancel",
+          "reset": "Reset",
+          "new_ingredients": "New Ingredients",
+          "add_ingredient": "Add Ingredient"
+        },
+        "title": "Create Ingredient",
+        "field": {
+          "ingredient_name": {
+            "invalid": "contains invalid characters",
+            "required": "This field is required",
+            "label": "Ingredient",
+            "placeholder": "Name"
+          },
+          "sku": {
+            "invalid": "SKU can be 4 to 8 characters.",
+            "label": "SKU",
+            "placeholder": "SKU1234",
+            "required": "This field is required"
+          },
+          "bar_code": {
+            "required": "This field is required",
+            "placeholder": "Bar Code",
+            "label": "Bar Code",
+            "invalid": "should contain 10 numbers only "
+          },
+          "flags": {
+            "placeholder": "Flags",
+            "label": "Flags"
+          },
+          "available_quantity": {
+            "required": "This field is required",
+            "label": "Available ",
+            "placeholder": "Quantity",
+            "invalid": "should contain 10 numbers only "
+          },
+          "select_kilogram": {
+            "required": "This field required",
+            "placeholder": "KG",
+            "label": "Select Type :",
+            "kilogram": "Kilogram"
+          },
+          "select_gram": {
+            "required": "This field required",
+            "placeholder": "GRAM",
+            "label": "Select Type :",
+            "gram": "gram"
+          },
+          "select_millilitre": {
+            "required": "This field required",
+            "placeholder": "Millilitre",
+            "label": "Select Type :",
+            "millilitre": "Millilitre"
+          },
+          "select_litre": {
+            "required": "This field required",
+            "placeholder": "litre",
+            "label": "Select Type :",
+            "litre": "litre"
+          },
+          "quantity_threshold": {
+            "label": "Threshold",
+            "placeholder": "Threshold"
+          },
+          "ingredient_delete": {
+            "label": "Delete",
+            "placeholder": "Delete"
+          }
+        },
+        "message": {
+          "success_creation": "Ingredient created successfully",
+          "failed_creation": "Failure occurred , please try again later",
+          "already_have_account": "You Already have Ingredient",
+          "invalidFile": "Only images are allowed (Formats supported: png, jpg, jpeg).",
+          "commercialRegisterIsDuplicate": "Commercial Register is duplicate",
+          "emailOrMobilePhoneIsDuplicate": "Email Or MobilePhone Is Duplicate",
+          "expireDate_exceed": "Gregorian Expire Date Exceeds 5 Years",
+          "expireDate_todayOrLess": "Gregorian Expire Date can't be today's date or before",
+          "expireDateHijri_exceed": "Hijri Expire Date Exceeds 5 Years",
+          "expireDateHijri_todayOrLess": "Hijri Expire Date can't be today's date or before"
+        },
+        "ingredient": {
+          "suspended": "Suspended",
+          "active": "Active",
+          "blocked": "Blocked",
+          "deleted": "Deleted",
+          "activate": "Activate",
+          "block": "Block",
+          "suspend": "Suspend",
+          "unblock": "UnBlock",
+          "approve": "Approve",
+          "delete": "Delete",
+          "ingredient_updated": "Ingredient updated successfully",
+          "ingredient_item_exists": "Item already exists"
+        }
+      },
+      "payment": {
+        "repName": "Rep. Name",
+        "phone": "Phone",
+        "email": "Email",
+        "save": "Save",
+        "cr_photo": "CR",
+        "vat_photo": "VAT",
+        "billingDes": "The is the account billing between you and SuppliesON.com",
+        "balance": "Balance",
+        "record_payment": "Record Payment",
+        "search": "Search By Customer",
+        "status": "Status",
+        "payment_installment": "Payment Cycle",
+        "payment_added": "Your payment has been recorded successfully, The admin will verify the payment and notify you soon.",
+        "payment_failed": "Failed to add your payment record",
+        "allow_exceed_billing_limit": "Allow this customer to exceed the billing date payment",
+        "allow_exceed_credit_limit": "Allow this customer to exceed the monthly credit limit",
+        "payment": "Payment",
+        "payments": "Payments",
+        "paymentsClaims": "Payments Claims",
+        "specialPrices": "Special Prices",
+        "creditThisMonth": "This Month Credit",
+        "limitThisMonth": "This Month Limit",
+        "nextPayment": "Next payment",
+        "nextInvoice": "Next invoice",
+        "updateInfo": "Information has been updated",
+        "creditLimit": "Credit Limit",
+        "sar": "SAR",
+        "approved": "Approved",
+        "pending": "Pending",
+        "rejected": "Rejected",
+        "cash": "Cash",
+        "cheque": "Cheque",
+        "bank": "Bank",
+        "billingHistory": "Billing History",
+        "paymentClaims": "Payment Claims",
+        "every": "Every",
+        "Day": "{value, plural, =0 { this day } one{ 1 day } other{ # day }}",
+        "Week": "{value, plural, =0 { this week } one{ 1 week } other{ # weeks }}",
+        "Month": "{value, plural, =0 { this month } one{ 1 month } other{ # months }}",
+        "credit": "credit",
+        "invoice": "invoice",
+        "invoice_for": "Invoice for",
+        "select_period": "Select Period",
+        "details": "Show Details",
+        "detailed_transactions": "Detailed Transactions",
+        "table": {
+          "date": "Date",
+          "description": "Description",
+          "type": "Type",
+          "referenceId": "Reference Id",
+          "status": "Status",
+          "customerName": "Customer Name",
+          "amount": "Amount",
+          "balance": "Balance"
+        },
+        "label": {
+          "search": "Search",
+          "status": "Status"
+        },
+        "required": "This field is required",
+        "invalidPhone": "Invalid phone format",
+        "invalidEmail": "Invalid email format",
+        "invalidUsername": "Invalid Username format"
+      },
+      "ingredient": {
+        "invited": "Invited",
+        "suspended": "Suspended",
+        "active": "Active",
+        "blocked": "Blocked",
+        "deleted": "Deleted",
+        "activate": "Activate",
+        "block": "Block",
+        "suspend": "Suspend",
+        "unblock": "UnBlock",
+        "approve": "Approve",
+        "delete": "Delete",
+        "change_status": "Change status",
+        "reset_password": "Reset password",
+        "ingredient_updated": "Ingredient updated successfully",
+        "ingredient_email_exists": "Email already exists",
+        "ingredient_mobilePhone_exists": "Mobile Number already exists"
       }
     },
 

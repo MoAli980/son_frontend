@@ -35,4 +35,16 @@ export default class InventoryService {
         return this.retryRequest(request);
     }
 
+    deleteInventoryItem(itemId) {
+        const request = {};
+        request.url = `${this._AppConstants.api}/inventory/recipes/items/${itemId}`;
+        request.method = 'DELETE';
+        request.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this._JwtService.get()}`
+        };
+
+        return this.retryRequest(request);
+    }
+
 }

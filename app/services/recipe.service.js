@@ -10,21 +10,21 @@ export default class RecipeService {
             Authorization: `Bearer ${this._JwtService.get()}`,
         };
     }
-    //
-    // createRecipe(recipe, isAdmin) {
-    //     const request = {
-    //         url: `${this._AppConstants.api}/recipes`,
-    //         method: 'POST',
-    //         data: recipe,
-    //     };
-    //     request.headers = {
-    //         'Content-Type': 'application/json',
-    //     };
-    //     if (isAdmin) {
-    //         request.url = `${request.url}?admin=true`;
-    //     }
-    //     return this.retryRequest(request);
-    // }
+
+    createRecipe(recipe) {
+        const request = {
+            url: `${this._AppConstants.api}/inventory/recipes/items`,
+            method: 'POST',
+            data: recipe,
+        };
+        request.headers = {
+            'Content-Type': 'application/json',
+             Authorization: `Bearer ${this._JwtService.get()}`
+        };
+
+        return this.retryRequest(request);
+    }
+
     //
     // getRecipes(searchCriteria) {
     //     const request = {};

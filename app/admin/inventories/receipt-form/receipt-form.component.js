@@ -11,55 +11,22 @@ class ReceiptFormCtrl {
 
     $onInit() {
         const ctrl = this;
-        // this.dateMethod = "Hijri";
+        this.regexSKU = '^[a-zA-Z0-9\\_\\-]{4,8}$';
+        this.regexBar = '^[a-zA-Z0-9\\_\\-]{3,48}$';
         moment.locale('en');
         this.formData = {};
-        this.imageValitation = false;
         this.registerLoading = false;
         $.Pages.init();
-        this.formData.commercialRegisterExpireDate = null;
-        this.formData.commercialRegisterExpireDateIslamic = null;
-
-        // angular.element('#commercialRegisterExpireDateIslamic').calendarsPicker({
-        //     calendar: $.calendars.instance('islamic'),
-        //     monthsToShow: [1, 1],
-        //     maxDate: '+5Y',
-        //     showOtherMonths: false,
-        //     dateFormat: 'yyyy-mmm-dd',
-        //     onSelect(date) {
-        //         document.getElementById(
-        //             'commercialRegisterExpireDateIslamic'
-        //         ).value = date;
-        //     },
-        // });
-        //
-        // angular.element('#commercialRegisterExpireDate').calendarsPicker({
-        //     calendar: $.calendars.instance('gregorian'),
-        //     monthsToShow: [1, 1],
-        //     maxDate: '+5Y',
-        //     showOtherMonths: false,
-        //     onSelect(date) {
-        //         document.getElementById('commercialRegisterExpireDate').value = date;
-        //     },
-        // });
-
-        // document
-        //     .getElementById('commercialRegisterExpireDateIslamic')
-        //     .setAttribute('max', this.writeHijri());
-        // document
-        //     .getElementById('commercialRegisterExpireDate')
-        //     .setAttribute('max', this.writeGregorian());
     }
-
 
     createRecipe(receiptForm) {
         if (receiptForm.$invalid) return;
+
         this.isFailure = false;
         this.isSuccess = false;
         this.registerLoading = true;
         this.loading = true;
-        this.formData.language = this.$rootScope.currentLanguage.language;
-        // this.formData.commercialRegisterExpireDate = moment(this.formData.commercialRegisterExpireDate).format('YYYY-MM-DD');
+        console.log(this.formData)
         this._RecipeService
             .createRecipe(this.formData, true)
             .then(
@@ -67,71 +34,37 @@ class ReceiptFormCtrl {
                     this.isSuccess = true;
                     this.message = 'admin.recipes.create-recipe.message.success_creation';
                     this.notify(this.message, 'success', 3000);
-                    this.$rootScope.$broadcast('getRecipes');
-                    $('#receiptFormModal').modal('hide');
+                    this.$rootScope.$broadcast('getInventories');
+                    $('#receiptModal').modal('hide');
                     this.resetForm(receiptForm);
                 },
                 (err) => {
                     if (err.code === 500) {
                         this.hasError = true;
-                        $('#receiptFormModal').modal('hide');
+                        $('#receiptModal').modal('hide');
                     } else if (err.code === 501) {
                         this.noInternetConnection = true;
-                        $('#receiptFormModal').modal('hide');
+                        $('#receiptModal').modal('hide');
                     }
                     if (err.data) {
-                        if (err.data.errorCode === 20) {
+                        if (err.data.errorCode === 21) {
                             this.isFailure = true;
-                            this.message =
-                                'admin.recipes.create-recipe.message.expireDate_exceed';
-                            this.notify(this.message, 'danger', 7000);
-                        } else if (err.data.errorCode === 21) {
-                            this.isFailure = true;
-                            this.message =
-                                'admin.recipes.create-recipe.message.expireDate_todayOrLess';
+                            this.message = 'Name already exists.';
                             this.notify(this.message, 'danger', 7000);
                         } else if (err.data.errorCode === 22) {
                             this.isFailure = true;
-                            this.message =
-                                'admin.recipes.create-recipe.message.expireDateHijri_exceed';
+                            this.message = 'SKU already exists.';
                             this.notify(this.message, 'danger', 7000);
                         } else if (err.data.errorCode === 23) {
                             this.isFailure = true;
-                            this.message =
-                                'admin.recipes.create-recipe.message.expireDateHijri_todayOrLess';
+                            this.message = 'barcode already exists.';
                             this.notify(this.message, 'danger', 7000);
-                        } else if (err.data.errorCode === 3) {
-                            // alert('already have account');
-                            this.isFailure = true;
-                            this.message =
-                                'admin.recipes.create-recipe.message.already_have_account';
-                            this.notify(this.message, 'danger', 5000);
-                            $('#receiptFormModal').modal('hide');
-                        } else if (err.data.errorCode === 14) {
-                            // Only images are allowed (Formats supported: png, jpg, jpeg).
-                            this.message = 'admin.recipes.create-recipe.message.invalidFile';
-                            this.isFailure = true;
-                            this.notify(this.message, 'danger', 5000);
-                        } else if (err.data.errorCode === 32) {
-                            // "errorCode":32,"data":"Commercial Register is duplicate"
-                            this.message =
-                                'admin.recipes.create-recipe.message.commercialRegisterIsDuplicate';
-                            this.isFailure = true;
-                            this.notify(this.message, 'danger', 5000);
-                            $('#receiptFormModal').modal('hide');
-                        } else if (err.data.errorCode === 31) {
-                            // "errorCode":31,"data":"Email or MobilePhone is duplicate"
-                            this.message =
-                                'admin.recipes.create-recipe.message.emailOrMobilePhoneIsDuplicate';
-                            this.isFailure = true;
-                            this.notify(this.message, 'danger', 5000);
-                            $('#receiptFormModal').modal('hide');
                         } else {
                             this.message =
                                 'admin.recipes.create-recipe.message.failed_creation';
                             this.isFailure = true;
                             this.notify(this.message, 'danger', 5000);
-                            $('#receiptFormModal').modal('hide');
+                            $('#receiptModal').modal('hide');
                         }
                     }
 
@@ -167,16 +100,6 @@ class ReceiptFormCtrl {
 
     resetForm(receiptForm) {
         this.formData = {};
-        this.formData.commercialRegisterExpireDate = new Date(
-            moment().format('YYYY-MM-DD')
-        );
-        // userForm.$setValidity();
-        this.commercialPhoto = null;
-        this.VATPhoto = null;
-        this.formData.commercialRegisterPhoto = null;
-        this.commercialRegisterPhoto = null;
-        this.formData.VATRegisterPhoto = null;
-        this.VATRegisterPhoto = null;
         if (receiptForm) {
             receiptForm.$setPristine();
             receiptForm.$setUntouched();
@@ -198,3 +121,4 @@ const receiptFormComponent = {
     controller: ReceiptFormCtrl,
 };
 export default receiptFormComponent;
+

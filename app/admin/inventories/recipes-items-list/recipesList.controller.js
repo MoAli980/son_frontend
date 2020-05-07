@@ -1,6 +1,4 @@
 export default class AdminRecipesListCtrl {
-
-
     constructor($rootScope, $translate, InventoryService) {
         this._InventoryService = InventoryService;
         this.$rootScope = $rootScope;
@@ -14,7 +12,7 @@ export default class AdminRecipesListCtrl {
         this.searchCriteria = {
             skip: 0,
             limit: 10,
-            name: ''
+            name: '',
         };
         this.currentPage = 1;
         this.getInventories(this.searchCriteria);
@@ -26,28 +24,20 @@ export default class AdminRecipesListCtrl {
     getInventories(searchCriteria) {
         const _onSuccess = (res) => {
             this.recipesItems = res.data.data.recipes;
+            const itemData = this.recipesItems;
+            setTimeout(() => {
+                console.log(itemData);
+                itemData.forEach((item) => {
+                    JsBarcode(`#barcode${item.barcode}`, item.barcode, {
+                        lineColor: '#00000',
+                        width: 3,
+                        height: 50,
+                        displayValue: true,
+                        margin: 10
+                    });
+                });
+            }, 100);
 
-            this.totalPages = Math.ceil(res.data.data.count / this.searchCriteria.limit);
-        };
-        const _onError = (err) => {
-            this.errors = err.data.data;
-        };
-        const _onFinal = () => {
-            this.recipesAreLoaded = true;
-        };
-        this._InventoryService.getInventories(searchCriteria).then(_onSuccess, _onError).finally(_onFinal);
-    }
-
-    openReceiptFormPoup() {
-        this.formData = {};
-        this.mode = 'new';
-        $('#receiptModal').modal('show');
-        $.Pages.init();
-    }
-
-    getRecipes(searchCriteria) {
-        const _onSuccess = (res) => {
-            this.recipes = res.data.data.recipes;
 
             this.totalPages = Math.ceil(
                 res.data.data.count / this.searchCriteria.limit
@@ -59,12 +49,41 @@ export default class AdminRecipesListCtrl {
         const _onFinal = () => {
             this.recipesAreLoaded = true;
         };
-        this._RecipesService
-            .getRecipes(searchCriteria)
+        this._InventoryService
+            .getInventories(searchCriteria)
+            .then(_onSuccess, _onError)
+            .finally(_onFinal);
+    }
+
+    openReceiptFormPoup() {
+        this.formData = {};
+        this.mode = 'new';
+        $('#receiptModal').modal('show');
+        $.Pages.init();
+    }
+
+    openEditRecipeFormPoup(item) {
+        this.formData = {};
+        this.mode = 'new';
+        $('#editReceiptModal').modal('show');
+        this.$rootScope.$broadcast('loadRecipeItem', item);
+        $.Pages.init();
+    }
+
+    deleteRecipeItem(item) {
+        const _onSuccess = (res) => {
+            this.getInventories(this.searchCriteria);
+        };
+        const _onError = (err) => {
+            this.errors = err.data.data;
+        };
+        const _onFinal = () => {
+            this.recipesAreLoaded = true;
+        };
+        this._InventoryService.deleteInventoryItem(item._id)
             .then(_onSuccess, _onError)
             .finally(_onFinal);
     }
 }
 
 AdminRecipesListCtrl.$inject = ['$rootScope', '$translate', 'InventoryService'];
-

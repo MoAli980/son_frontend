@@ -37,7 +37,8 @@ gulp.task('bundle-js', () => gulp.src('./bundle.config.js')
 
 
 // TASKS
-gulp.task('less', () => {
+gulp.task('less' +
+    '', () => {
     gulp.src(path.join(config.pages, '/less/pages.less'))
         .pipe(less({
             paths: [path.join(config.pages, '/less/')]
@@ -69,6 +70,7 @@ gulp.task('server', ['bundle-css'], () => {
             open: true
         }));
 });
+
 
 gulp.task('default', ['bundle-css'], () => {
     gulp.src('./')
