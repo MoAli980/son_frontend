@@ -710,7 +710,9 @@
             "available_quantity": "كمية",
             "actions": "أجراءات",
             "unit": "وحدة",
-            "delete_recipe": "حذف"
+            "delete_recipe": "حذف",
+            "threshold": "عتبة",
+            "flag": "العلم"
           }
         }
       },
@@ -778,11 +780,17 @@
           },
           "quantity_threshold": {
             "label": "عتبة",
-            "placeholder": "عتبة"
+            "placeholder": "عتبة",
+            "required": "هذا الحقل مطلوب",
+            "invalid": "يجب أن يحتوي على أرقام فقط"
           },
           "ingredient_delete": {
             "label": "حذف",
             "placeholder": "حذف"
+          },
+          "unit": {
+            "label": "وحدة",
+            "placeholder": "وحدة"
           }
         },
         "message": {

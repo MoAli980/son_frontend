@@ -133,6 +133,41 @@ export default function adminConfig(
                 ],
             }
         })
+        .state('app.admin.inventories.ingredients', {
+        url: '/ingredients',
+        templateUrl: 'app/admin/inventories/ingredients-items-list/ingredients.html',
+        controller: 'AdminIngredientsListCtrl as $ctrl',
+        ncyBreadcrumb: {
+            label: 'm.ingredients',
+        },
+        data: {
+            permissions: {
+                only: ['manageInventory'],
+                redirectTo: AuthorizationMethods.redirectTo404(),
+            },
+        },
+        resolve: {
+            deps: [
+                '$ocLazyLoad',
+                function ($ocLazyLoad) {
+                    return $ocLazyLoad
+                        .load(
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
+                        )
+                        .then(() => true);
+                },
+            ],
+        }
+    })
         .state('app.admin.product.category', {
             url: '/category',
             templateUrl: 'app/admin/product/category.html',

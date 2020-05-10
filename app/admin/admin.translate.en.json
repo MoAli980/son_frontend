@@ -10,7 +10,7 @@
     "contactUS": "Contact us"
   },
   "footer": {
-    "copyright": "Copyright © 2018",
+    "copyright": "Copyright © 2020",
     "rights": "All rights reserved",
     "hand_craft_statement": "Hand-crafted by",
     "made_statement": "& Made with Love ®",
@@ -766,7 +766,7 @@
     },
     "ingredients": {
       "breadcrumb": {
-        "ingredientDetails": "ingredient Detail"
+        "ingredientDetails": "Ingredient Detail"
       },
       "list": {
         "title": "Ingredient",
@@ -794,10 +794,12 @@
             "inventory_sku": "SKU",
             "ingredient_name": "Ingredient",
             "inventoryType": "Inventory Type",
-            "available_quantity": "Quantity",
+            "available_quantity": "Available Quantity",
             "unit": "Unit",
+            "threshold": "Threshold",
             "actions": "Actions",
-            "delete_recipe": "Delete"
+            "delete_recipe": "Delete",
+            "flag": "flag"
           }
         }
       },
@@ -866,11 +868,17 @@
           },
           "quantity_threshold": {
             "label": "Threshold",
-            "placeholder": "Threshold"
+            "placeholder": "Threshold",
+            "required" : "This field required",
+            "invalid": "Should contain numbers only "
           },
           "ingredient_delete": {
             "label": "Delete",
             "placeholder": "Delete"
+          },
+          "unit": {
+            "label": "Unit",
+            "placeholder": "Unit"
           }
         },
         "message": {

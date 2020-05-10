@@ -37,9 +37,9 @@
                                     <div class="col-sm mb-sm-0 mb-3 d-flex justify-content-start justify-content-sm-end">
                                         <div class="btn-toolbar" role="toolbar">
                                             <div dir="ltr" class="btn-group btn-group-sm">
-                                                <button
+                                                <button ng-if="($ctrl.recipeData.type === 2 && $ctrl.recipeData.ingredients.length < 1) || $ctrl.recipeData.type === 1"
                                                         class="btn btn-primary btn-block"
-                                                        ng-click="$ctrl.openReceiptFormPoup()">
+                                                        ng-click="$ctrl.openAddIngredientForm()">
                                                     <i class="pg-plus" style="vertical-align: middle;"></i>
 
                                                     {{"admin.ingredients.create-ingredient.button.add_ingredient" |
@@ -89,12 +89,13 @@
                                                     </thead>
                                                     <tbody>
 
-                                                    <tr ng-repeat="item in $ctrl.ingredientsItems"
+                                                    <tr ng-repeat="item in $ctrl.recipeData.ingredients"
                                                         class="gradeX odd content-table-payment"
                                                         role="row">
                                                         <td class="sorting_1 mn-120 inventory-text-center text-center">
                                                             <svg style="width: 200px; height: auto;"
-                                                                 id="barcode{{ item.barcode }}"></svg>
+                                                                 id="barcodes{{item.barcode}}">
+                                                            </svg>
                                                         </td>
                                                         <td class="sorting_1 mn-120 inventory-text-center text-center">
                                                             <span class="upper-case">{{ item.sku }}</span>
@@ -102,15 +103,13 @@
                                                         <td class="sorting_1 mn-120 inventory-text-center text-center">
                                                             <span class="upper-case">{{item.englishName}}</span>
                                                         </td>
-                                                        <td class="sorting_1 mn-120 inventory-text-center text-center">
-                                                            <button class="btn btn-primary btn-block text-center"
-                                                                    ng-click="$ctrl.openIngredientFormPoup()">
-                                                                <i class="pg-plus" style="vertical-align: middle;"></i>
-                                                                {{"admin.ingredients.create-recipe.button.view_recipe" |
-                                                                translate }}
-                                                            </button>
-                                                        </td>
 
+                                                        <td class="sorting_1 mn-120 inventory-text-center text-center">
+                                                            <span class="upper-case">{{item.quantity}}</span>
+                                                        </td>
+                                                        <td class="sorting_1 mn-120 inventory-text-center text-center">
+                                                            <span class="upper-case">{{item.unit}}</span>
+                                                        </td>
 
                                                         <td class="sorting_1 mn-120 inventory-text-center text-center">
                                                             <a style="cursor: pointer;"><i

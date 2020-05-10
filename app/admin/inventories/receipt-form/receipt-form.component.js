@@ -26,7 +26,6 @@ class ReceiptFormCtrl {
         this.isSuccess = false;
         this.registerLoading = true;
         this.loading = true;
-        console.log(this.formData)
         this._RecipeService
             .createRecipe(this.formData, true)
             .then(

@@ -1,4 +1,4 @@
-export default class AdminRecipesListCtrl {
+export default class AdminIngredientsListCtrl {
     constructor($rootScope, $translate, InventoryService) {
         this._InventoryService = InventoryService;
         this.$rootScope = $rootScope;
@@ -15,19 +15,19 @@ export default class AdminRecipesListCtrl {
             name: '',
         };
         this.currentPage = 1;
-        this.getInventories(this.searchCriteria);
-        this.$rootScope.$on('getInventories', () => {
-            ctrl.getInventories(ctrl.searchCriteria);
+        this.getIngredients(this.searchCriteria);
+        this.$rootScope.$on('getIngredients', () => {
+            ctrl.getIngredients(ctrl.searchCriteria);
         });
     }
 
-    getInventories(searchCriteria) {
+    getIngredients(searchCriteria) {
         const _onSuccess = (res) => {
-            this.recipesItems = res.data.data.recipes;
-            const itemData = this.recipesItems;
+            this.ingredientsItems = res.data.data.ingredients;
+            const itemData = this.ingredientsItems;
             setTimeout(() => {
                 itemData.forEach((item) => {
-                    JsBarcode(`#barcode${item.barcode}`, item.barcode, {
+                    JsBarcode(`#barcodeIngredient${item.barcode}`, item.barcode, {
                         lineColor: '#00000',
                         width: 3,
                         height: 50,
@@ -49,29 +49,14 @@ export default class AdminRecipesListCtrl {
             this.recipesAreLoaded = true;
         };
         this._InventoryService
-            .getInventories(searchCriteria)
+            .getIngredients(searchCriteria)
             .then(_onSuccess, _onError)
             .finally(_onFinal);
     }
 
-    openReceiptFormPoup() {
-        this.formData = {};
-        this.mode = 'new';
-        $('#receiptModal').modal('show');
-        $.Pages.init();
-    }
-
-    openEditRecipeFormPoup(item) {
-        this.formData = {};
-        this.mode = 'new';
-        $('#editReceiptModal').modal('show');
-        this.$rootScope.$broadcast('loadRecipeItem', item);
-        $.Pages.init();
-    }
-
-    deleteRecipeItem(item) {
+    deleteIngredientItem(item) {
         const _onSuccess = (res) => {
-            this.getInventories(this.searchCriteria);
+            this.getIngredients(this.searchCriteria);
         };
         const _onError = (err) => {
             this.errors = err.data.data;
@@ -79,10 +64,15 @@ export default class AdminRecipesListCtrl {
         const _onFinal = () => {
             this.recipesAreLoaded = true;
         };
-        this._InventoryService.deleteInventoryItem(item._id)
+        this._InventoryService.deleteIngredient(item._id)
             .then(_onSuccess, _onError)
             .finally(_onFinal);
     }
+
+    openAddIngredientForm() {
+        console.log('here');
+        $('#ingredientModal').modal('show');
+    }
 }
 
-AdminRecipesListCtrl.$inject = ['$rootScope', '$translate', 'InventoryService'];
+AdminIngredientsListCtrl.$inject = ['$rootScope', '$translate', 'InventoryService'];
