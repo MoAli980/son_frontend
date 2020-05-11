@@ -41,6 +41,10 @@
                                         <thead>
                                         <tr role="row">
                                             <th class="bold text-center">
+                                                {{'admin.ingredients.list.table.header.select' |
+                                                translate}}
+                                            </th>
+                                            <th class="bold text-center">
                                                 {{'admin.ingredients.list.table.header.barcode' |
                                                 translate}}
                                             </th>
@@ -69,16 +73,23 @@
                                                 {{'admin.ingredients.list.table.header.threshold' |
                                                 translate}}
                                             </th>
-                                            <th class="bold text-center">
-                                                {{'admin.ingredients.list.table.header.select' |
-                                                translate}}
-                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr ng-repeat="item in $ctrl.ingredientsData"
                                             class="gradeX odd content-table-payment"
                                             role="row">
+
+                                            <td class="sorting_1 mn-80 inventory-text-center text-center">
+                                                <a style="cursor: pointer;"><i ng-if="!item.selected"
+                                                                               class="fa fa-square inventory-delete-btn-size"
+                                                                               ng-click="$ctrl.checked(item, true);"></i>
+                                                    <i ng-if="item.selected"
+                                                       class="fa fa-check-square-o inventory-delete-btn-size"
+                                                       ng-click="$ctrl.checked(item, false);"></i>
+                                                </a>
+                                            </td>
+
                                             <td class="sorting_1 mn-120 inventory-text-center text-center">
                                                 <svg style="width: 200px; height: auto;"
                                                      id="barcodeSelect{{item.barcode}}"
@@ -108,15 +119,7 @@
                                                 <span class="upper-case">{{item.threshold}} {{item.unit}}</span>
                                             </td>
 
-                                            <td class="sorting_1 mn-80 inventory-text-center text-center">
-                                                <a style="cursor: pointer;"><i ng-if="!item.selected"
-                                                                               class="fa fa-close inventory-delete-btn-size"
-                                                                               ng-click="$ctrl.checked(item, true);"></i>
-                                                    <i ng-if="item.selected"
-                                                       class="fa fa-check inventory-delete-btn-size"
-                                                       ng-click="$ctrl.checked(item, false);"></i>
-                                                </a>
-                                            </td>
+
                                         </tr>
                                         </tbody>
                                     </table>
