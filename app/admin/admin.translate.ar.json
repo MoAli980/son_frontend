@@ -26,6 +26,8 @@
     "account": "الحساب",
     "settings": "الإعدادات",
     "messages": "الرسائل",
+    "ingredients": "مكونات",
+    "select_ingredients": "حدد المكونات",
     "suppliersList": "قائمة الموردين",
     "payments": "المدفوعات",
     "paymentsClaims": "مطالبات الدفع"
@@ -685,7 +687,8 @@
         "title": "المكونات",
         "button": {
           "new_ingredient": "مكونات جديدة",
-          "showDetails": "اظهر التفاصيل"
+          "showDetails": "اظهر التفاصيل",
+          "saveIngredients": "حفظ المكونات"
         },
         "search": {
           "status": {
@@ -712,7 +715,8 @@
             "unit": "وحدة",
             "delete_recipe": "حذف",
             "threshold": "عتبة",
-            "flag": "العلم"
+            "flag": "العلم",
+            "select": "تحديد"
           }
         }
       },
@@ -722,9 +726,12 @@
           "save": "حفظ المكونات",
           "cancel": "إلغاء",
           "reset": "إعادة تعيين",
-          "new_ingredients": "مكونات جديدة"
+          "new_ingredients": "مكونات جديدة",
+          "edit_ingredient": "تحرير العنصر",
+          "select_ingredient": "حدد المكونات"
         },
-        "title": "Create Ingredients",
+        "title": "إنشاء مكونات",
+        "editTitle" : "تحرير العنصر",
         "field": {
           "ingredient_name": {
             "invalid": "يحتوي على أحرف غير صالحة",
@@ -796,6 +803,7 @@
         "message": {
           "message": {
             "success_creation": "تم إنشاء الحساب بنجاح",
+            "success_updated": "تم تحديث العنصر بنجاح",
             "failed_creation": "حدث خطا ، يرجى المحاولة مرة أخرى في وقت لاحق",
             "already_have_account": "لديك حساب بالفعل ",
             "invalidFile": "اختر صوره السجل التجاري باحد الصيغ التاليه (png,jpeg,jpg)",

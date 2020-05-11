@@ -7,8 +7,11 @@ import AdminRecipesListCtrl from './inventories/recipes-items-list/recipesList.c
 import ReceiptFormComponent from './inventories/receipt-form/receipt-form.component';
 import adminRecipesItemDetailCtrl from './inventories/recipes-items-detail/recipesItemsDetail.controller';
 import ingredientFormComponent from './inventories/ingredient-form/ingredient-form.component';
+import editIngredientFormComponent from './inventories/ingredient-form/edit-ingredient-form.component';
 import editReceiptFormComponent from './inventories/receipt-form/edit-receipt-form.component';
 import AdminIngredientsListCtrl from './inventories/ingredients-items-list/ingredientItemsList.contoller';
+import AdminSelectIngredientsListCtrl from './inventories/ingredients-items-list/selectIngredientList.controller';
+import selectIngredientFormComponent from './inventories/ingredient-form/select-ingredient-form.component';
 
 import AdminSupplierCtrl from './supplier/adminSupplier.controller';
 import AdminReportOrdersCtrl from './reports/orders/adminReportOrders.controller';
@@ -36,6 +39,7 @@ adminModule.controller('AdminCtrl', AdminCtrl);
 adminModule.controller('AdminProductCategoryCtrl', AdminProductCategoryCtrl);
 adminModule.controller('AdminRecipesListCtrl', AdminRecipesListCtrl);
 adminModule.controller('AdminIngredientsListCtrl', AdminIngredientsListCtrl);
+adminModule.controller('AdminSelectIngredientsListCtrl', AdminSelectIngredientsListCtrl);
 adminModule.controller('AdminInventoriesCtrl', AdminInventoriesCtrl);
 adminModule.controller(
     'adminRecipesItemDetailCtrl',
@@ -69,7 +73,9 @@ adminModule.controller(
 adminModule.component('supplierForm', supplierFormComponent);
 adminModule.component('receiptForm', ReceiptFormComponent);
 adminModule.component('ingredientForm', ingredientFormComponent);
+adminModule.component('editIngredientForm', editIngredientFormComponent);
 adminModule.component('editRecipeForm', editReceiptFormComponent);
+adminModule.component('selectIngredientForm', selectIngredientFormComponent);
 adminModule.controller('InboxCtrl', InboxCtrl);
 
 adminModule.controller('EmailTemplatesCtrl', EmailTemplatesCtrl);

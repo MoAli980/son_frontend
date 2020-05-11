@@ -95,4 +95,48 @@ export default class InventoryService {
         }
         return this.retryRequest(request);
     }
+
+
+    updateIngredient(ingredient) {
+        const request = {
+            url: `${this._AppConstants.api}/inventory/ingredient/update`,
+            method: 'PUT',
+            data: ingredient,
+        };
+        request.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this._JwtService.get()}`
+        };
+
+        return this.retryRequest(request);
+    }
+
+    getIngredientsForSelect(data) {
+        const request = {
+            url: `${this._AppConstants.api}/inventory/ingredient/list`,
+            method: 'post',
+            data
+        };
+        request.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this._JwtService.get()}`
+        };
+
+        return this.retryRequest(request);
+    }
+
+    saveIngredientsForSelect(data) {
+        const request = {
+            url: `${this._AppConstants.api}/inventory/ingredient/update`,
+            method: 'post',
+            data
+        };
+        request.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this._JwtService.get()}`
+        };
+
+        return this.retryRequest(request);
+    }
+
 }

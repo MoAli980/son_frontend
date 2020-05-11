@@ -1,31 +1,44 @@
-class EditReceiptFormCtrl {
-    constructor(InventoryService, $translate, $rootScope, $state, $timeout) {
+class SelectIngredientFormCtrl {
+    constructor(InventoryService, $translate, $rootScope) {
         this._InventoryService = InventoryService;
         this._$translate = $translate;
         this.$rootScope = $rootScope;
-        this._$state = $state;
-        this.$timeout = $timeout;
     }
 
     $onInit() {
         $.Pages.init(); // eslint-disable-line
         const ctrl = this;
 
-        this.unitItems = [
-            { name: 'ML' }, { name: 'L' }, { name: 'G' }, { name: 'KG' }
-        ];
-
-        this.$rootScope.$on('loadRecipeItem', (evt, data) => {
+        this.$rootScope.$on('selectIngredientModal', (evt, data) => {
             this.recipeData = data;
-            this.renderCode(this.recipeData);
+            this.ingredientsData = [];
+            this.loadIngredients(this.recipeData._id);
+            // this.renderCode(this.recipeData);
             this.ingredientsAreLoaded = true;
         });
     }
 
+    loadIngredients(id) {
+        const _onSuccess = (res) => {
+            this.ingredientsData = res.data.data.ingredients;
+            console.log(this.ingredientsData);
+            this.renderCode(this.ingredientsData);
+        };
+        const _onError = (err) => {
+            this.errors = err.data.data;
+        };
+        const _onFinal = () => {
+            this.recipesAreLoaded = true;
+        };
+        this._InventoryService.getIngredientsForSelect(id)
+            .then(_onSuccess, _onError)
+            .finally(_onFinal);
+    }
+
     renderCode(dataRecipe) {
         setTimeout(() => {
-            dataRecipe.ingredients.forEach((item) => {
-                JsBarcode(`#barcodes${item.barcode}`, item.barcode, {
+            dataRecipe.forEach((item) => {
+                JsBarcode(`#barcodeSelect${item.barcode}`, item.barcode, {
                     lineColor: '#00000',
                     width: 3,
                     height: 50,
@@ -41,18 +54,6 @@ class EditReceiptFormCtrl {
         $('#editReceiptModal').modal('hide');
         $('#ingredientModal').modal('show');
         this.$rootScope.$broadcast('cameFromEdit', this.recipeData);
-    }
-
-    openSelectIngredientForm() {
-        $('#editReceiptModal').modal('hide');
-
-        const stateGo = this._$state,
-            root = this.$rootScope,
-            recipeData = this.recipeData;
-
-        this.$timeout(() => {
-            stateGo.go('app.admin.inventories.select', { obj: recipeData });
-        }, 500);
     }
 
     deleteIngredientItem(item) {
@@ -80,18 +81,16 @@ class EditReceiptFormCtrl {
 
 }
 
-EditReceiptFormCtrl.$inject = [
+SelectIngredientFormCtrl.$inject = [
     'InventoryService',
     '$translate',
-    '$rootScope',
-    '$state',
-    '$timeout'
+    '$rootScope'
 ];
 
-const editReceiptFormComponent = {
+const selectIngredientFormComponent = {
     bindings: {},
     templateUrl:
-        'app/admin/inventories/receipt-form/edit-receipt-form.component.html',
-    controller: EditReceiptFormCtrl,
+        'app/admin/inventories/ingredient-form/select-ingredient-form.html',
+    controller: SelectIngredientFormCtrl,
 };
-export default editReceiptFormComponent;
+export default selectIngredientFormComponent;

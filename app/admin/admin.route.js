@@ -117,41 +117,6 @@ export default function adminConfig(
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'switchery',
-                                    'select',
-                                    'moment',
-                                    'datepicker',
-                                    'daterangepicker',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
-                            )
-                            .then(() => true);
-                    },
-                ],
-            }
-        })
-        .state('app.admin.inventories.ingredients', {
-        url: '/ingredients',
-        templateUrl: 'app/admin/inventories/ingredients-items-list/ingredients.html',
-        controller: 'AdminIngredientsListCtrl as $ctrl',
-        ncyBreadcrumb: {
-            label: 'm.ingredients',
-        },
-        data: {
-            permissions: {
-                only: ['manageInventory'],
-                redirectTo: AuthorizationMethods.redirectTo404(),
-            },
-        },
-        resolve: {
-            deps: [
-                '$ocLazyLoad',
-                function ($ocLazyLoad) {
-                    return $ocLazyLoad
-                        .load(
                             [
                                 'switchery',
                                 'select',
@@ -162,12 +127,85 @@ export default function adminConfig(
                             {
                                 insertBefore: '#lazyload_placeholder',
                             }
-                        )
-                        .then(() => true);
+                            )
+                            .then(() => true);
+                    },
+                ],
+            }
+        })
+        .state('app.admin.inventories.ingredients', {
+            url: '/ingredients',
+            templateUrl: 'app/admin/inventories/ingredients-items-list/ingredients.html',
+            controller: 'AdminIngredientsListCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'm.ingredients',
+            },
+            data: {
+                permissions: {
+                    only: ['manageInventory'],
+                    redirectTo: AuthorizationMethods.redirectTo404(),
                 },
-            ],
-        }
-    })
+            },
+            resolve: {
+                deps: [
+                    '$ocLazyLoad',
+                    function ($ocLazyLoad) {
+                        return $ocLazyLoad
+                            .load(
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
+                            )
+                            .then(() => true);
+                    },
+                ],
+            }
+        })
+        .state('app.admin.inventories.select', {
+            url: '/select',
+            templateUrl: 'app/admin/inventories/ingredients-items-list/selectIngredients.html',
+            controller: 'AdminSelectIngredientsListCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'm.select_ingredients',
+            },
+            params: {
+                obj: null
+            },
+            data: {
+                permissions: {
+                    only: ['manageInventory'],
+                    redirectTo: AuthorizationMethods.redirectTo404(),
+                },
+            },
+            resolve: {
+                deps: [
+                    '$ocLazyLoad',
+                    function ($ocLazyLoad) {
+                        return $ocLazyLoad
+                            .load(
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
+                            )
+                            .then(() => true);
+                    },
+                ],
+            }
+        })
         .state('app.admin.product.category', {
             url: '/category',
             templateUrl: 'app/admin/product/category.html',
@@ -202,16 +240,16 @@ export default function adminConfig(
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'switchery',
-                                    'select',
-                                    'moment',
-                                    'datepicker',
-                                    'daterangepicker',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => true);
                     },
@@ -272,16 +310,16 @@ export default function adminConfig(
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'switchery',
-                                    'select',
-                                    'moment',
-                                    'datepicker',
-                                    'daterangepicker',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => true);
                     },
@@ -321,16 +359,16 @@ export default function adminConfig(
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'switchery',
-                                    'select',
-                                    'moment',
-                                    'datepicker',
-                                    'daterangepicker',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => true);
                     },
@@ -377,17 +415,17 @@ export default function adminConfig(
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'menuclipper',
-                                    'moment',
-                                    'switchery',
-                                    'select',
-                                    'wysihtml5',
-                                    'summernote',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'menuclipper',
+                                'moment',
+                                'switchery',
+                                'select',
+                                'wysihtml5',
+                                'summernote',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => {
                                 /* return $ocLazyLoad.load([
@@ -419,17 +457,17 @@ export default function adminConfig(
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'menuclipper',
-                                    'moment',
-                                    'switchery',
-                                    'select',
-                                    'wysihtml5',
-                                    'summernote',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'menuclipper',
+                                'moment',
+                                'switchery',
+                                'select',
+                                'wysihtml5',
+                                'summernote',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => {
                                 /* return $ocLazyLoad.load([
@@ -450,17 +488,17 @@ export default function adminConfig(
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'menuclipper',
-                                    'moment',
-                                    'switchery',
-                                    'select',
-                                    'wysihtml5',
-                                    'summernote',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'menuclipper',
+                                'moment',
+                                'switchery',
+                                'select',
+                                'wysihtml5',
+                                'summernote',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => {
                                 /* return $ocLazyLoad.load([

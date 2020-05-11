@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-class ingredientFormCtrl {
+class editIngredientFormCtrl {
 
 
     constructor(InventoryService, $translate, $rootScope) {
@@ -18,33 +18,37 @@ class ingredientFormCtrl {
         this.regexBar = '^[a-zA-Z0-9\\_\\-]{3,48}$';
         $.Pages.init();
         this.unitItems = [
-            { name: 'ML' }, { name: 'L' }, { name: 'G' }, { name: 'KG' }
+            'ML', 'L', 'G', 'KG'
         ];
 
-        this.$rootScope.$on('cameFromEdit', (evt, data) => {
-            this.recipeData = data;
+        this.$rootScope.$on('editIngredientModal', (evt, data) => {
+            this.formData = {};
+            this.itemData = data;
+            this.formData = this.itemData;
+            this.ingredientsAreLoaded = true;
         });
     }
 
-    createIngredient(ingredientForm) {
+    editIngredient(ingredientForm) {
         if (ingredientForm.$invalid) return;
         this.isFailure = false;
         this.isSuccess = false;
         this.registerLoading = true;
         this.loading = true;
-        if (this.recipeData && this.recipeData._id) {
-            this.formData.recipeItemId = this.recipeData._id;
-        }
+
         this._InventoryService
-            .createIngredient(this.formData, true)
+            .updateIngredient(this.formData, true)
             .then(
                 (res) => {
-                    console.log('find id', this.recipeData._id)
                     this.isSuccess = true;
-                    this.message = 'admin.ingredients.create-ingredient.message.success_creation';
+                    this.message = 'admin.ingredients.create-ingredient.message.success_updated';
                     this.notify(this.message, 'success', 3000);
-                    if (this.recipeData && this.recipeData._id) { this.$rootScope.$broadcast('getInventories'); } else { this.$rootScope.$broadcast('getIngredients'); }
-                    $('#ingredientModal').modal('hide');
+                    if (this.recipeData && this.recipeData._id) {
+                        this.$rootScope.$broadcast('getInventories');
+                    } else {
+                        this.$rootScope.$broadcast('getIngredients');
+                    }
+                    $('#editIngredientModal').modal('hide');
                     this.resetForm(ingredientForm);
                 },
                 (err) => {
@@ -59,16 +63,6 @@ class ingredientFormCtrl {
                         if (err.data.errorCode === 21) {
                             this.isFailure = true;
                             this.message = 'Name already exists.';
-                            this.notify(this.message, 'danger', 7000);
-                            $('#ingredientModal').modal('hide');
-                        } else if (err.data.errorCode === 22) {
-                            this.isFailure = true;
-                            this.message = 'SKU already exists.';
-                            this.notify(this.message, 'danger', 7000);
-                            $('#ingredientModal').modal('hide');
-                        } else if (err.data.errorCode === 23) {
-                            this.isFailure = true;
-                            this.message = 'barcode already exists.';
                             this.notify(this.message, 'danger', 7000);
                             $('#ingredientModal').modal('hide');
                         } else {
@@ -119,16 +113,16 @@ class ingredientFormCtrl {
     }
 }
 
-ingredientFormCtrl.$inject = [
+editIngredientFormCtrl.$inject = [
     'InventoryService',
     '$translate',
     '$rootScope'
 ];
 
-const ingredientFormComponent = {
+const editIngredientFormComponent = {
     bindings: {},
     templateUrl:
-        'app/admin/inventories/ingredient-form/ingredient-form.component.html',
-    controller: ingredientFormCtrl,
+        'app/admin/inventories/ingredient-form/edit-ingredient-form.html',
+    controller: editIngredientFormCtrl,
 };
-export default ingredientFormComponent;
+export default editIngredientFormComponent;

@@ -27,6 +27,7 @@
     "inventory": "Inventory",
     "recipesItems": "Recipes / Items",
     "ingredients": "Ingredients",
+    "select_ingredients": "Select Ingredients",
     "account": "Account",
     "settings": "Settings",
     "messages": "Messages",
@@ -772,7 +773,8 @@
         "title": "Ingredient",
         "button": {
           "new_ingredient": "New Ingredients",
-          "showDetails": "Show Details"
+          "showDetails": "Show Details",
+          "saveIngredients": "Save Ingredients"
         },
         "search": {
           "status": {
@@ -799,7 +801,8 @@
             "threshold": "Threshold",
             "actions": "Actions",
             "delete_recipe": "Delete",
-            "flag": "flag"
+            "flag": "flag",
+            "select": "Check/unCheck"
           }
         }
       },
@@ -810,9 +813,12 @@
           "cancel": "Cancel",
           "reset": "Reset",
           "new_ingredients": "New Ingredients",
-          "add_ingredient": "Add Ingredient"
+          "add_ingredient": "Add Ingredient",
+          "edit_ingredient": "Edit Ingredient",
+          "select_ingredient": "Select Ingredient"
         },
         "title": "Create Ingredient",
+        "editTitle" : "Edit Ingredient",
         "field": {
           "ingredient_name": {
             "invalid": "contains invalid characters",
@@ -883,6 +889,7 @@
         },
         "message": {
           "success_creation": "Ingredient created successfully",
+          "success_updated": "Ingredient updated successfully",
           "failed_creation": "Failure occurred , please try again later",
           "already_have_account": "You Already have Ingredient",
           "invalidFile": "Only images are allowed (Formats supported: png, jpg, jpeg).",
