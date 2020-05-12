@@ -797,6 +797,7 @@
             "ingredient_name": "Ingredient",
             "inventoryType": "Inventory Type",
             "available_quantity": "Available Quantity",
+            "quantity": "Quantity",
             "unit": "Unit",
             "threshold": "Threshold",
             "actions": "Actions",

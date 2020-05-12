@@ -70,8 +70,13 @@ export default class AdminIngredientsListCtrl {
     }
 
     openAddIngredientForm() {
-        console.log('here');
         $('#ingredientModal').modal('show');
+    }
+
+    openEditIngredientForm(item) {
+        console.log(item);
+        $('#editIngredientListingModal').modal('show');
+        this.$rootScope.$broadcast('editIngredientListingModal', item);
     }
 }
 

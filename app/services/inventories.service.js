@@ -61,9 +61,9 @@ export default class InventoryService {
         return this.retryRequest(request);
     }
 
-    deleteIngredient(itemId) {
+    deleteIngredient(itemId, recipeId) {
         const request = {};
-        request.url = `${this._AppConstants.api}/inventory/ingredient/${itemId}`;
+        request.url = `${this._AppConstants.api}/inventory/ingredient/${itemId}/${recipeId}`;
         request.method = 'DELETE';
         request.headers = {
             'Content-Type': 'application/json',
@@ -130,6 +130,20 @@ export default class InventoryService {
             url: `${this._AppConstants.api}/inventory/ingredient/update`,
             method: 'post',
             data
+        };
+        request.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this._JwtService.get()}`
+        };
+
+        return this.retryRequest(request);
+    }
+
+    updateIngredientSingle(ingredient) {
+        const request = {
+            url: `${this._AppConstants.api}/inventory/ingredient/update/single`,
+            method: 'PUT',
+            data: ingredient,
         };
         request.headers = {
             'Content-Type': 'application/json',

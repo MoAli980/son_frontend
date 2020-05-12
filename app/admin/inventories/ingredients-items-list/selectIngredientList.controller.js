@@ -19,6 +19,8 @@ export default class AdminSelectIngredientsListCtrl {
         };
         this.currentPage = 1;
 
+        this.limitRegex = '^[1-9]+[0-9]*$';
+
         this.recipeData = this._$state.params.obj;
         if (!this.recipeData) {
             this._$state.go('app.admin.inventories.recipes');
@@ -88,7 +90,7 @@ export default class AdminSelectIngredientsListCtrl {
         const _onFinal = () => {
             this.recipesAreLoaded = true;
         };
-        this._InventoryService.saveIngredientsForSelect({_id: this.recipeData._id, ingredients: this.checkedData})
+        this._InventoryService.saveIngredientsForSelect({ _id: this.recipeData._id, ingredients: this.checkedData })
             .then(_onSuccess, _onError)
             .finally(_onFinal);
     }
@@ -99,12 +101,13 @@ export default class AdminSelectIngredientsListCtrl {
         } else {
             item.selected = flag;
             if (flag) {
-                this.checkedData.push(item._id);
+                item.quantityAdd = 1;
+                this.checkedData.push(item);
             } else {
-                let newCheckedData = [];
+                const newCheckedData = [];
                 this.checkedData.forEach((ite) => {
                     if (ite._id.toString() != item._id.toString()) {
-                        newCheckedData.push(ite._id);
+                        newCheckedData.push(ite);
                     }
                 });
                 this.checkedData = newCheckedData;

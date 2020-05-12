@@ -54,15 +54,15 @@
                                                 translate}}
                                             </th>
                                             <th class="bold text-center">
-                                                {{'admin.ingredients.list.table.header.flag' |
-                                                translate}}
-                                            </th>
-                                            <th class="bold text-center">
                                                 {{'admin.ingredients.list.table.header.ingredient_name' |
                                                 translate}}
                                             </th>
                                             <th class="bold text-center">
                                                 {{'admin.ingredients.list.table.header.available_quantity' |
+                                                translate}}
+                                            </th>
+                                            <th class="bold text-center">
+                                                {{'admin.ingredients.list.table.header.quantity' |
                                                 translate}}
                                             </th>
                                             <th class="bold text-center">
@@ -99,9 +99,6 @@
                                             <td class="sorting_1 mn-80 inventory-text-center text-center">
                                                 <span class="upper-case">{{item.sku}}</span>
                                             </td>
-                                            <td class="sorting_1 mn-60 inventory-text-center text-center">
-                                                <span class="upper-case"></span>
-                                            </td>
 
                                             <td class="sorting_1 mn-80 inventory-text-center text-center">
                                                 <span class="upper-case">{{item.englishName}}</span>
@@ -109,6 +106,24 @@
 
                                             <td class="sorting_1 mn-80 inventory-text-center text-center">
                                                 <span class="upper-case">{{item.quantity}}</span>
+                                            </td>
+
+                                            <td ng-if="!item.selected"
+                                                class="sorting_1 mn-80 inventory-text-center text-center">
+                                                <span class="upper-case">0</span>
+                                            </td>
+
+                                            <td ng-if="item.selected"
+                                                class="sorting_1 mn-80 inventory-text-center text-center">
+                                                <input type="number"
+                                                       id="quanityAdd"
+                                                       name="quanityAdd"
+                                                       ng-pattern="$ctrl.limitRegex"
+                                                       style="width: 90%;"
+                                                       placeholder="{{'admin.ingredients.list.table.header.quantity'| translate }}"
+                                                       ng-model="item.quantityAdd"
+                                                       required
+                                                />
                                             </td>
 
                                             <td class="sorting_1 mn-80 inventory-text-center text-center">
@@ -139,3 +154,5 @@
         </div>
     </div>
 </div>
+
+<!--<add-ingredient-quantity></add-ingredient-quantity>-->

@@ -711,6 +711,7 @@
             "ingredient_name": "المكونات",
             "inventoryType": "نوع المخزون",
             "available_quantity": "كمية",
+            "quantity": "كمية",
             "actions": "أجراءات",
             "unit": "وحدة",
             "delete_recipe": "حذف",

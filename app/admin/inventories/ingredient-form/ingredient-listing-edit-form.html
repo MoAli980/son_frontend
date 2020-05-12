@@ -1,5 +1,5 @@
 <div class="modal fade slide-up payments payments_2"
-     id="editIngredientModal"
+     id="editIngredientListingModal"
      tabindex="-1"
      role="dialog">
     <div class="modal-dialog modal-lg">
@@ -43,7 +43,7 @@
                                                name="ingredientName"
                                                ng-disabled="true"
                                                placeholder="{{'admin.ingredients.create-ingredient.field.ingredient_name.placeholder'| translate }}"
-                                               ng-model="$ctrl.formData.ingredientId.englishName"
+                                               ng-model="$ctrl.formData.englishName"
                                                required/>
                                     </div>
                                 </div>
@@ -96,9 +96,8 @@
                                                id="threshold"
                                                class="form-control"
                                                name="threshold"
-                                               ng-disabled="true"
                                                placeholder="{{'admin.ingredients.create-ingredient.field.quantity_threshold.placeholder'| translate }}"
-                                               ng-model="$ctrl.formData.ingredientId.threshold"
+                                               ng-model="$ctrl.formData.threshold"
                                                required/>
                                     </div>
                                 </div>
@@ -118,53 +117,18 @@
 
 
                             <div class="col-sm-6">
-                                <!-- START Form Control-->
-                                <div pg-form-group class="form-group form-group-default"
-                                     ng-class="{'has-error':ingredientForm.unit.$invalid && !ingredientForm.unit.$pristine}">
-                                    <label>{{ "admin.ingredients.create-ingredient.field.unit.label" |
-                                        translate }}</label>
-                                    <div class="controls">
-                                        <input type="text"
-                                               id="unit"
-                                               class="form-control"
-                                               name="unit"
-                                               ng-disabled="true"
-                                               placeholder="{{'admin.ingredients.create-ingredient.field.unit.placeholder'| translate }}"
-                                               ng-model="$ctrl.formData.ingredientId.unit"
-                                               required/>
-                                    </div>
+                                <div class="form-group form-group-custom form-group-default form-group-default-select2 m-b-0">
+                                    <label class="label-custom" style="z-index:10 !important" for="unit">
+                                        {{'admin.ingredients.create-ingredient.field.unit.label' | translate}}
+                                    </label>
+
+                                    <select id="unit" name="unit" ng-model="$ctrl.formData.unit"
+                                    class="full-width" data-disable-search="true"
+                                    data-placeholder="Select Unit" data-init-plugin="select2"
+                                    ng-options="item for item in $ctrl.unitItems track by item">
+                                    </select>
                                 </div>
-                                <label class="error"
-                                       for="unit"
-                                       ng-show="ingredientForm.unit.$error.required && !ingredientForm.unit.$pristine">
-                                    {{"admin.ingredients.create-ingredient.field.unit.required"|
-                                    translate}}
-                                </label>
-
-                                <!-- END Form Control-->
                             </div>
-
-                            <!--<div class="col-sm-6">-->
-                                <!--<div class="form-group form-group-custom form-group-default form-group-default-select2 m-b-0">-->
-                                    <!--<label class="label-custom" style="z-index:10 !important" for="unit">-->
-                                        <!--{{'admin.ingredients.create-ingredient.field.unit.label' | translate}}-->
-                                    <!--</label>-->
-                                    <!--<div class="controls">-->
-                                        <!--<input type="text"-->
-                                               <!--id="unit"-->
-                                               <!--class="form-control"-->
-                                               <!--name="unit"-->
-                                               <!--ng-disabled="true"-->
-                                               <!--ng-model="$ctrl.formData.ingredientId.unit"-->
-                                               <!--required/>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;<select id="unit" name="unit" ng-model="$ctrl.formData.ingredientId.unit"&ndash;&gt;-->
-                                    <!--&lt;!&ndash;class="full-width" data-disable-search="true"&ndash;&gt;-->
-                                    <!--&lt;!&ndash;data-placeholder="Select Unit" data-init-plugin="select2"&ndash;&gt;-->
-                                    <!--&lt;!&ndash;ng-options="item for item in $ctrl.unitItems track by item">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                                <!--</div>-->
-                            <!--</div>-->
 
                             <div class="col-sm-6">
                                 <!-- START Form Control-->
@@ -182,7 +146,7 @@
                                                ng-disabled="true"
                                                ng-pattern="$ctrl.regexSKU"
                                                placeholder="{{'admin.ingredients.create-ingredient.field.sku.placeholder'| translate}}"
-                                               ng-model="$ctrl.formData.ingredientId.sku"
+                                               ng-model="$ctrl.formData.sku"
                                                required/>
                                     </div>
                                 </div>
@@ -212,7 +176,7 @@
                                                ng-disabled="true"
                                                ng-pattern="$ctrl.regexBar"
                                                placeholder="{{'admin.ingredients.create-ingredient.field.bar_code.placeholder'| translate}}"
-                                               ng-model="$ctrl.formData.ingredientId.barcode"
+                                               ng-model="$ctrl.formData.barcode"
                                                required/>
                                     </div>
                                 </div>

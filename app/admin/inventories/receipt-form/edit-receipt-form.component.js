@@ -12,7 +12,7 @@ class EditReceiptFormCtrl {
         const ctrl = this;
 
         this.unitItems = [
-            { name: 'ML' }, { name: 'L' }, { name: 'G' }, { name: 'KG' }
+            {name: 'ML'}, {name: 'L'}, {name: 'G'}, {name: 'KG'}
         ];
 
         this.$rootScope.$on('loadRecipeItem', (evt, data) => {
@@ -24,8 +24,9 @@ class EditReceiptFormCtrl {
 
     renderCode(dataRecipe) {
         setTimeout(() => {
-            dataRecipe.ingredients.forEach((item) => {
-                JsBarcode(`#barcodes${item.barcode}`, item.barcode, {
+            dataRecipe.addIngredients.forEach((item) => {
+
+                JsBarcode(`#barcodes${item.ingredientId.barcode}`, item.ingredientId.barcode, {
                     lineColor: '#00000',
                     width: 3,
                     height: 50,
@@ -51,7 +52,7 @@ class EditReceiptFormCtrl {
             recipeData = this.recipeData;
 
         this.$timeout(() => {
-            stateGo.go('app.admin.inventories.select', { obj: recipeData });
+            stateGo.go('app.admin.inventories.select', {obj: recipeData});
         }, 500);
     }
 
@@ -66,7 +67,7 @@ class EditReceiptFormCtrl {
         const _onFinal = () => {
             this.recipesAreLoaded = true;
         };
-        this._InventoryService.deleteIngredient(item._id)
+        this._InventoryService.deleteIngredient(item.ingredientId._id, item._id)
             .then(_onSuccess, _onError)
             .finally(_onFinal);
     }

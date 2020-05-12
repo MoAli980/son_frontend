@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-class editIngredientFormCtrl {
+class editIngredientListingFormCtrl {
 
 
     constructor(InventoryService, $translate, $rootScope) {
@@ -21,11 +21,10 @@ class editIngredientFormCtrl {
             'ML', 'L', 'G', 'KG'
         ];
 
-        this.$rootScope.$on('editIngredientModal', (evt, data) => {
+        this.$rootScope.$on('editIngredientListingModal', (evt, data) => {
             this.formData = {};
             this.itemData = data;
             this.formData = this.itemData;
-            this.formData.oldQuantity = this.formData.quantity;
             this.ingredientsAreLoaded = true;
         });
     }
@@ -38,18 +37,14 @@ class editIngredientFormCtrl {
         this.loading = true;
 
         this._InventoryService
-            .updateIngredient(this.formData, true)
+            .updateIngredientSingle(this.formData, true)
             .then(
                 (res) => {
                     this.isSuccess = true;
                     this.message = 'admin.ingredients.create-ingredient.message.success_updated';
                     this.notify(this.message, 'success', 3000);
-                    if (this.recipeData && this.recipeData._id) {
-                        this.$rootScope.$broadcast('getInventories');
-                    } else {
-                        this.$rootScope.$broadcast('getIngredients');
-                    }
-                    $('#editIngredientModal').modal('hide');
+                    this.$rootScope.$broadcast('getIngredients');
+                    $('#editIngredientListingModal').modal('hide');
                     this.resetForm(ingredientForm);
                 },
                 (err) => {
@@ -114,16 +109,16 @@ class editIngredientFormCtrl {
     }
 }
 
-editIngredientFormCtrl.$inject = [
+editIngredientListingFormCtrl.$inject = [
     'InventoryService',
     '$translate',
     '$rootScope'
 ];
 
-const editIngredientFormComponent = {
+const editIngredientListingFormComponent = {
     bindings: {},
     templateUrl:
-        'app/admin/inventories/ingredient-form/edit-ingredient-form.html',
-    controller: editIngredientFormCtrl,
+        'app/admin/inventories/ingredient-form/ingredient-listing-edit-form.html',
+    controller: editIngredientListingFormCtrl,
 };
-export default editIngredientFormComponent;
+export default editIngredientListingFormComponent;

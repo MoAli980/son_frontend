@@ -12,6 +12,8 @@ import editReceiptFormComponent from './inventories/receipt-form/edit-receipt-fo
 import AdminIngredientsListCtrl from './inventories/ingredients-items-list/ingredientItemsList.contoller';
 import AdminSelectIngredientsListCtrl from './inventories/ingredients-items-list/selectIngredientList.controller';
 import selectIngredientFormComponent from './inventories/ingredient-form/select-ingredient-form.component';
+import addIngredientQuantityComponent from './inventories/ingredients-items-list/addIngredientQuantity.controller';
+import editIngredientListingFormComponent from './inventories/ingredient-form/ingredient-lising-edit-form.component';
 
 import AdminSupplierCtrl from './supplier/adminSupplier.controller';
 import AdminReportOrdersCtrl from './reports/orders/adminReportOrders.controller';
@@ -76,6 +78,8 @@ adminModule.component('ingredientForm', ingredientFormComponent);
 adminModule.component('editIngredientForm', editIngredientFormComponent);
 adminModule.component('editRecipeForm', editReceiptFormComponent);
 adminModule.component('selectIngredientForm', selectIngredientFormComponent);
+adminModule.component('addIngredientQuantity', addIngredientQuantityComponent);
+adminModule.component('editIngredientListingForm', editIngredientListingFormComponent);
 adminModule.controller('InboxCtrl', InboxCtrl);
 
 adminModule.controller('EmailTemplatesCtrl', EmailTemplatesCtrl);
