@@ -25,11 +25,11 @@ export default class AdminProductCategoryCtrl {
             this.categories = res.data.data.categories;
             if (this.firstLoad) {
                 this.category = this.categories[0];
-                this.parentCategoryId = this.categories[0]._id;
+                this.parentCategoryId = this.categories[0] ? this.categories[0]._id : null;
             }
             if (this.isMainCategory) {
                 this.category = this.categories[0];
-                this.parentCategoryId = this.categories[0]._id;
+                this.parentCategoryId = this.categories[0] ? this.categories[0]._id : null;
             }
         };
         const _onError = (err) => {
