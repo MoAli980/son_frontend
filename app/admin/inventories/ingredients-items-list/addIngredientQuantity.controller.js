@@ -34,16 +34,16 @@ class addIngredientQuantityCtrl {
                     this.message = 'admin.recipes.create-recipe.message.success_creation';
                     this.notify(this.message, 'success', 3000);
                     this.$rootScope.$broadcast('getInventories');
-                    $('#receiptModal').modal('hide');
+                    $('#addIngredientQuantityModal').modal('hide');
                     this.resetForm(receiptForm);
                 },
                 (err) => {
                     if (err.code === 500) {
                         this.hasError = true;
-                        $('#receiptModal').modal('hide');
+                        $('#addIngredientQuantityModal').modal('hide');
                     } else if (err.code === 501) {
                         this.noInternetConnection = true;
-                        $('#receiptModal').modal('hide');
+                        $('#addIngredientQuantityModal').modal('hide');
                     }
                     console.log('here');
                     console.log(err);
@@ -66,7 +66,7 @@ class addIngredientQuantityCtrl {
                                 'admin.recipes.create-recipe.message.failed_creation';
                             this.isFailure = true;
                             this.notify(this.message, 'danger', 5000);
-                            $('#receiptModal').modal('hide');
+                            $('#raddIngredientQuantityModall').modal('hide');
                         }
                     }
 
