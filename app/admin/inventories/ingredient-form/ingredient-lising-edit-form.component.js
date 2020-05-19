@@ -35,11 +35,12 @@ class editIngredientListingFormCtrl {
         this.isSuccess = false;
         this.registerLoading = true;
         this.loading = true;
-
+        console.log('eherer')
         this._InventoryService
             .updateIngredientSingle(this.formData, true)
             .then(
                 (res) => {
+                    console.log('success');
                     this.isSuccess = true;
                     this.message = 'admin.ingredients.create-ingredient.message.success_updated';
                     this.notify(this.message, 'success', 3000);

@@ -34,21 +34,18 @@ class addIngredientQuantityCtrl {
                     this.message = 'admin.recipes.create-recipe.message.success_creation';
                     this.notify(this.message, 'success', 3000);
                     this.$rootScope.$broadcast('getInventories');
-                    $('#addIngredientQuantityModal').modal('hide');
+                    $('#receiptModal').modal('hide');
                     this.resetForm(receiptForm);
                 },
                 (err) => {
                     if (err.code === 500) {
                         this.hasError = true;
-                        $('#addIngredientQuantityModal').modal('hide');
+                        $('#receiptModal').modal('hide');
                     } else if (err.code === 501) {
                         this.noInternetConnection = true;
-                        $('#addIngredientQuantityModal').modal('hide');
+                        $('#receiptModal').modal('hide');
                     }
-                    console.log('here');
-                    console.log(err);
                     if (err.data) {
-                        console.log('here');
                         if (err.data.errorCode === 21) {
                             this.isFailure = true;
                             this.message = 'Name already exists.';
@@ -66,7 +63,7 @@ class addIngredientQuantityCtrl {
                                 'admin.recipes.create-recipe.message.failed_creation';
                             this.isFailure = true;
                             this.notify(this.message, 'danger', 5000);
-                            $('#raddIngredientQuantityModall').modal('hide');
+                            $('#receiptModal').modal('hide');
                         }
                     }
 
