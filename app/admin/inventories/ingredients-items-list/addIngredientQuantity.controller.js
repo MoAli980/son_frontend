@@ -45,7 +45,10 @@ class addIngredientQuantityCtrl {
                         this.noInternetConnection = true;
                         $('#receiptModal').modal('hide');
                     }
+                    console.log('here');
+                    console.log(err);
                     if (err.data) {
+                        console.log('here');
                         if (err.data.errorCode === 21) {
                             this.isFailure = true;
                             this.message = 'Name already exists.';
