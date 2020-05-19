@@ -63,7 +63,7 @@ export default class InventoryService {
 
     deleteIngredient(itemId, recipeId) {
         const request = {};
-        request.url = `${this._AppConstants.api}/inventory/ingredient/${itemId}/${recipeId}`;
+        if (itemId && recipeId) { request.url = `${this._AppConstants.api}/inventory/ingredient/${itemId}/${recipeId}`; } else { request.url = `${this._AppConstants.api}/inventory/ingredient/${itemId}`; }
         request.method = 'DELETE';
         request.headers = {
             'Content-Type': 'application/json',
