@@ -39,7 +39,6 @@ class ingredientFormCtrl {
             .createIngredient(this.formData, true)
             .then(
                 (res) => {
-                    console.log('find id', this.recipeData._id)
                     this.isSuccess = true;
                     this.message = 'admin.ingredients.create-ingredient.message.success_creation';
                     this.notify(this.message, 'success', 3000);
@@ -48,6 +47,7 @@ class ingredientFormCtrl {
                     this.resetForm(ingredientForm);
                 },
                 (err) => {
+                    console.log(err);
                     if (err.code === 500) {
                         this.hasError = true;
                         $('#ingredientModal').modal('hide');
@@ -84,7 +84,8 @@ class ingredientFormCtrl {
                     this.errors = err.data.data;
                 }
             )
-            .catch(() => {
+            .catch((e) => {
+                console.log(e);
                 this.isFailure = true;
                 this.message = 'admin.recipes.create-recipe.message.failed_creation';
                 this.notify(this.message, 'danger', 5000);

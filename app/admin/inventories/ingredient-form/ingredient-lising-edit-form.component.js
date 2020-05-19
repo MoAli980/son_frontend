@@ -35,7 +35,6 @@ class editIngredientListingFormCtrl {
         this.isSuccess = false;
         this.registerLoading = true;
         this.loading = true;
-        console.log('eherer')
         this._InventoryService
             .updateIngredientSingle(this.formData, true)
             .then(
