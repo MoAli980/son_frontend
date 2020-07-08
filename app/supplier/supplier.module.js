@@ -26,6 +26,20 @@ import ProductListCtrl from './product/product.list.controller';
 import NewProductCtrl from './product/new-product.controller';
 import ViewProductCtrl from './product/view-product.controller';
 import EditProductCtrl from './product/edit-product.controller';
+import SupplierRecipesListCtrl from './inventories/recipes-items-list/recipesList.controller';
+import SupplierIngredientsListCtrl from './inventories/ingredients-items-list/ingredientItemsList.contoller';
+import SupplierSelectIngredientsListCtrl from './inventories/ingredients-items-list/selectIngredientList.controller';
+import SupplierInventoriesCtrl from './inventories/adminInventories.controller';
+import SupplierRecipesItemDetailCtrl from './inventories/recipes-items-detail/recipesItemsDetail.controller';
+import ReceiptFormComponent from './inventories/receipt-form/receipt-form.component';
+import ingredientFormComponent from './inventories/ingredient-form/ingredient-form.component';
+import editIngredientFormComponent from './inventories/ingredient-form/edit-ingredient-form.component';
+import editReceiptFormComponent from './inventories/receipt-form/edit-receipt-form.component';
+import selectIngredientFormComponent from './inventories/ingredient-form/select-ingredient-form.component';
+import addIngredientQuantityComponent
+    from './inventories/ingredients-items-list/addIngredientQuantity.controller';
+import editIngredientListingFormComponent
+    from './inventories/ingredient-form/ingredient-lising-edit-form.component';
 
 const supplierModule = angular.module('app.supplierModule', []);
 
@@ -56,6 +70,23 @@ supplierModule.controller('SupplierCustomerDetailCtrl', SupplierCustomerDetailCt
 supplierModule.controller('NewProductCtrl', NewProductCtrl);
 supplierModule.controller('ViewProductCtrl', ViewProductCtrl);
 supplierModule.controller('EditProductCtrl', EditProductCtrl);
+
+supplierModule.controller('SupplierRecipesListCtrl', SupplierRecipesListCtrl);
+supplierModule.controller('SupplierIngredientsListCtrl', SupplierIngredientsListCtrl);
+supplierModule.controller('SupplierSelectIngredientsListCtrl', SupplierSelectIngredientsListCtrl);
+supplierModule.controller('SupplierInventoriesCtrl', SupplierInventoriesCtrl);
+supplierModule.controller(
+    'SupplierRecipesItemDetailCtrl',
+    SupplierRecipesItemDetailCtrl
+);
+
+supplierModule.component('supplierReceiptForm', ReceiptFormComponent);
+supplierModule.component('supplierIngredientForm', ingredientFormComponent);
+supplierModule.component('supplierEditIngredientForm', editIngredientFormComponent);
+supplierModule.component('supplierEditRecipeForm', editReceiptFormComponent);
+supplierModule.component('supplierSelectIngredientForm', selectIngredientFormComponent);
+supplierModule.component('supplierAddIngredientQuantity', addIngredientQuantityComponent);
+supplierModule.component('supplierEditIngredientListingForm', editIngredientListingFormComponent);
 
 
 export default supplierModule;

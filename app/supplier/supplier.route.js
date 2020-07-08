@@ -425,6 +425,128 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
                 }
             }
         })
+        .state('app.supplier.inventories', {
+            url: '/inventories',
+            templateUrl: 'app/supplier/inventories/index.html',
+            controller: 'SupplierInventoriesCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'supplier.menu.Inventory',
+            },
+            data: {
+                permissions: {
+                    only: ['manageInventory'],
+                    redirectTo: AuthorizationMethods.redirectTo404(),
+                },
+            },
+        })
+        .state('app.supplier.inventories.recipes', {
+            url: '/recipes',
+            templateUrl: 'app/supplier/inventories/recipes-items-list/recipes.html',
+            controller: 'SupplierRecipesListCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'supplier.menu.recipesItems',
+            },
+            data: {
+                permissions: {
+                    only: ['manageInventory'],
+                    redirectTo: AuthorizationMethods.redirectTo404(),
+                },
+            },
+            resolve: {
+                deps: [
+                    '$ocLazyLoad',
+                    function ($ocLazyLoad) {
+                        return $ocLazyLoad
+                            .load(
+                                [
+                                    'switchery',
+                                    'select',
+                                    'moment',
+                                    'datepicker',
+                                    'daterangepicker',
+                                ],
+                                {
+                                    insertBefore: '#lazyload_placeholder',
+                                }
+                            )
+                            .then(() => true);
+                    },
+                ],
+            }
+        })
+        .state('app.supplier.inventories.ingredients', {
+            url: '/ingredients',
+            templateUrl: 'app/supplier/inventories/ingredients-items-list/ingredients.html',
+            controller: 'SupplierIngredientsListCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'supplier.menu.ingredients',
+            },
+            data: {
+                permissions: {
+                    only: ['manageInventory'],
+                    redirectTo: AuthorizationMethods.redirectTo404(),
+                },
+            },
+            resolve: {
+                deps: [
+                    '$ocLazyLoad',
+                    function ($ocLazyLoad) {
+                        return $ocLazyLoad
+                            .load(
+                                [
+                                    'switchery',
+                                    'select',
+                                    'moment',
+                                    'datepicker',
+                                    'daterangepicker',
+                                ],
+                                {
+                                    insertBefore: '#lazyload_placeholder',
+                                }
+                            )
+                            .then(() => true);
+                    },
+                ],
+            }
+        })
+        .state('app.supplier.inventories.select', {
+            url: '/select',
+            templateUrl: 'app/supplier/inventories/ingredients-items-list/selectIngredients.html',
+            controller: 'SupplierSelectIngredientsListCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'supplier.menu.select_ingredients',
+            },
+            params: {
+                obj: null
+            },
+            data: {
+                permissions: {
+                    only: ['manageInventory'],
+                    redirectTo: AuthorizationMethods.redirectTo404(),
+                },
+            },
+            resolve: {
+                deps: [
+                    '$ocLazyLoad',
+                    function ($ocLazyLoad) {
+                        return $ocLazyLoad
+                            .load(
+                                [
+                                    'switchery',
+                                    'select',
+                                    'moment',
+                                    'datepicker',
+                                    'daterangepicker',
+                                ],
+                                {
+                                    insertBefore: '#lazyload_placeholder',
+                                }
+                            )
+                            .then(() => true);
+                    },
+                ],
+            }
+        })
         .state('app.supplier.privacy', {
             url: '/privacy',
             templateUrl: 'app/supplier/privacy.html'

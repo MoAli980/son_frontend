@@ -58,6 +58,10 @@
                         <a ui-sref="app.supplier.order" ui-sref-opts="{reload:true}">{{"supplier.menu.orders" |
                             translate }}</a>
                     </li>
+
+                    <li permission permission-only="'manageInventory'" class="dismiss" ui-sref-active="active"><a ui-sref="app.supplier.inventories">{{"supplier.menu.Inventory" | translate}}</a>
+                    </li>
+
                     <li permission permission-only="'manageProducts'" ui-sref-active="active">
                         <a ui-sref="app.supplier.products" ui-sref-opts="{reload:true}">{{"supplier.menu.product" |
                             translate }}</a>
@@ -72,7 +76,7 @@
                         <a ui-sref="app.supplier.account" ui-sref-opts="{reload:true}">{{"supplier.menu.account" |
                             translate }}</a></li>
 
-                      
+
 
 
                 </ul>

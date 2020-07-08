@@ -41,7 +41,7 @@ class ingredientFormCtrl {
                 (res) => {
                     console.log('find id', this.recipeData._id)
                     this.isSuccess = true;
-                    this.message = 'admin.ingredients.create-ingredient.message.success_creation';
+                    this.message = 'supplier.ingredients.create-ingredient.message.success_creation';
                     this.notify(this.message, 'success', 3000);
                     if (this.recipeData && this.recipeData._id) { this.$rootScope.$broadcast('getInventories'); } else { this.$rootScope.$broadcast('getIngredients'); }
                     $('#ingredientModal').modal('hide');
@@ -74,7 +74,7 @@ class ingredientFormCtrl {
                             $('#ingredientModal').modal('hide');
                         } else {
                             this.message =
-                                'admin.recipes.create-recipe.message.failed_creation';
+                                'supplier.recipes.create-recipe.message.failed_creation';
                             this.isFailure = true;
                             this.notify(this.message, 'danger', 5000);
                             $('#ingredientModal').modal('hide');
@@ -88,7 +88,7 @@ class ingredientFormCtrl {
             .catch((e) => {
                 console.log(e);
                 this.isFailure = true;
-                this.message = 'admin.recipes.create-recipe.message.failed_creation';
+                this.message = 'supplier.recipes.create-recipe.message.failed_creation';
                 this.notify(this.message, 'danger', 5000);
             })
             .finally(() => {
@@ -130,7 +130,7 @@ ingredientFormCtrl.$inject = [
 const ingredientFormComponent = {
     bindings: {},
     templateUrl:
-        'app/admin/inventories/ingredient-form/ingredient-form.component.html',
+        'app.supplier.inventories/ingredient-form/ingredient-form.component.html',
     controller: ingredientFormCtrl,
 };
 export default ingredientFormComponent;
