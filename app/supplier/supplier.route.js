@@ -514,7 +514,7 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
             templateUrl: 'app/supplier/inventories/ingredients-items-list/selectIngredients.html',
             controller: 'SupplierSelectIngredientsListCtrl as $ctrl',
             ncyBreadcrumb: {
-                label: 'supplier.menu.select_ingredients',
+                label: 'supplier.menu.ingredients',
             },
             params: {
                 obj: null

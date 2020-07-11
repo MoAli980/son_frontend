@@ -34,7 +34,7 @@ class SupplierReceiptFormCtrl {
                     this.message = 'supplier.recipes.create-recipe.message.success_creation';
                     this.notify(this.message, 'success', 3000);
                     this.$rootScope.$broadcast('getInventories');
-                    $('#receiptModal').modal('hide');
+                    $('#supplierReceiptModal').modal('hide');
                     this.resetForm(receiptForm);
                 },
                 (err) => {
