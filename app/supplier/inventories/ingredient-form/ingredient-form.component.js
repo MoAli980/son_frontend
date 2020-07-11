@@ -39,7 +39,6 @@ class ingredientFormCtrl {
             .createIngredient(this.formData, true)
             .then(
                 (res) => {
-                    console.log('find id', this.recipeData._id)
                     this.isSuccess = true;
                     this.message = 'supplier.ingredients.create-ingredient.message.success_creation';
                     this.notify(this.message, 'success', 3000);
