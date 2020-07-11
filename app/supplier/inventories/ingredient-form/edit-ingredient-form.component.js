@@ -120,10 +120,10 @@ editIngredientFormCtrl.$inject = [
     '$rootScope'
 ];
 
-const editIngredientFormComponent = {
+const supplierEditIngredientFormComponent = {
     bindings: {},
     templateUrl:
-        'app.supplier.inventories/ingredient-form/edit-ingredient-form.html',
+        'app/supplier/inventories/ingredient-form/edit-ingredient-form.html',
     controller: editIngredientFormCtrl,
 };
-export default editIngredientFormComponent;
+export default supplierEditIngredientFormComponent;

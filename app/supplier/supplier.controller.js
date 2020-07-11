@@ -52,6 +52,10 @@ export default class SupplierCtrl {
                     this._$state.go('app.supplier.products.list', { categoryId: 'All' });
                 } else if (toState.name === 'app.admin.settings') {
                     this._$state.go('app.admin.settings.units');
+                } else if (toState.name === 'app.supplier.inventory') {
+                    this._$state.go('app.supplier.inventory');
+                } else if (toState.name === 'app.supplier.inventories') {
+                    this._$state.go('app.supplier.inventories.recipes');
                 }
             });
     }
@@ -77,6 +81,10 @@ export default class SupplierCtrl {
             }
         } else if (this._$state.is('app.supplier.products')) {
             this._$state.go('app.supplier.products.list', { categoryId: 'All' });
+        } else if (this._$state.is('app.supplier.inventory')) {
+            this._$state.go('app.supplier.inventory');
+        } else if (this._$state.is('app.supplier.inventories')) {
+            this._$state.go('app.supplier.inventories.recipes');
         } else if (this._$state.is('app.admin.settings')) {
             this._$state.go('app.admin.settings.units');
         }

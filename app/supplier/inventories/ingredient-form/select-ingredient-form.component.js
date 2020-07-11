@@ -90,7 +90,7 @@ SelectIngredientFormCtrl.$inject = [
 const selectIngredientFormComponent = {
     bindings: {},
     templateUrl:
-        'app.supplier.inventories/ingredient-form/select-ingredient-form.html',
+        'app/supplier/inventories/ingredient-form/select-ingredient-form.html',
     controller: SelectIngredientFormCtrl,
 };
 export default selectIngredientFormComponent;

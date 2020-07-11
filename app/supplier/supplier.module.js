@@ -44,6 +44,7 @@ import editIngredientListingFormComponent
 const supplierModule = angular.module('app.supplierModule', []);
 
 supplierModule.config(supplierConfig);
+
 supplierModule.controller('SupplierCtrl', SupplierCtrl);
 supplierModule.controller('CategoryCtrl', CategoryCtrl);
 supplierModule.controller('ProductListCtrl', ProductListCtrl);
@@ -80,10 +81,10 @@ supplierModule.controller(
     SupplierRecipesItemDetailCtrl
 );
 
-supplierModule.component('supplierReceiptForm', ReceiptFormComponent);
-supplierModule.component('supplierIngredientForm', ingredientFormComponent);
-supplierModule.component('supplierEditIngredientForm', editIngredientFormComponent);
-supplierModule.component('supplierEditRecipeForm', editReceiptFormComponent);
+supplierModule.component('supplierReceiptFormComponent', ReceiptFormComponent);
+supplierModule.component('supplierIngredientFormComponent', ingredientFormComponent);
+supplierModule.component('supplierEditIngredientFormComponent', editIngredientFormComponent);
+supplierModule.component('supplierEditRecipeFormComponent', editReceiptFormComponent);
 supplierModule.component('supplierSelectIngredientForm', selectIngredientFormComponent);
 supplierModule.component('supplierAddIngredientQuantity', addIngredientQuantityComponent);
 supplierModule.component('supplierEditIngredientListingForm', editIngredientListingFormComponent);

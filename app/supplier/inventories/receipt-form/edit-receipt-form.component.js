@@ -89,10 +89,10 @@ EditReceiptFormCtrl.$inject = [
     '$timeout'
 ];
 
-const editReceiptFormComponent = {
+const supplierEditReceiptFormComponent = {
     bindings: {},
     templateUrl:
-        'app.supplier.inventories/receipt-form/edit-receipt-form.component.html',
+        'app/supplier/inventories/receipt-form/edit-receipt-form.component.html',
     controller: EditReceiptFormCtrl,
 };
-export default editReceiptFormComponent;
+export default supplierEditReceiptFormComponent;

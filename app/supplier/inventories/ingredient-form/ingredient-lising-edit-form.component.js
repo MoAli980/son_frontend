@@ -118,7 +118,7 @@ editIngredientListingFormCtrl.$inject = [
 const editIngredientListingFormComponent = {
     bindings: {},
     templateUrl:
-        'app.supplier.inventories/ingredient-form/ingredient-listing-edit-form.html',
+        'app/supplier/inventories/ingredient-form/ingredient-listing-edit-form.html',
     controller: editIngredientListingFormCtrl,
 };
 export default editIngredientListingFormComponent;

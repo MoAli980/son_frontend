@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-class ReceiptFormCtrl {
+class SupplierReceiptFormCtrl {
     constructor(RecipeService, $translate, $rootScope, Upload, AppConstants) {
         this._RecipeService = RecipeService;
         this._$translate = $translate;
@@ -106,7 +106,7 @@ class ReceiptFormCtrl {
     }
 }
 
-ReceiptFormCtrl.$inject = [
+SupplierReceiptFormCtrl.$inject = [
     'RecipeService',
     '$translate',
     '$rootScope',
@@ -114,10 +114,10 @@ ReceiptFormCtrl.$inject = [
     'AppConstants',
 ];
 
-const receiptFormComponent = {
+const supplierReceiptFormComponent = {
     bindings: {},
-    templateUrl: 'app.supplier.inventories/receipt-form/receipt-form.component.html',
-    controller: ReceiptFormCtrl,
+    templateUrl: 'app/supplier/inventories/receipt-form/receipt-form.component.html',
+    controller: SupplierReceiptFormCtrl,
 };
-export default receiptFormComponent;
+export default supplierReceiptFormComponent;
 

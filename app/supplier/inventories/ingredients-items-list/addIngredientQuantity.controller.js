@@ -116,7 +116,7 @@ addIngredientQuantityCtrl.$inject = [
 
 const addIngredientQuantityComponent = {
     bindings: {},
-    templateUrl: 'app.supplier.inventories/ingredients-items-list/addIngredientQuantity.html',
+    templateUrl: 'app/supplier/inventories/ingredients-items-list/addIngredientQuantity.html',
     controller: addIngredientQuantityCtrl,
 };
 export default addIngredientQuantityComponent;

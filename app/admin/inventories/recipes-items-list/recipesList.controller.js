@@ -57,6 +57,7 @@ export default class AdminRecipesListCtrl {
     openReceiptFormPoup() {
         this.formData = {};
         this.mode = 'new';
+        console.log('not', $('#supplierReceiptModal'))
         $('#receiptModal').modal('show');
         $.Pages.init();
     }

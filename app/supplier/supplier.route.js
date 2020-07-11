@@ -440,7 +440,7 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
             },
         })
         .state('app.supplier.inventories.recipes', {
-            url: '/recipes',
+            url: '/inventories/recipes',
             templateUrl: 'app/supplier/inventories/recipes-items-list/recipes.html',
             controller: 'SupplierRecipesListCtrl as $ctrl',
             ncyBreadcrumb: {
@@ -475,7 +475,7 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
             }
         })
         .state('app.supplier.inventories.ingredients', {
-            url: '/ingredients',
+            url: '/inventories/ingredients',
             templateUrl: 'app/supplier/inventories/ingredients-items-list/ingredients.html',
             controller: 'SupplierIngredientsListCtrl as $ctrl',
             ncyBreadcrumb: {
