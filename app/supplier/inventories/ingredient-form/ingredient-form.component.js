@@ -3,8 +3,9 @@ import moment from 'moment';
 class ingredientFormCtrl {
 
 
-    constructor(InventoryService, $translate, $rootScope) {
+    constructor(InventoryService, $translate, $rootScope, SystemService) {
         this._InventoryService = InventoryService;
+        this._SystemService = SystemService;
         this._$translate = $translate;
         this.$rootScope = $rootScope;
     }
@@ -17,10 +18,22 @@ class ingredientFormCtrl {
         this.regexSKU = '^[a-zA-Z0-9\\_\\-]{4,8}$';
         this.regexBar = '^[a-zA-Z0-9\\_\\-]{3,48}$';
         $.Pages.init();
-        this.unitItems = [
-            { name: 'ML' }, { name: 'L' }, { name: 'G' }, { name: 'KG' }
-        ];
 
+        this.unitItems = [];
+
+        this._SystemService.getSystemUnits().then(
+            (res) => {
+                res.data.data.forEach((item) => {
+                    this.unitItems.push({ name: item.englishName });
+                });
+            },
+            (err) => {
+                console.log(err);
+            }
+        ).catch((e) => {
+            console.log(e);
+        });
+        
         this.$rootScope.$on('cameFromEdit', (evt, data) => {
             this.recipeData = data;
         });
@@ -42,7 +55,11 @@ class ingredientFormCtrl {
                     this.isSuccess = true;
                     this.message = 'supplier.ingredients.create-ingredient.message.success_creation';
                     this.notify(this.message, 'success', 3000);
-                    if (this.recipeData && this.recipeData._id) { this.$rootScope.$broadcast('getInventories'); } else { this.$rootScope.$broadcast('getIngredients'); }
+                    if (this.recipeData && this.recipeData._id) {
+                        this.$rootScope.$broadcast('getInventories');
+                    } else {
+                        this.$rootScope.$broadcast('getIngredients');
+                    }
                     $('#ingredientModal').modal('hide');
                     this.resetForm(ingredientForm);
                 },
@@ -123,7 +140,8 @@ class ingredientFormCtrl {
 ingredientFormCtrl.$inject = [
     'InventoryService',
     '$translate',
-    '$rootScope'
+    '$rootScope',
+    'SystemService'
 ];
 
 const supplierIngredientFormComponent = {
