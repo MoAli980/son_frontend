@@ -33,7 +33,7 @@ class ingredientFormCtrl {
         ).catch((e) => {
             console.log(e);
         });
-        
+
         this.$rootScope.$on('cameFromEdit', (evt, data) => {
             this.recipeData = data;
         });
