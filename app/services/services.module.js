@@ -23,7 +23,7 @@ const production = 'https://www.supplieson.com';
 const staging = 'https://www.supplieson.com'; // 'http://dev.supplieson.com';
 const testEnv = 'http://167.71.169.109';
 const development = 'http://99.79.54.96:3000';
-const host = development;
+const host = production;
 
 const servicesModule = angular.module('app.servicesModule', []);
 servicesModule.constant('AppConstants', {
