@@ -62,6 +62,12 @@ export default class SupplierRecipesListCtrl {
         $.Pages.init();
     }
 
+    setPage(page) {
+        this.searchCriteria.skip = page;
+        this.searchCriteria.limit = 10;
+        this.getInventories(this.searchCriteria);
+    }
+
     openEditRecipeFormPoup(item) {
         this.formData = {};
         this.mode = 'new';

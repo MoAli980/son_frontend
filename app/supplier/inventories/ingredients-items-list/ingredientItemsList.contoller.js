@@ -23,6 +23,12 @@ export default class SupplierIngredientsListCtrl{
         });
     }
 
+    setPage(page) {
+        this.searchCriteria.skip = page;
+        this.searchCriteria.limit = 10;
+        this.getIngredients(this.searchCriteria);
+    }
+
     getIngredients(searchCriteria) {
         const _onSuccess = (res) => {
             this.ingredientsItems = res.data.data.ingredients;
