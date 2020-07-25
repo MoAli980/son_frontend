@@ -63,7 +63,7 @@ export default class SupplierRecipesListCtrl {
     }
 
     setPage(page) {
-        this.searchCriteria.skip = parseInt(page, 1) - 1;
+        this.searchCriteria.skip = page - 1;
         this.searchCriteria.limit = 10;
         this.getInventories(this.searchCriteria);
     }
