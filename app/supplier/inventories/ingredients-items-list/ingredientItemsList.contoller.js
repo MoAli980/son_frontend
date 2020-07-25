@@ -24,7 +24,7 @@ export default class SupplierIngredientsListCtrl{
     }
 
     setPage(page) {
-        this.searchCriteria.skip = page;
+        this.searchCriteria.skip = parseInt(page, 1) - 1;
         this.searchCriteria.limit = 10;
         this.getIngredients(this.searchCriteria);
     }
