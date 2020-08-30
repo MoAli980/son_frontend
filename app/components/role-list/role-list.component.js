@@ -12,6 +12,7 @@
          this.getPermissions();
          const ctrl = this;
          this.totalPages = 0;
+         this.blockRolesAdd = true;
          this.$scope.$on('addRole', (event, data) => {
              ctrl.getRoles();
              ctrl.getPermissions();
@@ -22,6 +23,7 @@
          const _onSuccess = (res) => {
              this.roles = res.data.data.roles;
              this.totalPages = Math.ceil(res.data.data.count / this.searchCriteria.limit);
+             this.blockRolesAdd = res.data.data.blockRolesAdd;
          };
          const _onError = (err) => {
              this.errors = err.data.data;

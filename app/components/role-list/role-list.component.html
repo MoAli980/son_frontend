@@ -10,7 +10,7 @@
                             <thead>
                             <tr role="row">
                                 <th scope="col" class="sorting_asc bold no-outline" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product: activate to sort column descending">
-                                           
+
                                         </th>
                                 <th scope="col" class="sorting_asc bold no-outline text-center" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product: activate to sort column descending">
                                     {{'component.role-list.text.name' | translate}}
@@ -22,7 +22,7 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="role in $ctrl.roles" class="gradeX odd content-table-payment" role="row" ng-init="outerIndex=$index">
-                                <td data-label="# {{$index+1}}" class="sorting_1 v-align-middle"><span class="btn btn-default center" ng-click="$ctrl.openChangeRoleModal(role._id)" >   <i class="fa fa-trash"></i></span>
+                                <td data-label="# {{$index+1}}" class="sorting_1 v-align-middle"><span class="btn btn-default center" ng-if="!$ctrl.blockRolesAdd" ng-click="$ctrl.openChangeRoleModal(role._id)">   <i class="fa fa-trash"></i></span>
                                 </td>
                                 <td data-label="{{'component.role-list.text.name' | translate}}" class="sorting_1 v-align-middle">{{$ctrl.$translate.use() === 'ar'?role.arabicName:role.englishName}}</td>
                                 <td data-label="{{'component.role-list.text.permissions' | translate}}" class="sorting_1">
@@ -30,6 +30,15 @@
                                         <div class="col-sm-3 m-b-10" ng-repeat="permission in $ctrl.permissions" ng-init="innerIndex=$index">
                                             <div class="checkbox check-primary">
                                                 <input  type="checkbox"
+                                                        ng-if="$ctrl.blockRolesAdd"
+                                                        checklist-model="role.permissions"
+                                                        checked="checked" value="check2" name="check"
+                                                        id="{{outerIndex}}_{{innerIndex}}"
+                                                        checklist-value="permission._id"
+                                                        ng-change="$ctrl.check(role, permission, checked)" disabled>
+
+                                                <input  type="checkbox"
+                                                        ng-if="!$ctrl.blockRolesAdd"
                                                         checklist-model="role.permissions"
                                                         checked="checked" value="check2" name="check"
                                                         id="{{outerIndex}}_{{innerIndex}}"
