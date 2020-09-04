@@ -1,0 +1,13 @@
+# Specifies intentionally untracked files to ignore when using Git
+
+node_modules/
+pages/js/app.min.js
+pages/css/style.bundle.min.css
+pages/css/pages.css
+pages/css/pages.rtl.css
+.idea/
+package-lock.json
+build/
+
+.vscode/settings.json
+pages/js/app.min.js.map
