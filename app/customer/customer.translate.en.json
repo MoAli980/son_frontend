@@ -466,6 +466,20 @@
         "checkoutCartSuccess": "Order has been submitted Successfully",
         "checkoutCartFailure": "Sorry, something went wrong: Please try again ..."
       },
+<<<<<<< HEAD
+=======
+      "select_date": {
+        "label" : "Select date",
+        "gregorian" : "Gregorian",
+        "hijri" : "Hijri"
+      },
+      "cr_expdate": {
+        "required": "This field is required",
+        "placeholder": "DD/MM/YYYY",
+        "label": "Delivery Date Gregorian",
+        "labelHijri": "Delivery Date Hijri"
+      },
+>>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
       "title": "Shopping Cart",
       "supplierLabel": "Change Supplier",
       "branchLabel": "Change Branch",

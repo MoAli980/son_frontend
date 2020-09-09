@@ -641,6 +641,20 @@
         "checkoutCartSuccess": "تم إرسال الطلب بنجاح",
         "checkoutCartFailure": "عذرا، حدث خطأ ما الرجاء إعادة المحاولة مرة اخرى"
       },
+<<<<<<< HEAD
+=======
+      "select_date": {
+        "label" : "حدد تاريخ",
+        "hijri": "هجرى",
+        "gregorian": "ميلادى"
+      },
+      "cr_expdate": {
+        "required": "هذه الخانة مطلوبه",
+        "placeholder": "DD/MM/YYYY",
+        "label": "تاريخ التسليم او الوصول (ميلادى)",
+        "labelHijri": "تاريخ التسليم او الوصول (هجري)"
+      },
+>>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
       "title": "عربة التسوق",
       "supplierLabel": "تغيير المورد",
       "branchLabel": "تغيير الفرع",
