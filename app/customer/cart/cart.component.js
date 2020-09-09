@@ -24,13 +24,17 @@ class CartCtrl {
         $.Pages.init(); // eslint-disable-line
         this.customer.getBranches({});
         const ctrl = this;
+        this.dateMethod = 'Hijri';
         moment.locale('en');
         this.isRecurring = false;
         this.recurringBody = {
             startDate: moment().format('YYYY-MM-DD'),
             orderIntervalType: 'Week',
-            orderFrequency: 1
+            orderFrequency: 1,
+            deliveryDate: null,
+            deliveryDateIslamic: null
         };
+
         this.customer.getSuppliers({});
         this.$rootScope.supplierId = this.$rootScope.supplierId || this._$stateParams.supplierId;
         this.supplierId = this.$rootScope.supplierId;
@@ -43,7 +47,7 @@ class CartCtrl {
                 this.supplierId = this.$state.params.supplierId;
                 this.customer.getCartBySupplier(this.$state.params.supplierId);
             }
-           // this.$log.info('State params have been updated', this.$scope.stateParams);
+            // this.$log.info('State params have been updated', this.$scope.stateParams);
         });
         this.$scope.$watchCollection(() => this.$rootScope.supplierId, () => {
             this.supplierId = this.$rootScope.supplierId;
@@ -61,6 +65,43 @@ class CartCtrl {
             ctrl.success = false;
             this.$scope.$apply();
         });
+
+        angular.element('#deliveryDateIslamic').calendarsPicker({
+            calendar: $.calendars.instance('islamic'),
+            monthsToShow: [1, 1],
+            maxDate: '+5Y',
+            showOtherMonths: false,
+            dateFormat: 'yyyy-mmm-dd',
+            onSelect(date) {
+                document.getElementById('deliveryDateIslamic').value = date;
+            }
+        });
+
+        angular.element('#deliveryDate').calendarsPicker({
+            calendar: $.calendars.instance('gregorian'),
+            monthsToShow: [1, 1],
+            maxDate: '+5Y',
+            showOtherMonths: false,
+            onSelect(date) {
+                document.getElementById('deliveryDate').value = date;
+            }
+        });
+
+        document.getElementById('deliveryDateIslamic').setAttribute('max', this.writeHijri());
+        document.getElementById('deliveryDate').setAttribute('max', this.writeGregorian());
+    }
+
+    writeHijri() {
+        const date = new Date();
+        const options = {
+            year: 'numeric', month: 'numeric', day: 'numeric'
+        };
+        return new moment(date.toLocaleString('en' + '-u-ca-islamic', options)).add('Year', 5).format('YYYY-MM-DD').replace(/[\u0660-\u0669\u06f0-\u06f9]/g, c => c.charCodeAt(0) & 0xf);
+    }
+
+    writeGregorian() {
+        const dateString = new moment().add('Year', 5).format('YYYY-MM-DD');
+        return dateString.trim().replace(/[\u0660-\u0669\u06f0-\u06f9]/g, c => c.charCodeAt(0) & 0xf);
     }
 
     $onChanges(changes) {
@@ -70,6 +111,7 @@ class CartCtrl {
             }
         }
     }
+
     checkoutCart(id) {
         this.success = false;
         const _onSuccess = (res) => {
@@ -86,7 +128,7 @@ class CartCtrl {
                 this.customer.getCartBySupplier(this.supplierId);
                 this.$rootScope.$broadcast('checkoutCartUpdated');
                 // this._$rootScope.cartItems = res.data.data.items;
-               // this.customer.cart.products = [];
+                // this.customer.cart.products = [];
             }
         };
         const _onError = (err) => {
@@ -117,14 +159,17 @@ class CartCtrl {
     deleteProductFromCart(productId, supplierId) {
         this.customer.deleteProductFromCart(productId, supplierId);
     }
+
     confirmDelete() {
         $('#deleteModal').modal('hide');
         this.deleteProductFromCart(this.itemToBeDelete, this.supplierId);
     }
+
     openConfirmMessage(id) {
         this.itemToBeDelete = id;
         $('#deleteModal').modal('show');
     }
+
     updateProductQuantity(productId, newQuantity) {
         if (newQuantity > 10000) {
             this.notify('customer.product.message.maxQuantity', 'danger', 5000);
@@ -133,10 +178,12 @@ class CartCtrl {
         }
         this.customer.updateProductQuantity(productId, newQuantity, this.supplierId);
     }
+
     changeSupplier() {
         this.success = false;
         this.customer.getCartBySupplier(this.supplierId);
     }
+
     notify(message, type, timeout) {
         this.$translate(message).then((translation) => {
             $('body')
@@ -151,6 +198,7 @@ class CartCtrl {
         });
     }
 }
+
 CartCtrl.$inject = ['SupplierService', 'CartService', '$stateParams', '$rootScope', '$scope', '$state', '$translate'];
 
 const CartComponent = {

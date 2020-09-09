@@ -7,7 +7,7 @@
                     <!--<p class="text-center white-text">{{$ctrl.customer.cart.supplier.representativeName}}</p>-->
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close"></i></button>
-                
+
                 <div class="padding-20" style="background-color: #f7f7f7;">
                     <div class="form-group form-group-custom form-group-default form-group-default-select2">
                         <label>{{'customer.cart.supplierLabel' | translate}}</label>
@@ -36,6 +36,61 @@
                         </select>
                     </div>
 
+                    <div class="col-sm-6" ng-show="!$ctrl.isRecurring">
+                        <div class="d-flex flex-wrap radio radio-success">
+                            <div class="m-r-20">
+                                <span class="bold fs-12 p-l-5">{{'customer.cart.select_date.label' | translate}}</span>
+                            </div>
+                            <div>
+                                <div class="d-flex">
+                                    <div>
+                                        <input  type="radio" ng-model="$ctrl.dateMethod" value="Hijri"  name="paymentMethod" id="hijri">
+                                        <label for="hijri">{{'customer.cart.select_date.hijri' | translate}}</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" ng-model="$ctrl.dateMethod" value="Gregorian" name="paymentMethod" id="gregorian">
+                                        <label for="gregorian">{{'customer.cart.select_date.gregorian' | translate}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12" ng-show="$ctrl.dateMethod == 'Hijri' && !$ctrl.isRecurring">
+                        <!-- START Form Control-->
+                        <div pg-form-group class="form-group form-group-default">
+                            <div class="clearfix">
+                                <label class="pull-left">{{'customer.cart.cr_expdate.labelHijri' | translate}}</label>
+                                <i class="fa fa-calendar pull-right m-t-5"></i>
+                            </div>
+
+                            <div class="controls">
+                                <input  type="date" class="form-control unstyled" name="deliveryDateIslamic"
+                                        id="deliveryDateIslamic"
+                                        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" autocomplete="off"
+                                        ng-model="$ctrl.recurringBody.deliveryDateIslamic" ng-required="$ctrl.dateMethod == 'Hijri'">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-12" ng-show="$ctrl.dateMethod == 'Gregorian' && !$ctrl.isRecurring">
+                        <!-- START Form Control-->
+                        <div pg-form-group class="form-group form-group-default">
+                            <div class="clearfix">
+                                <label class="pull-left">{{'customer.cart.cr_expdate.label' | translate}}</label>
+                                <i class="fa fa-calendar pull-right m-t-5"></i>
+                            </div>
+
+                            <div class="controls">
+                                <input type="date" class="form-control unstyled" name="deliveryDate"
+                                       id="deliveryDate"
+                                       pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" autocomplete="off"
+                                       ng-model="$ctrl.recurringBody.deliveryDate" ng-required="$ctrl.dateMethod == 'Gregorian'">
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="d-flex flex-wrap justify-content-center p-t-5">
                         <div class="m-b-5 p-r-5 text-center">
@@ -153,7 +208,7 @@
                             <div class="form-group form-group-custom form-group-default form-group-default-select2 m-b-0">
                                 <label class="label-custom">{{'customer.cart.intervalType.label' | translate}}</label>
                                 <select ng-model="$ctrl.recurringBody.orderIntervalType" class="full-width" data-disable-search="true" data-placeholder="Select" data-init-plugin="select2">
-                                    <option value="Day">{{'customer.cart.intervalType.day' | translate}}</option>
+                                    <option value="Day">Day</option>
                                     <option value="Week">{{'customer.cart.intervalType.week' | translate}}</option>
                                     <option value="Month">{{'customer.cart.intervalType.month' | translate}}</option>
                                 </select>
