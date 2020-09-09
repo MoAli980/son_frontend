@@ -24,25 +24,16 @@ class CartCtrl {
         $.Pages.init(); // eslint-disable-line
         this.customer.getBranches({});
         const ctrl = this;
-<<<<<<< HEAD
-=======
         this.dateMethod = 'Hijri';
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
         moment.locale('en');
         this.isRecurring = false;
         this.recurringBody = {
             startDate: moment().format('YYYY-MM-DD'),
             orderIntervalType: 'Week',
-<<<<<<< HEAD
-            orderFrequency: 1
-        };
-=======
             orderFrequency: 1,
             deliveryDate: null,
             deliveryDateIslamic: null
         };
-
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
         this.customer.getSuppliers({});
         this.$rootScope.supplierId = this.$rootScope.supplierId || this._$stateParams.supplierId;
         this.supplierId = this.$rootScope.supplierId;
@@ -55,11 +46,7 @@ class CartCtrl {
                 this.supplierId = this.$state.params.supplierId;
                 this.customer.getCartBySupplier(this.$state.params.supplierId);
             }
-<<<<<<< HEAD
-           // this.$log.info('State params have been updated', this.$scope.stateParams);
-=======
-            // this.$log.info('State params have been updated', this.$scope.stateParams);
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
+
         });
         this.$scope.$watchCollection(() => this.$rootScope.supplierId, () => {
             this.supplierId = this.$rootScope.supplierId;
@@ -77,8 +64,6 @@ class CartCtrl {
             ctrl.success = false;
             this.$scope.$apply();
         });
-<<<<<<< HEAD
-=======
 
         angular.element('#deliveryDateIslamic').calendarsPicker({
             calendar: $.calendars.instance('islamic'),
@@ -116,7 +101,6 @@ class CartCtrl {
     writeGregorian() {
         const dateString = new moment().add('Year', 5).format('YYYY-MM-DD');
         return dateString.trim().replace(/[\u0660-\u0669\u06f0-\u06f9]/g, c => c.charCodeAt(0) & 0xf);
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
     }
 
     $onChanges(changes) {
@@ -126,10 +110,7 @@ class CartCtrl {
             }
         }
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
     checkoutCart(id) {
         this.success = false;
         const _onSuccess = (res) => {
@@ -146,11 +127,6 @@ class CartCtrl {
                 this.customer.getCartBySupplier(this.supplierId);
                 this.$rootScope.$broadcast('checkoutCartUpdated');
                 // this._$rootScope.cartItems = res.data.data.items;
-<<<<<<< HEAD
-               // this.customer.cart.products = [];
-=======
-                // this.customer.cart.products = [];
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
             }
         };
         const _onError = (err) => {
@@ -181,26 +157,17 @@ class CartCtrl {
     deleteProductFromCart(productId, supplierId) {
         this.customer.deleteProductFromCart(productId, supplierId);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
     confirmDelete() {
         $('#deleteModal').modal('hide');
         this.deleteProductFromCart(this.itemToBeDelete, this.supplierId);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
     openConfirmMessage(id) {
         this.itemToBeDelete = id;
         $('#deleteModal').modal('show');
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
     updateProductQuantity(productId, newQuantity) {
         if (newQuantity > 10000) {
             this.notify('customer.product.message.maxQuantity', 'danger', 5000);
@@ -209,18 +176,12 @@ class CartCtrl {
         }
         this.customer.updateProductQuantity(productId, newQuantity, this.supplierId);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
     changeSupplier() {
         this.success = false;
         this.customer.getCartBySupplier(this.supplierId);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
     notify(message, type, timeout) {
         this.$translate(message).then((translation) => {
             $('body')
@@ -235,10 +196,7 @@ class CartCtrl {
         });
     }
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bbd929f75a183f6e899e74b0b6bc39c9e021ce1
 CartCtrl.$inject = ['SupplierService', 'CartService', '$stateParams', '$rootScope', '$scope', '$state', '$translate'];
 
 const CartComponent = {
