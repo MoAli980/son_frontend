@@ -19,8 +19,8 @@ import ContactService from './contact.service';
 import SystemService from './system.service';
 import BranchService from './branch.service';
 
-const production = 'https://www.supplieson.com';
-const staging = 'https://www.supplieson.com'; // 'http://dev.supplieson.com';
+const production = 'https://supplieson.com';
+const staging = 'https://dev.supplieson.com'; // 'http://dev.supplieson.com';
 const testEnv = 'http://167.71.169.109';
 const development = 'http://localhost:3000';
 const host = production;
