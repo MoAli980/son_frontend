@@ -68,7 +68,7 @@
                                 <input  type="date" class="form-control unstyled" name="deliveryDateIslamic"
                                         id="deliveryDateIslamic"
                                         pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" autocomplete="off"
-                                        ng-model="$ctrl.recurringBody.deliveryDateIslamic" ng-required="$ctrl.dateMethod == 'Hijri'">
+                                        ng-model="$ctrl.deliveryObject.deliveryDateIslamic" ng-required="$ctrl.dateMethod == 'Hijri'">
                             </div>
                         </div>
 
@@ -86,7 +86,7 @@
                                 <input type="date" class="form-control unstyled" name="deliveryDate"
                                        id="deliveryDate"
                                        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" autocomplete="off"
-                                       ng-model="$ctrl.recurringBody.deliveryDate" ng-required="$ctrl.dateMethod == 'Gregorian'">
+                                       ng-model="$ctrl.deliveryObject.deliveryDate" ng-required="$ctrl.dateMethod == 'Gregorian'">
                             </div>
                         </div>
                     </div>

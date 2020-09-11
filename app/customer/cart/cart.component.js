@@ -30,7 +30,9 @@ class CartCtrl {
         this.recurringBody = {
             startDate: moment().format('YYYY-MM-DD'),
             orderIntervalType: 'Week',
-            orderFrequency: 1,
+            orderFrequency: 1
+        };
+        this.deliveryObject = {
             deliveryDate: null,
             deliveryDateIslamic: null
         };
@@ -148,7 +150,7 @@ class CartCtrl {
             this._CartService.checkoutCart(id, this.customer.branchId, this.recurringBody).then(_onSuccess, _onError)
                 .finally(_onFinal);
         } else {
-            this._CartService.checkoutCart(id, this.customer.branchId, null).then(_onSuccess, _onError)
+            this._CartService.checkoutCart(id, this.customer.branchId, this.deliveryObject).then(_onSuccess, _onError)
                 .finally(_onFinal);
         }
     }
