@@ -513,6 +513,9 @@
       },
       "detail": "تفاصيل الطلب",
       "view": {
+        "deliveryImage": "صورة التسليم (مطلوب)",
+        "deliveryImagePlaceholder": "صورة التسليم",
+        "deliveryDate": "تاريخ التسليم او الوصول",
         "driverDetails": "تفاصيل السائق",
         "firstName": "الاسم",
         "lastName": "اللقب",

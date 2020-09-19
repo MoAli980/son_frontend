@@ -227,11 +227,14 @@ export default class OrderService {
         return this.retryRequest(request);
     }
 
-    deliveredOrder(id) {
+    deliveredOrder(id, data = null) {
         const request = {};
         request.url = `${this._AppConstants.api}/orders/delivered/${id}`;
         request.method = 'PUT';
         request.headers = this._request.headers;
+        if (data) {
+            request.data = data;
+        }
         return this.retryRequest(request);
     }
 

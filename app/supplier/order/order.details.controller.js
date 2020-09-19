@@ -1,5 +1,6 @@
 export default class OrderDetailsCtrl {
-    constructor(OrderService, SupplierService, $translate, $location, $stateParams, $window, ProductService) {
+    constructor(OrderService, SupplierService, $translate, $location, $stateParams, $window, ProductService, Upload,
+                AppConstants) {
         this._OrderService = OrderService;
         this._SupplierService = SupplierService;
         this._$translate = $translate;
@@ -11,11 +12,18 @@ export default class OrderDetailsCtrl {
         this.selected = {
             products: []
         };
+        this.noFileSelected = false;
+        this.base64ImageIsLoading = false;
+        this.deliveryImagePhoto = null;
+        this.deliveryImageName = null;
         this.isAllChecked = false;
         this.hasError = false;
         this.$window = $window;
         this._ProductService = ProductService;
+        this.Upload = Upload;
+        this.UPLOAD_URL = AppConstants.UPLOAD_URL;
     }
+
     $onInit() {
         $.Pages.init(); // eslint-disable-line
         if (this._$stateParams.orderId) {
@@ -123,9 +131,9 @@ export default class OrderDetailsCtrl {
                     this.notify('supplier.order.view.actions.unexpectedError', 'danger', 5000);
                 };
                 const _onFinal = (err) => {
-                   // $('#cancelModal').modal('hide');
+                    // $('#cancelModal').modal('hide');
                 };
-                const data = { message: this.cancelOrderMessage };
+                const data = {message: this.cancelOrderMessage};
                 this._OrderService.cancelOrder(this.orderId, data)
                     .then(_onSuccess, _onError).finally(_onFinal);
             }
@@ -151,11 +159,11 @@ export default class OrderDetailsCtrl {
                 this.$window.history.back();
             };
             const _onFinal = (err) => {
-               $('#rejectModal').modal('hide');
+                $('#rejectModal').modal('hide');
             };
-            const data = { message: this.rejectOrderMessage };
+            const data = {message: this.rejectOrderMessage};
             this._OrderService.rejectOrder(this.orderId, data)
-                    .then(_onSuccess, _onError).finally(_onFinal);
+                .then(_onSuccess, _onError).finally(_onFinal);
         }
     }
 
@@ -198,9 +206,9 @@ export default class OrderDetailsCtrl {
 
             };
 
-            const data = { acceptedProducts: this.selected.products };
+            const data = {acceptedProducts: this.selected.products};
             this._OrderService.acceptOrder(this.orderId, data)
-                    .then(_onSuccess, _onError).finally(_onFinal);
+                .then(_onSuccess, _onError).finally(_onFinal);
         }
     }
 
@@ -243,10 +251,10 @@ export default class OrderDetailsCtrl {
                 this.notify('supplier.order.view.actions.unexpectedError', 'danger', 5000);
             };
             const _onFinal = (err) => {
-               // $('#driverModal').modal('hide');
+                // $('#driverModal').modal('hide');
             };
 
-            const data = { driverId: this.driver };
+            const data = {driverId: this.driver};
             this._OrderService.outForDeliveryOrder(this.orderId, data)
                 .then(_onSuccess, _onError).finally(_onFinal);
         }
@@ -269,7 +277,7 @@ export default class OrderDetailsCtrl {
             const _onFinal = (err) => {
                 // this.orderIsLoaded = true;
             };
-            this._OrderService.deliveredOrder(this.orderId).then(_onSuccess, _onError);
+            this._OrderService.deliveredOrder(this.orderId, {deliveryImage: this.deliveryImagePhoto}).then(_onSuccess, _onError);
         }
     }
 
@@ -289,10 +297,10 @@ export default class OrderDetailsCtrl {
                 this.notify('supplier.order.view.actions.unexpectedError', 'danger', 5000);
             };
             const _onFinal = (err) => {
-              //  $('#failedModal').modal('hide');
+                //  $('#failedModal').modal('hide');
             };
 
-            const data = { message: this.failedToDeliverOrderMessage };
+            const data = {message: this.failedToDeliverOrderMessage};
             this._OrderService.failOrder(this.orderId, data)
                 .then(_onSuccess, _onError).finally(_onFinal);
         }
@@ -301,6 +309,7 @@ export default class OrderDetailsCtrl {
     printOrderDetails(type) {
         this._OrderService.exportFile(type, this.orderQuery);
     }
+
     getProducts() {
         this.productsAreLoaded = false;
         const _onSuccess = (res) => {
@@ -332,6 +341,7 @@ export default class OrderDetailsCtrl {
                 .show();
         });
     }
+
     addProductToOrder() {
         if (this.orderId && this.selectedProduct._id && this.quantity) {
             const _onSuccess = (res) => {
@@ -354,6 +364,7 @@ export default class OrderDetailsCtrl {
                 .then(_onSuccess, _onError);
         }
     }
+
     editProductInOrder(productIdInOrder, quantity) {
         if (productIdInOrder && quantity) {
             const _onSuccess = (res) => {
@@ -377,6 +388,7 @@ export default class OrderDetailsCtrl {
             );
         }
     }
+
     deleteProductInOrder(productIdInOrder) {
         if (productIdInOrder) {
             const _onSuccess = (res) => {
@@ -397,13 +409,52 @@ export default class OrderDetailsCtrl {
             this._OrderService.deleteProductInOrder(productIdInOrder).then(_onSuccess, _onError);
         }
     }
+
     setProductsViewMode(mode) {
         this.productViewMode = mode;
     }
+
     cancelEditProduct() {
         this.setProductsViewMode('viewMode');
         this.getOrder(this.orderQuery);
         this.getOrderLog(this.orderQuery);
     }
+
+    uploadFile(file, errFiles) {
+        if (file) {
+            this.deliveryImagePhoto = null;
+
+            const ctrl = this;
+            this.errFile = errFiles && errFiles[0];
+            this.base64ImageIsLoading = true;
+
+            file.upload = this.Upload.upload({
+                url: ctrl.UPLOAD_URL,
+                data: {image: file},
+                disableProgress: true,
+                headers: {Accept: 'application/json'}
+            });
+            file.upload.then((response) => {
+                console.log(response.data.data)
+                this.noFileSelected = false;
+                this.base64ImageIsLoading = false;
+                this.deliveryImagePhoto = response.data.data.path;
+                this.deliveryImageName = response.data.data.filename;
+            }, (response) => {
+                if (response.status > 0) {
+                    this.errorMsg = `${response.status}: ${response.data}`;
+                    this.isUploadPhoto = false;
+                }
+            }, (evt) => {
+                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+        } else {
+            this.deliveryImagePhoto = null;
+            this.noFileSelected = true;
+            this.base64ImageIsLoading = false;
+            this.deliveryImageName = null;
+        }
+    }
 }
-OrderDetailsCtrl.$inject = ['OrderService', 'SupplierService', '$translate', '$location', '$stateParams', '$window', 'ProductService'];
+OrderDetailsCtrl.$inject = ['OrderService', 'SupplierService', '$translate', '$location', '$stateParams', '$window', 'ProductService', 'Upload',
+    'AppConstants'];
