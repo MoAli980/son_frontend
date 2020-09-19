@@ -40,7 +40,7 @@
                 </div>
                 <div class="demo">
                     <ul class="progress-tracker progress-tracker--text progress-tracker--center">
-                      <li ng-class="$ctrl.progressMarkerStatus.Pending.style">                     
+                      <li ng-class="$ctrl.progressMarkerStatus.Pending.style">
                         <span class="progress-marker"></span>
                         <span class="progress-text">
                           <span class="progress-text">Pending</span>
@@ -48,7 +48,7 @@
                           <span class="label upper-case" ng-if="$ctrl.progressMarkerStatus.Pending.createdAt !== ''">{{$ctrl.progressMarkerStatus.Pending.createdAt| amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
                         </span>
                       </li>
-            
+
                       <li ng-class="$ctrl.progressMarkerStatus.Accepted.style">
                         <span class="progress-marker"></span>
                         <span class="progress-text">
@@ -57,7 +57,7 @@
                           <span class="label upper-case" ng-if="$ctrl.progressMarkerStatus.Accepted.createdAt !== ''">{{$ctrl.progressMarkerStatus.Accepted.createdAt| amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
                         </span>
                       </li>
-            
+
                       <li ng-class="$ctrl.progressMarkerStatus.ReadyForDelivery.style">
                         <span class="progress-marker"></span>
                         <span class="progress-text">
@@ -66,7 +66,7 @@
                           <span class="label upper-case" ng-if="$ctrl.progressMarkerStatus.ReadyForDelivery.createdAt !== ''">{{$ctrl.progressMarkerStatus.ReadyForDelivery.createdAt| amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
                         </span>
                       </li>
-            
+
                       <li ng-class="$ctrl.progressMarkerStatus.OutForDelivery.style">
                         <span class="progress-marker"></span>
                         <span class="progress-text">
@@ -75,7 +75,7 @@
                           <span class="label upper-case" ng-if="$ctrl.progressMarkerStatus.OutForDelivery.createdAt !== ''">{{$ctrl.progressMarkerStatus.OutForDelivery.createdAt| amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
                         </span>
                       </li>
-            
+
                       <li ng-class="$ctrl.progressMarkerStatus.Delivered.style">
                         <span class="progress-marker"></span>
                         <span class="progress-text">
@@ -109,7 +109,7 @@
                         </span>
                       </li>
                     </ul>
-            
+
                   </div>
                 <div class="card card-details"
                      ng-if="(!$ctrl.order && $ctrl.orderIsLoaded && !$ctrl.noInternetConnection) || $ctrl.hasError">
@@ -396,7 +396,7 @@
                             <!--<div class="m-l-5" ng-if="$ctrl.order.message">{{$ctrl.order.message}}</div>-->
                             <!--</div>-->
                             <!--</div>-->
-                            <div class="col-sm-7 d-flex flex-wrap justify-content-start justify-content-sm-end align-items-start m-t-20">
+                            <div class="col-sm-12 d-flex flex-wrap justify-content-start justify-content-sm-end align-items-start m-t-20">
                                 <div class="recur_order" style=""><span class="bold">{{'customer.sub_total' | translate}} </span>
                                     <span ng-if="$ctrl.order.total"> {{$ctrl.order.total | currency : "" : 2}}</span>
                                     <span ng-if="$ctrl.order.price"> {{$ctrl.order.price | currency : "" : 2}}</span>
@@ -448,7 +448,7 @@
                                         <h5 class="title" ng-if="$ctrl.order.driver">{{"customer.order.view.driverDetails" | translate }}</h5>
                                         <p ng-if="$ctrl.order.driver"> {{"customer.order.view.firstName" | translate }}: {{$ctrl.order.driver.firstName}}</p>
                                         <p ng-if="$ctrl.order.driver"> {{"customer.order.view.lastName" | translate }}: {{$ctrl.order.driver.lastName}}</p>
-                                        <p ng-if="$ctrl.order.driver"> {{"customer.order.view.mobileNumber" | translate }}: {{$ctrl.order.driver.mobileNumber}}</p>                                        
+                                        <p ng-if="$ctrl.order.driver"> {{"customer.order.view.mobileNumber" | translate }}: {{$ctrl.order.driver.mobileNumber}}</p>
                                 </contact>
                             </div>
                             <div class="col padding-0">
