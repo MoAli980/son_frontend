@@ -17,6 +17,7 @@ export default class CustomerOrderDetailCtrl {
         this._ProductService = ProductService;
         this.progressMarkerStatus = null;
     }
+
     $onInit() {
         $.Pages.init();
         this.currentPage = 1;
@@ -71,13 +72,14 @@ export default class CustomerOrderDetailCtrl {
                 this.getRecurringOrder(this.orderQuery);
             } else {
                 this.getOrder(this.orderQuery);
-              //  this.getReviewedOrders(this.orderQuery);
+                //  this.getReviewedOrders(this.orderQuery);
             }
         } else {
         }
         this.productViewMode = 'viewMode';
         this.getProducts();
     }
+
     getOrder(query) {
         this.orderIsLoaded = false;
         const _onSuccess = (res) => {
@@ -103,11 +105,12 @@ export default class CustomerOrderDetailCtrl {
         };
         this._OrderService.getOrder(query).then(_onSuccess, _onError).finally(_onFinal);
     }
+
     getOrderLog(query) {
         const _onSuccess = (res) => {
             if (res.data) {
                 this.orderLog = res.data.data;
-                const sortedOrderLogArr = this.orderLog.sort((a, b) => (a.createdAt > b.createdAt)? 1: -1);
+                const sortedOrderLogArr = this.orderLog.sort((a, b) => (a.createdAt > b.createdAt) ? 1 : -1);
                 const orderLogStatus = sortedOrderLogArr.map(object => object.status);
                 const orderLogStatusDates = sortedOrderLogArr.map(object => object.createdAt);
                 for (let i = 0; i < orderLogStatus.length; i += 1) {
@@ -131,6 +134,7 @@ export default class CustomerOrderDetailCtrl {
         };
         this._OrderService.getOrderLog(query).then(_onSuccess, _onError).finally(_onFinal);
     }
+
     cancelRecurringOrder() {
         const ctrl = this;
         if (this.orderId) {
@@ -157,7 +161,7 @@ export default class CustomerOrderDetailCtrl {
             const _onFinal = () => {
                 // this.cancelOrderComplete = true;
             };
-            const data = { message: '' };
+            const data = {message: ''};
             this._OrderService.cancelRecurringOrder(this.orderId, data)
                 .then(_onSuccess, _onError)
                 .finally(_onFinal);
@@ -188,12 +192,13 @@ export default class CustomerOrderDetailCtrl {
             const _onFinal = () => {
                 // this.cancelOrderComplete = true;
             };
-            const data = { message: '' };
+            const data = {message: ''};
             this._OrderService.cancelOrder(this.orderId, data)
-                    .then(_onSuccess, _onError)
-                    .finally(_onFinal);
+                .then(_onSuccess, _onError)
+                .finally(_onFinal);
         }
     }
+
     getRecurringOrder(query) {
         const _onSuccess = (res) => {
             this.order = res.data.data;
@@ -215,6 +220,7 @@ export default class CustomerOrderDetailCtrl {
             .then(_onSuccess, _onError)
             .finally(_onFinal);
     }
+
     reviewOrder() {
         if (this.review) {
             if (this.orderId) {
@@ -242,15 +248,19 @@ export default class CustomerOrderDetailCtrl {
             }
         }
     }
+
     setItemConditionRating(rate) {
         this.review.itemCondition = rate;
     }
+
     setDeliveryRating(rate) {
         this.review.delivery = rate;
     }
+
     setOverallRating(rate) {
         this.review.overall = rate;
     }
+
     getPage(pageNumber) {
         this.currentPage = pageNumber;
         this.orderQuery.skip = (pageNumber - 1) * this.orderQuery.limit;
@@ -261,6 +271,7 @@ export default class CustomerOrderDetailCtrl {
             this.getOrderLog(this.orderQuery);
         }
     }
+
     translateOrderInterval() {
         const ctrl = this;
         if (ctrl.order.orderIntervalType === 'Day') {
@@ -281,6 +292,7 @@ export default class CustomerOrderDetailCtrl {
             }
         });
     }
+
     printOrderDetails(type) {
         if (this._$stateParams.type === 'recurOrder') {
             this._OrderService.exportRecurringOrderDetailsFile(type, this.orderQuery);
@@ -288,6 +300,7 @@ export default class CustomerOrderDetailCtrl {
             this._OrderService.exportFile(type, this.orderQuery);
         }
     }
+
     notify(message, type, timeout) {
         this._$translate(message).then((translation) => {
             $('body')
@@ -301,6 +314,7 @@ export default class CustomerOrderDetailCtrl {
                 .show();
         });
     }
+
     addProductToOrder() {
         if (this.orderId && this.selectedProduct._id && this.quantity) {
             const _onSuccess = (res) => {
@@ -323,6 +337,7 @@ export default class CustomerOrderDetailCtrl {
                 .then(_onSuccess, _onError);
         }
     }
+
     addProductToRecurringOrder() {
         if (this.quantity > 10000) {
             this.notify('customer.product.message.maxQuantity', 'danger', 5000);
@@ -373,6 +388,7 @@ export default class CustomerOrderDetailCtrl {
             );
         }
     }
+
     deleteProductInRecurringOrder(orderId, productIdInOrder) {
         if (orderId && productIdInOrder) {
             const _onSuccess = (res) => {
@@ -426,6 +442,7 @@ export default class CustomerOrderDetailCtrl {
     checkProductForDelete(order, item) {
         order.products.length === 1 ? $('#deleteProductFromOrder').modal('show') : (order.status === 'Pending' ? this.deleteProductInOrder(item._id) : this.deleteProductInRecurringOrder(order._id, item._id));
     }
+
     deleteProductInOrder(productIdInOrder) {
         if (productIdInOrder) {
             const _onSuccess = (res) => {
@@ -446,14 +463,17 @@ export default class CustomerOrderDetailCtrl {
             this._OrderService.deleteProductInOrder(productIdInOrder).then(_onSuccess, _onError);
         }
     }
+
     setProductsViewMode(mode) {
         this.productViewMode = mode;
     }
+
     cancelEditProduct() {
         this.setProductsViewMode('viewMode');
         this.getOrder(this.orderQuery);
         this.getOrderLog(this.orderQuery);
     }
+
     getProducts() {
         this.productsAreLoaded = false;
         const _onSuccess = (res) => {
@@ -473,5 +493,14 @@ export default class CustomerOrderDetailCtrl {
         }).then(_onSuccess, _onError)
             .finally(_onFinal);
     }
+
+    doDownload(url) {
+        this._SupplierService.getDeliveryImagePhone(url).then((res) => {
+
+            },
+            (err) => {
+                console.log('error');
+            });
+    }
 }
-CustomerOrderDetailCtrl.$inject = ['OrderService', 'SupplierService', '$translate', '$stateParams', '$rootScope', 'ProductService', '$window'];
+CustomerOrderDetailCtrl.$inject = ['OrderService', 'SupplierService', '$translate', '$stateParams', '$rootScope', 'ProductService', '$window', '$http', 'CustomerService'];

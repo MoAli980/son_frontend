@@ -440,23 +440,44 @@ export default class SupplierService {
 
     getCommercialRegisterPhoto(photoId) {
         // const request = {};
-        const url =`${photoId}`;
+        const url = `${photoId}`;
         // request.url = `${this._AppConstants.UPLOAD_URL}/${photoId}`;
         // request.method = 'GET';
         // return this.retryRequest(request).then(
         // (result) => {
-            // const file = new Blob([result], { type: result.headers('content-type') });
-            // const fileURL = URL.createObjectURL(file);
-            window.open(url, '_blank', 'Download');
-            // const a = document.createElement('a');
-            // document.body.appendChild(a);
-            // a.style = 'display: none';
-            // a.href = fileURL;  // For chrome,firefox,opera and safari
-            // const extension = file.type.split('/')[1];
-            // a.download = `${photoId}.${extension}`;
-            // a.click();
+        // const file = new Blob([result], { type: result.headers('content-type') });
+        // const fileURL = URL.createObjectURL(file);
+        window.open(url, '_blank', 'Download');
+        // const a = document.createElement('a');
+        // document.body.appendChild(a);
+        // a.style = 'display: none';
+        // a.href = fileURL;  // For chrome,firefox,opera and safari
+        // const extension = file.type.split('/')[1];
+        // a.download = `${photoId}.${extension}`;
+        // a.click();
         // }
         //  );
+    }
+
+    getDeliveryImagePhone(url) {
+        const request = {};
+        request.url = url;
+        request.method = 'GET';
+        return this.retryRequest(request).then(
+            (result) => {
+                const file = new Blob([result], {type: result.headers('content-type')});
+                const fileURL = URL.createObjectURL(file);
+                window.open(url, '_blank', 'Download');
+                const a = document.createElement('a');
+                document.body.appendChild(a);
+                a.style = 'display: none';
+                a.href = fileURL;  // For chrome,firefox,opera and safari
+                const extension = file.type.split('/')[1];
+                a.download = `image${extension}`;
+                a.click();
+                return;
+            }
+        );
     }
 }
 SupplierService.$inject = ['AppConstants', 'JwtService', 'RetryRequest'];
