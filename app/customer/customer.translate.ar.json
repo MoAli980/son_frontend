@@ -743,6 +743,7 @@
         "cancelConfirmation": "هل أنت متأكد من أنك تريد إلغاء الطلب؟"
       },
       "view": {
+        "deliveryImage": "صورة التسليم",
         "driverDetails": "تفاصيل السائق",
         "firstName": "الاسم",
         "lastName": "اللقب",

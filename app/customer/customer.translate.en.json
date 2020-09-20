@@ -569,6 +569,7 @@
         "cancelConfirmation": "Are you sure you want to cancel the order?"
       },
       "view": {
+        "deliveryImage": "Delivery Image",
         "driverDetails": "Driver Details",
         "firstName": "First Name",
         "lastName": "Last Name",
