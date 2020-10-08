@@ -10,7 +10,7 @@
             <div class="p-t-10 p-b-10 p-l-15 p-r-15">
                 <h6>{{"supplier.reports.orders.stats.orders" | translate }}</h6>
                 <shimmer hide="$ctrl.reportIsLoaded" row="1" clipped="true"></shimmer>
-                <h5 ng-if="$ctrl.reportIsLoaded" class="bold">{{$ctrl.report.numberOfOrders}}
+                <h5 ng-if="$ctrl.reportIsLoaded" class="bold">{{$ctrl.report.count}}
                     <small>
                         <small class="w300 sm-text-left upper-case">{{"supplier.reports.orders.stats.order" | translate }}</small>
                     </small>
