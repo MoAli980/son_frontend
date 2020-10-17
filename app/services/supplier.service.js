@@ -460,12 +460,13 @@ export default class SupplierService {
     }
 
     getDeliveryImagePhone(url) {
-
+        console.log(url)
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.responseType = 'blob';
         xhr.onload = function(e) {
             if (this.status == 200) {
+
                 var myBlob = this.response;
                 // myBlob is now the blob that the object URL pointed to.
                 const file = new Blob([myBlob], {type: 'image/png'});
