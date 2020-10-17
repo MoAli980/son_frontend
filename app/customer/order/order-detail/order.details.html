@@ -263,7 +263,7 @@
                             <div class="card-title pull-right" ng-if="$ctrl.order.deliveryImage">
                                 <span>{{"customer.order.view.deliveryImage" | translate }}</span>
 
-                                <img style="max-height:50px; border: 1px solid #000000;" ng-click="$ctrl.doDownload($ctrl.order.deliveryImage)"
+                                <img id='delivery-data-image' style="max-height:50px; border: 1px solid #000000;" ng-click="$ctrl.doDownload($ctrl.order.deliveryImage)"
                                      ngf-thumbnail="$ctrl.order.deliveryImage">
 
                             </div>

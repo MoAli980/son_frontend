@@ -499,6 +499,7 @@ export default class CustomerOrderDetailCtrl {
 
             },
             (err) => {
+            console.log(err);
                 console.log('error');
             });
     }

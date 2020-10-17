@@ -460,12 +460,15 @@ export default class SupplierService {
     }
 
     getDeliveryImagePhone(url) {
-        const request = {};
-        request.url = url;
-        request.method = 'GET';
-        return this.retryRequest(request).then(
-            (result) => {
-                const file = new Blob([result], {type: result.headers('content-type')});
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function(e) {
+            if (this.status == 200) {
+                var myBlob = this.response;
+                // myBlob is now the blob that the object URL pointed to.
+                const file = new Blob([myBlob], {type: 'image/png'});
                 const fileURL = URL.createObjectURL(file);
                 window.open(url, '_blank', 'Download');
                 const a = document.createElement('a');
@@ -473,11 +476,13 @@ export default class SupplierService {
                 a.style = 'display: none';
                 a.href = fileURL;  // For chrome,firefox,opera and safari
                 const extension = file.type.split('/')[1];
-                a.download = `image${extension}`;
+                a.download = `image.${extension}`;
                 a.click();
+
                 return;
             }
-        );
+        };
+        xhr.send();
     }
 }
 SupplierService.$inject = ['AppConstants', 'JwtService', 'RetryRequest'];
