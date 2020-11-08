@@ -460,7 +460,6 @@ export default class SupplierService {
     }
 
     getDeliveryImagePhone(url) {
-        console.log(url)
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.responseType = 'blob';

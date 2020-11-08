@@ -516,7 +516,7 @@
       },
       "detail" : "Order Detail",
       "view": {
-        "deliveryImage": "Delivery Image (required)",
+        "deliveryImage": "Delivery Image",
         "deliveryImagePlaceholder": "Delivery Image",
         "deliveryDate": "DELIVERY DATE",
         "driverDetails": "Driver Details",
