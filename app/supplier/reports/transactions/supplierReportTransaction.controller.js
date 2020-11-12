@@ -1,11 +1,12 @@
 import moment from 'moment';
 
 export default class SupplierReportTransactionsCtrl {
-    constructor(TransactionsService, CustomerService, SupplierService, $state) {
+    constructor(TransactionsService, CustomerService, SupplierService, $state, $rootScope) {
         this._TransactionsService = TransactionsService;
         this._CustomerService = CustomerService;
         this._SupplierService = SupplierService;
         this._$state = $state;
+        this._$rootScope = $rootScope;
     }
 
     $onInit() {
@@ -75,11 +76,12 @@ export default class SupplierReportTransactionsCtrl {
     }
 
     openReportDetails(transactionsDetails) {
-        /*$('#payment').modal('show');
+        /* $('#payment').modal('show');
         this.transactionsDetails = transactionsDetails;
         this.transactionsDetails.date = new Date(this.transactionsDetails.date);*/
         this.billItem = transactionsDetails;
         $('#view-payment').modal('show');
+        this._$rootScope.$broadcast('paymentEventPopupModal', this.billItem);
     }
 
     onFilterChange(searchCriteria) {
@@ -107,4 +109,4 @@ export default class SupplierReportTransactionsCtrl {
     }
 }
 
-SupplierReportTransactionsCtrl.$inject = ['TransactionsService', 'CustomerService', 'SupplierService', '$state'];
+SupplierReportTransactionsCtrl.$inject = ['TransactionsService', 'CustomerService', 'SupplierService', '$state', '$rootScope'];

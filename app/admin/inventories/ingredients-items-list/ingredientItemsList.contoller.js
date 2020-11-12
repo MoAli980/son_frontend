@@ -74,7 +74,6 @@ export default class AdminIngredientsListCtrl {
     }
 
     openEditIngredientForm(item) {
-        console.log(item);
         $('#editIngredientListingModal').modal('show');
         this.$rootScope.$broadcast('editIngredientListingModal', item);
     }

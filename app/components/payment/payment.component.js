@@ -1,9 +1,13 @@
 import moment from 'moment';
 
-function ViewPaymentCtrl($scope, $translate) {
+function ViewPaymentCtrl($scope, $translate, $rootScope) {
+
     const ctrl = this;
     ctrl.$onInit = () => {
         moment.locale('en');
+        $rootScope.$on('paymentEventPopupModal', (evt, data) => {
+            ctrl.bill = data;
+        });
     };
     let total = 0;
     ctrl.total = (amount) => {
@@ -30,7 +34,7 @@ function ViewPaymentCtrl($scope, $translate) {
     };
 }
 
-ViewPaymentCtrl.$inject = ['$scope', '$translate'];
+ViewPaymentCtrl.$inject = ['$scope', '$translate', '$rootScope'];
 
 const ViewPaymentComponent = {
     bindings: {
