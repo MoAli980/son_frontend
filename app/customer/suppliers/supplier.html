@@ -108,7 +108,7 @@
                                                 <span ng-if="item.paymentMethod === 'Bank'"> {{"customer.account.payment.bank" | translate}}</span>
                                             </span>
                                             <span ng-if="item.type === 'invoice'">
-                                                {{"customer.account.payment.invoice_for" | translate }} {{item.date | moment:'MMM YYYY'}}
+                                                {{"customer.account.payment.invoice_for" | translate }} {{item.createdAt | moment:'MMM YYYY'}}
                                             </span>
                                         </td>
                                         <td class="mn-120">{{item.amount | currency : "" : 2}} <span ng-if="item.type === 'invoice'">{{item.total | currency : "" : 2}}</span> <small>{{"customer.account.payment.sar" | translate }}</small></td>
