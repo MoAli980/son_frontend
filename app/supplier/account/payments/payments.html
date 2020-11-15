@@ -92,8 +92,8 @@
                                 <tbody>
                                 <tr ng-repeat="item in $ctrl.billingHistory" class="gradeX odd content-table-payment cursor" role="row" ng-click="$ctrl.openBillingShowDetails(item._id,item)">
                                     <td class="mn-170">
-                                        <span class="label upper-case">{{item.date | moment:'DD-MM-YYYY'}}</span>
-                                        <span class="label upper-case">{{item.date | moment:'HH:MM A'}}</span>
+                                        <span class="label upper-case">{{item.createdAt | moment:'DD-MM-YYYY'}}</span>
+                                        <span class="label upper-case">{{item.createdAt | moment:'HH:MM A'}}</span>
                                     </td>
                                     <td class="sorting_1 mn-170">
                                             <span ng-if="item.type === 'credit'"
@@ -109,7 +109,7 @@
                                                 <span ng-if="item.paymentMethod === 'Bank'"> {{"supplier.account.payment.bank" | translate}}</span>
                                             </span>
                                         <span ng-if="item.type === 'invoice'">
-                                                {{"supplier.account.payment.invoice_for" | translate }} {{item.date | moment:'MMM YYYY'}}
+                                                {{"supplier.account.payment.invoice_for" | translate }} {{item.createdAt | moment:'MMM YYYY'}}
                                             </span>
                                     </td>
                                     <td class="mn-100">{{item.amount | currency : "" : 2}}{{$ctrl.getInvoiceSum(item.transactions) | currency : "" : 2}} <small>{{"supplier.account.payment.sar" | translate }}</small></td>
