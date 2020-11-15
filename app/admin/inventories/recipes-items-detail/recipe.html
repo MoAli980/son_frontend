@@ -36,7 +36,7 @@
                         <span ng-if="$ctrl.supplier.status === 'Blocked'"
                               class="label label-important upper-case">{{"admin.suppliers.supplier.blocked" | translate}}</span>
                         <span ng-if="$ctrl.supplier.status === 'Deleted'"
-                              class="label label-important upper-case">{{"admin.suppliers.supplier.deleted" | translate}}</span>      
+                              class="label label-important upper-case">{{"admin.suppliers.supplier.deleted" | translate}}</span>
                     </h4>
                 </div>
 
@@ -60,7 +60,7 @@
                                         class="fa fa-check"></i>{{"admin.suppliers.supplier.approve" | translate}}</a></span>
                                 <span ng-if="option === 'Delete'"><a
                                         ng-click="$ctrl.changeSupplierStatus($ctrl.supplier._id, option)"><i
-                                        class="fa fa-check"></i>{{"admin.suppliers.supplier.delete" | translate}}</a></span>        
+                                        class="fa fa-check"></i>{{"admin.suppliers.supplier.delete" | translate}}</a></span>
                             </li>
                         </ul>
                     </div>
@@ -316,7 +316,7 @@
                                                 <span ng-if="item.paymentMethod === 'Bank'"> {{"admin.suppliers.payment.bank" | translate}}</span>
                                             </span>
                                             <span ng-if="item.type === 'invoice'">
-                                                {{"admin.suppliers.payment.invoice_for" | translate }} {{item.date | moment:'MMM YYYY'}}
+                                                {{"admin.suppliers.payment.invoice_for" | translate }} {{item.createdAt | moment:'MMM YYYY'}}
                                             </span>
                                         </td>
                                         <td class="text-center mn-100">{{item.amount | currency : "" : 2}}<span
