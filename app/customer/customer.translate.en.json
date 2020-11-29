@@ -24,7 +24,8 @@
       "product": "Products & Categories",
       "orders": "Orders",
       "payment": "Payment",
-      "account": "Account"
+      "account": "Account",
+      "report" : "Reports"
     },
     "sideMenu": {
       "suppliers": "Suppliers"
@@ -736,7 +737,29 @@
     "sub_total": "Sub Total.",
     "total_price": "Total Price.",
     "message": "Message",
-    "noMessage": "No messages"
+    "noMessage": "No messages",
+    "reports" : {
+      "breadcrumb": {
+        "reports": "Reports",
+        "transactions" : "Transactions"
+      },
+      "menu_item" : {
+        "reports" : "REPORTS",
+        "transactions" : "Transactions"
+      },
+      "tabs" : {
+          "total_orders" : "Orders",
+        "vat" : "VAT",
+        "cost" : "Cost",
+        "grand_total" : "Grand Total",
+        "export" : "Export",
+        "period" : "Transaction Period"
+      },
+      "filters" : {
+        "all" : "All",
+        "suppliers": "Suppliers"
+      }
+    }
   },
   "meta": {
     "project_name_supplies": "Supplies",

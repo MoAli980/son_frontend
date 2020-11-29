@@ -13,7 +13,12 @@ export default function customerConfig($stateProvider, $urlRouterProvider, $loca
                 skip: true // Never display this state in breadcrumb.
             },
             resolve: {
-                suppliersResolve: ['SupplierService', SupplierService => SupplierService.getSuppliers({ skip: 0, limit: 10, status: ['Active', 'Blocked'], supplierName: '' })]
+                suppliersResolve: ['SupplierService', SupplierService => SupplierService.getSuppliers({
+                    skip: 0,
+                    limit: 10,
+                    status: ['Active', 'Blocked'],
+                    supplierName: ''
+                })]
             },
             data: {
                 permissions: {
@@ -261,6 +266,54 @@ export default function customerConfig($stateProvider, $urlRouterProvider, $loca
             data: {
                 permissions: {
                     only: ['manageOrders', 'manageCustomers'],
+                    redirectTo: AuthorizationMethods.redirectTo404()
+                }
+            }
+        })
+        .state('app.customer.reports', {
+            url: '/reports',
+            templateUrl: 'app/customer/reports/index.html',
+            controller: 'ReportRedirectCtrl',
+            ncyBreadcrumb: {
+                skip: true // Never display this state in breadcrumb.
+            },
+            data: {
+                permissions: {
+                    only: ['managePayments', 'manageCustomers'],
+                    redirectTo: AuthorizationMethods.redirectTo404()
+                }
+            }
+        })
+        .state('app.customer.reports.transactions', {
+            templateUrl: 'app/customer/reports/reports.html',
+            controller: 'CustomerReportsCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: '{{categoryName}}',
+                parent: 'app.customer.product.list.category'
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        'switchery',
+                        'select',
+                        'moment',
+                        'datepicker',
+                        'daterangepicker'
+                    ], {
+                        insertBefore: '#lazyload_placeholder'
+                    }).then(() => true// $ocLazyLoad.load('assets/js/controllers/forms_elements.js');
+                        );
+                }],
+                suppliersResolve: ['SupplierService', SupplierService => SupplierService.getSuppliers({
+                    skip: 0,
+                    limit: 10,
+                    status: ['Active', 'Blocked'],
+                    supplierName: ''
+                })]
+            },
+            data: {
+                permissions: {
+                    only: ['managePayments', 'manageCustomers'],
                     redirectTo: AuthorizationMethods.redirectTo404()
                 }
             }

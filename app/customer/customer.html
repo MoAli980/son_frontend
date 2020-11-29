@@ -52,6 +52,7 @@
                     <li permission permission-only="['manageOrders','manageCustomers']" ng-show="supplier.status==='Active' && supplier.relationStatus ==='Active'"  ui-sref-active="active"><a ng-click="$ctrl.navigate('app.customer.product')" >{{"customer.menu.product" | translate }}</a></li>
                     <li permission permission-only="['manageOrders','manageCustomers']" ng-show="supplier.status==='Active' && supplier.relationStatus ==='Active'" ui-sref-active="active"><a ng-click="$ctrl.navigate('app.customer.orders')" >{{"customer.menu.orders" | translate }}</a></li>
                     <li permission permission-only="['managePayments','manageCustomers']" ui-sref-active="active"><a ng-click="$ctrl.navigate('app.customer.payments')" >{{"customer.menu.payment" | translate }}</a></li>
+                    <li permission permission-only="['managePayments','manageCustomers']" ui-sref-active="active"><a ng-click="$ctrl.navigate('app.customer.reports')" >{{"customer.menu.report" | translate }}</a></li>
                 </ul>
                 <button ng-show="($ctrl.permissions.manageCustomers || $ctrl.permissions.manageOrders)" id="cart-btn" class="btn btn-primary floating-nav-button" style="min-width: 100px" data-toggle="modal" data-target="#cartModal" ng-click="$ctrl.hideHorizontalMenu()"
                          title='{{"header.cart" | translate }}'>

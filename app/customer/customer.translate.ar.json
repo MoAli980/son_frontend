@@ -24,7 +24,8 @@
       "product": "المنتجات و الاقسام",
       "orders": "الطلبات",
       "payment": "المدفوعات",
-      "account": "الحساب"
+      "account": "الحساب",
+      "report" : "التقارير"
     },
     "sideMenu": {
       "suppliers": "المزودين"
@@ -910,7 +911,28 @@
     "sub_total": "الاجمالى قبل الضريبة",
     "total_price": "الاجمالى",
     "message": "رسالة",
-    "noMessage": "لا يوجد رسائل"
+    "noMessage": "لا يوجد رسائل",
+    "reports" : {
+      "breadcrumb": {
+        "reports": "التقارير",
+        "transactions" : "المعاملات"
+      },
+      "menu_item" : {
+        "reports" : "التقارير",
+        "transactions" : "المعاملات"
+      },
+      "tabs" : {
+        "total_orders" : "طلب",
+        "vat" : "ضريبة القيمة المضافة",
+        "cost" : "كلفة",
+        "grand_total" : "المجموع الكلي",
+        "export" : "تصدير"
+      },
+      "filters" : {
+        "all" : "الكل",
+        "suppliers": "الموردين"
+      }
+    }
   },
   "meta": {
     "project_name_supplies": "Supplies",

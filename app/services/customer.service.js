@@ -363,6 +363,57 @@ export default class CustomerService {
         // }
         //  );
     }
+    exportFile(type, reportType, searchCriteria) {
+        let url = `${this._AppConstants.api}/orders/reports`;
+        console.log(url);
+        if (type === 'pdf') {
+            url = `${url}?export=${type}`;
+        } else {
+            url = `${url}?export=${type}`;
+        }
+        url = url.concat(`&skip=${searchCriteria.skip}`);
+        url = url.concat(`&limit=${searchCriteria.limit}`);
+        url = url.concat(`&startDate=${searchCriteria.startDate}`);
+        url = url.concat(`&endDate=${searchCriteria.endDate}`);
+        if (searchCriteria.supplierId) {
+            if (searchCriteria.supplierId !== 'All') {
+                url = url.concat(`&supplierId=${searchCriteria.supplierId}`);
+            }
+        }
+        if (searchCriteria.customerId) {
+            if (searchCriteria.customerId !== 'All') {
+                url = url.concat(`&customerId=${searchCriteria.customerId}`);
+            }
+        }
+        if (searchCriteria.status && searchCriteria.status.length > 0) {
+            let status = '[';
+            for (let i = 0; i < searchCriteria.status.length; i += 1) {
+                if (i < searchCriteria.status.length - 1) {
+                    status = status.concat(`"${searchCriteria.status[i]}",`);
+                } else {
+                    status = status.concat(`"${searchCriteria.status[i]}"`);
+                }
+            }
+            status = status.concat(']');
+            url = url.concat(`&status=${status}`);
+        }
+        if (searchCriteria.type) {
+            url = url.concat(`&type=${searchCriteria.type}`);
+        }
+        const request = {
+            url,
+            headers: this._request.headers,
+            responseType: 'arraybuffer',
+            method: 'GET',
+        };
+
+        this.retryRequest(request).then(
+            (result) => {
+                suppliesOnHelper.createBlob(result, 'SupOn-Report', type);
+            }
+        );
+    }
+
 }
 CustomerService.$inject = ['AppConstants', 'JwtService', 'RetryRequest', 'Upload'];
 
