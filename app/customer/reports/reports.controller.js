@@ -50,7 +50,6 @@ export default class CustomerReportsCtrl {
 
 
     exportFile(type) {
-        console.log(this.searchCriteria);
         this._CustomerService.exportFile(type, 'transactions', this.searchCriteria);
     }
 
