@@ -29,6 +29,7 @@
             </div>
             <div class="card-header clearfix">
                 <div ui-sref="app.supplier.order.view.details({orderId:card.order._id})" class="card-footer-title">{{card.order.customer.representativeName}}</div>
+                <div class="card-footer-title float-right"><a>{{card.order.branchName}}</a></div>
                 <div class="checkbox check-primary pull-right m-0 p-0">
                     <input type="checkbox" checklist-model="$ctrl.selected.orders" checklist-value="card.order._id" id="{{card.order._id}}">
                     <label for="{{card.order._id}}" class="m-0"></label>
@@ -89,6 +90,7 @@
             </div>
             <div class="card-header clearfix">
                 <div class="card-footer-title">{{card.order.customer.representativeName}}</div>
+                <div class="card-footer-title float-right"><a>{{card.order.branchName}}</a></div>
                 <span ng-if="card.order.status === 'Rejected'" class="label label-warning upper-case pull-right">{{"supplier.order.view.status.rejected" | translate }}</span>
                 <span ng-if="card.order.status === 'Canceled'" class="label label-important upper-case pull-right">{{"supplier.order.view.status.canceled" | translate }}</span>
                 <span ng-if="card.order.status === 'CanceledByCustomer'" class="label label-important upper-case pull-right">{{"supplier.order.view.status.canceledByCustomer" | translate }}</span>
