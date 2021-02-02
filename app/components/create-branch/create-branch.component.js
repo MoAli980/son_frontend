@@ -84,9 +84,13 @@ function CreateBranchCtrl($rootScope, $translate, NgMap, $scope) {
             if (data.mode === 'Update') {
                 ctrl.branch = data;
             } else {
-                ctrl.branch = {
-                    location: data.location
-                };
+                if (data && data.location && data.location.coordinates && data.location.coordinates[0] === 0 && data.location.coordinates[1] === 0) {
+                    data.location.coordinates = [46.5423373, 24.7255553];
+                } else {
+                    ctrl.branch = {
+                        location: data.location
+                    };
+                }
             }
         }, 10);
     }
