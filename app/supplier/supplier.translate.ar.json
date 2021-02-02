@@ -10,7 +10,7 @@
     "contactUS": "تواصل معنا"
   },
   "footer": {
-    "copyright": "حقوق الطبع والنشر © 2020",
+    "copyright": "حقوق الطبع والنشر © 2021",
     "rights": "جميع الحقوق محفوظة",
     "hand_craft_statement": "تم تطويره بواسطة",
     "made_statement": "وصنع مع الحب ®",
@@ -760,7 +760,8 @@
           "supplier": "المورد",
           "totalPrice": "السعر الإجمالي",
           "status": "الحالة",
-          "showDetails": "عرض التفاصيل"
+          "showDetails": "عرض التفاصيل",
+          "branch": "اسم الفرع"
         },
         "details": {
           "product": "المنتج",

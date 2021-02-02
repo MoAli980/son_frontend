@@ -10,7 +10,7 @@
     "contactUS": "Contact us"
   },
   "footer": {
-    "copyright": "Copyright © 2020",
+    "copyright": "Copyright © 2021",
     "rights": "All rights reserved",
     "hand_craft_statement": "Hand-crafted by",
     "made_statement": "& Made with Love ®",
@@ -231,6 +231,22 @@
         "button": {
           "add": "Add Role"
         }
+      },
+      "branches" : {
+        "branch": "Branches",
+        "button": "New Branch",
+        "search": "SEARCH BY BRANCH NAME",
+        "table" : {
+          "branchName": "Branch Name",
+          "manager" : "Manager",
+          "location": "Location",
+          "date": "Date Created",
+          "status" : "Status",
+          "city": "City"
+        },
+        "branch_added": "Branch added successfully.",
+        "branch_failure": "Branch added failure.",
+        "branch_updated": "Branch updated successfully."
       },
       "users": {
         "title": "Staff",

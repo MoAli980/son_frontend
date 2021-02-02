@@ -26,12 +26,13 @@ import avatar from './avatar/avatar.component';
 import notification from './notification/notification.component';
 import search from './search/search.component';
 import CreateRole from './create-role/create-role.component';
+import CreateBranch from './create-branch/create-branch.component';
 import RoleListComponent from './role-list/role-list.component';
 import emailValidator from './directives/email-validator.directive';
 import starRating from './directives/star-rating.directive';
 import SuponContactComponent from './contact/contact.component';
-import PrivacyComponent from "./privacy/privacy.component";
-import Custom404Component from "./404/custom404.component";
+import PrivacyComponent from './privacy/privacy.component';
+import Custom404Component from './404/custom404.component';
 
 const componentsModule = angular.module('app.componentsModule', []);
 componentsModule.run(['$rootScope', '$translate', '$translatePartialLoader', ($rootScope, $translate, $translatePartialLoader) => {
@@ -48,6 +49,7 @@ componentsModule.component('listErrors', ListErrors)
     .component('back', Back)
     .component('resetPassword', ResetPassword)
     .component('createUser', CreateUser)
+    .component('createBranch', CreateBranch)
     .component('paymentRecord', RecordPaymentComponent)
     .component('viewPayment', ViewPaymentComponent)
     .component('billingHistory', BillingHistoryComponent)

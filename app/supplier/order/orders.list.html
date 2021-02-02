@@ -33,11 +33,16 @@
             </div>
             <div class="card-header clearfix">
                 <div class="card-footer-title"><a>{{card.order.customer.representativeName}}</a></div>
-                <ul class="reactions">
-                  <!--  <li><span am-time-ago="card.order.updatedAt |  amUtcOffset:'-0000' "></span></li>-->
-                    <span class="label upper-case">{{card.order.updatedAt | amUtcOffset:'-0000' | amDateFormat:'DD-MM-YYYY'}}</span>
-                    <span class="label upper-case">{{card.order.updatedAt | amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
-                </ul>
+                <div class="card-footer-title float-right"><a>{{card.order.branchName}}</a></div>
+                <div>
+                    <ul class="reactions">
+                        <!--  <li><span am-time-ago="card.order.updatedAt |  amUtcOffset:'-0000' "></span></li>-->
+                        <span class="label upper-case">{{card.order.updatedAt | amUtcOffset:'-0000' | amDateFormat:'DD-MM-YYYY'}}</span>
+                        <span class="label upper-case">{{card.order.updatedAt | amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
+                    </ul>
+
+                </div>
+
             </div>
 
         </div>

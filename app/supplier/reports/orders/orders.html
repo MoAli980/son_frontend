@@ -144,6 +144,7 @@
                             <th class="bold">{{"supplier.reports.orders.table.date" | translate }}</th>
                             <th class="bold">{{"supplier.reports.orders.table.orderNumber" | translate }}</th>
                             <th class="bold">{{"supplier.reports.orders.table.customer" | translate }}</th>
+                            <th class="bold">{{"supplier.reports.orders.table.branch" | translate }}</th>
                             <th class="bold">{{"supplier.reports.orders.table.totalPrice" | translate }}</th>
                             <th class="bold">{{"supplier.reports.orders.table.status" | translate }}</th>
                         </tr>
@@ -156,6 +157,7 @@
                             </td>
                             <td class="v-align-middle mn-130" width="160"><a ui-sref="app.supplier.report.ordersDetails({id:item.orderId})">{{item.orderNumber}}</a></td>
                             <td class="v-align-middle mn-170 text-capitalize">{{item.customerName}}</td>
+                            <td class="v-align-middle mn-170 text-capitalize">{{item.branchName}}</td>
                             <td class="v-align-middle mn-130">{{item.totalPrice | currency:"":2}} {{"supplier.reports.orders.stats.sar" | translate }}</td>
                             <td class="v-align-middle mn-140">
                                 <span ng-if="item.orderStatus === 'Accepted'"

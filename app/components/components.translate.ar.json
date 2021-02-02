@@ -1,5 +1,28 @@
 {
     "component": {
+        "create-branch": {
+            "text": {
+                "adding_new_branch": "إضافة فرع جديد",
+                "update_branch": "فرع التحديث"
+            },
+            "field": {
+                "branchName": {
+                    "label": "اسم الفرع",
+                    "place_holder": "اسم الفرع بالانجليزية",
+                    "required": "اسم الفرع مطلوب.",
+                    "invalid": "اسم الفرع غير صالح."
+                },
+                "city": {
+                    "label": "مدينة",
+                    "place_holder": "مدينة"
+                },
+                "location": {
+                    "label": "موقعك",
+                    "place_holder": "أدخل موقعًا",
+                    "required" : "الموقع مطلوب"
+                }
+            }
+        },
         "create-role": {
             "text": {
                 "adding_new_role": "إضافة وظيفة جديدة"

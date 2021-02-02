@@ -12,6 +12,7 @@ import CustomerAccountUserCtrl from './account/user/customerAccountUser.controll
 import CustomerAccountRolesCtrl from './account/role/customerAccountRoles.controller';
 import CustomerReportsCtrl from './reports/reports.controller';
 import ReportRedirectCtrl from './reports/index.controller';
+import CustomerListBranchesCtrl from './account/branches/branches.controller';
 // import CustomerOrderDetailCtrl from './order/order-detail/order-detail.controller';
 import CartComponent from './cart/cart.component';
 import CustomerCtrl from './customer.controller';
@@ -34,6 +35,7 @@ customerModule.config(customerConfig)
     .controller('CustomerAccountRolesCtrl', CustomerAccountRolesCtrl)
     .controller('CustomerReportsCtrl', CustomerReportsCtrl)
     .controller('ReportRedirectCtrl', ReportRedirectCtrl)
+    .controller('CustomerListBranchesCtrl', CustomerListBranchesCtrl)
 
     // .controller('OrderDetailsCtrl', OrderDetailsCtrl)
     .component('cartComponent', CartComponent);

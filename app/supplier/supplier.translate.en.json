@@ -10,7 +10,7 @@
     "contactUS": "Contact us"
   },
   "footer": {
-    "copyright": "Copyright © 2020",
+    "copyright": "Copyright © 2021",
     "rights": "All rights reserved",
     "hand_craft_statement": "Hand-crafted by",
     "made_statement": "& Made with Love ®",
@@ -763,7 +763,8 @@
           "supplier": "Supplier",
           "totalPrice": "Total Price",
           "status": "Status",
-          "showDetails": "Show Details"
+          "showDetails": "Show Details",
+          "branch":"Branch Name"
         },
         "details": {
           "product": "Product",

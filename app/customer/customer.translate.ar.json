@@ -10,7 +10,7 @@
     "contactUS": "تواصل معنا"
   },
   "footer": {
-    "copyright": "حقوق الطبع والنشر © 2020",
+    "copyright": "حقوق الطبع والنشر © 2021",
     "rights": "جميع الحقوق محفوظة",
     "hand_craft_statement": "تم تطويره بواسطة",
     "made_statement": "وصنع مع الحب ®",
@@ -406,6 +406,22 @@
         "button": {
           "add": "وظيفة جديده "
         }
+      },
+      "branches" : {
+        "branch": "الفروع",
+        "button": "فرع جديد",
+        "search": "البحث عن طريق اسم الفرع",
+        "table" : {
+          "branchName": "اسم الفرع",
+          "manager" : "مدير",
+          "location": "موقعك",
+          "date": "تاريخ الإنشاء",
+          "status" : "الحالة",
+          "city": "مدينة"
+        },
+        "branch_added": "تمت إضافة الفرع بنجاح.",
+        "branch_failure": "وأضاف الفرع الفشل.",
+        "branch_updated": "تم تحديث الفرع بنجاح."
       },
       "users": {
         "title": "الموظفين",

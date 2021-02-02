@@ -149,93 +149,93 @@
                         </div>
                 </div>
 
-                <div class="form-group-attached m-t-20 sm-no-padding" id="address">
-                    <div class="row row-same-height">
-                        <div class="col-12">
-                            <div class="row m-b-20">
-                                <div class="col-sm no-padding">
-                                    <div class="form-group form-group-custom form-group-default form-group-default-select2 no-padding">
-                                        <label>{{'customer.cart.branchLabel' | translate}}</label>
-                                        <select id="branch" name="branch" class="full-width no-padding" data-disable-search="true" data-placeholder=""
-                                                data-init-plugin="select2"
-                                                placeholder=""
-                                                ng-change="$ctrl.onChange()"
-                                                class="form-control"
-                                                ng-model="$ctrl.branchId">
-                                            <option ng-repeat="branch in $ctrl.branches" value ="{{branch._id}}">
-                                                {{branch.branchName}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-2 no-margin no-padding d-flex">
-                                    <a href="" ng-click="$ctrl.branchInput = !$ctrl.branchInput; $ctrl.mode = 'create'; $ctrl.branchName ='';" style="min-height:35px; width: 100%;" class="btn btn-primary align-self-stretch d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-plus" aria-hidden="true"></i> <span> {{'customer.account.profile.button.add_branch' | translate }}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row m-t-20">
-                                <div class="col-sm-11">
-                                    <div class="form-group">
-                                        <input type="text" ng-model="$ctrl.branchName" placeholder="{{'customer.account.profile.field.branch_input.placeholder' | translate }}"
-                                               class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row m-t-10">
-                                <div class="col-sm-4">
-                                    <a href="" ng-click="$ctrl.mode === 'create' ? $ctrl.createBranch() : $ctrl.updateBranch()" class="btn btn-primary btn-block">
-                                        {{'customer.account.profile.button.save_branch' | translate }}
-                                    </a>
-                                </div>
-                                <div class="col-sm-4 d-flex justify-content-end">
-                                    <!--<a href="" ng-click="$ctrl.branchInput = !$ctrl.branchInput ; $ctrl.mode = 'edit'" class="btn btn-xs">-->
-                                        <!--<i class="fa fa-pencil"></i> {{"customer.account.profile.button.edit_branch" | translate }}-->
+                <!--<div class="form-group-attached m-t-20 sm-no-padding" id="address">-->
+                    <!--<div class="row row-same-height">-->
+                        <!--<div class="col-12">-->
+                            <!--<div class="row m-b-20">-->
+                                <!--<div class="col-sm no-padding">-->
+                                    <!--<div class="form-group form-group-custom form-group-default form-group-default-select2 no-padding">-->
+                                        <!--<label>{{'customer.cart.branchLabel' | translate}}</label>-->
+                                        <!--<select id="branch" name="branch" class="full-width no-padding" data-disable-search="true" data-placeholder=""-->
+                                                <!--data-init-plugin="select2"-->
+                                                <!--placeholder=""-->
+                                                <!--ng-change="$ctrl.onChange()"-->
+                                                <!--class="form-control"-->
+                                                <!--ng-model="$ctrl.branchId">-->
+                                            <!--<option ng-repeat="branch in $ctrl.branches" value ="{{branch._id}}">-->
+                                                <!--{{branch.branchName}}-->
+                                            <!--</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-6 col-lg-2 no-margin no-padding d-flex">-->
+                                    <!--<a href="" ng-click="$ctrl.branchInput = !$ctrl.branchInput; $ctrl.mode = 'create'; $ctrl.branchName ='';" style="min-height:35px; width: 100%;" class="btn btn-primary align-self-stretch d-flex align-items-center justify-content-center">-->
+                                        <!--<i class="fa fa-plus" aria-hidden="true"></i> <span> {{'customer.account.profile.button.add_branch' | translate }}</span>-->
                                     <!--</a>-->
-                                    <a href="" ng-if="$ctrl.mode === 'edit'" ng-click="$ctrl.openConfirmMessage($event)" class="btn btn-danger btn-block no-animate">
-                                        <i></i> {{'customer.account.profile.button.delete_branch' | translate }}
-                                    </a>
-                                    <a href="" ng-if="$ctrl.mode === 'create'" ng-click="$ctrl.cancelEdit();" class="btn btn-danger btn-block no-animate">
-                                        <i></i> {{'customer.account.profile.button.cancel' | translate }}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="row m-t-20">-->
+                                <!--<div class="col-sm-11">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<input type="text" ng-model="$ctrl.branchName" placeholder="{{'customer.account.profile.field.branch_input.placeholder' | translate }}"-->
+                                               <!--class="form-control">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row m-t-10">-->
+                                <!--<div class="col-sm-4">-->
+                                    <!--<a href="" ng-click="$ctrl.mode === 'create' ? $ctrl.createBranch() : $ctrl.updateBranch()" class="btn btn-primary btn-block">-->
+                                        <!--{{'customer.account.profile.button.save_branch' | translate }}-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <!--<div class="col-sm-4 d-flex justify-content-end">-->
+                                    <!--&lt;!&ndash;<a href="" ng-click="$ctrl.branchInput = !$ctrl.branchInput ; $ctrl.mode = 'edit'" class="btn btn-xs">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<i class="fa fa-pencil"></i> {{"customer.account.profile.button.edit_branch" | translate }}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                                    <!--<a href="" ng-if="$ctrl.mode === 'edit'" ng-click="$ctrl.openConfirmMessage($event)" class="btn btn-danger btn-block no-animate">-->
+                                        <!--<i></i> {{'customer.account.profile.button.delete_branch' | translate }}-->
+                                    <!--</a>-->
+                                    <!--<a href="" ng-if="$ctrl.mode === 'create'" ng-click="$ctrl.cancelEdit();" class="btn btn-danger btn-block no-animate">-->
+                                        <!--<i></i> {{'customer.account.profile.button.cancel' | translate }}-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                        <div class="col-sm-6">
-                            <div pg-form-group class="form-group form-group-default no-margin required" ng-class="{ 'has-error' : registerForm.address.$invalid && !registerForm.address.$pristine }">
-                                <label>{{"customer.account.profile.field.location.label" | translate }}</label>
-                                <div class="controls">
-                                    <input places-auto-complete size=80
-                                           name="address"
-                                           id="location"
-                                           class="form-control"
-                                           component-restrictions="{country:'sa'}"
-                                           ng-model="$ctrl.customer.location.address"
-                                           types="{{$ctrl.types}}"
-                                           on-place-changed="$ctrl.placeChanged()" required/>
-                                </div>
-                            </div>
-                            <label class="error" for="address" ng-show="profileForm.address.$error.required && !profileForm.address.$pristine">
-                                {{"customer.account.profile.field.location.required" | translate }}.
-                            </label>
-                            <div class="m-b-10" style="width:100%" map-lazy-load="{{$ctrl.googleMapsUrl}}">
-                                <ng-map ng-show="!$ctrl.profileIsloading"  id="map" zoom="11"
-                                        center="{{$ctrl.customer.location.coordinates}}">
-                                    <marker position="{{$ctrl.customer.location.coordinates}}"
-                                            title="Location"  animation="Animation.DROP"
-                                            on-dragend="$ctrl.markerDragEnd()"
-                                            draggable="true">
-                                    </marker>
+                        <!--<div class="col-sm-6">-->
+                            <!--<div pg-form-group class="form-group form-group-default no-margin required" ng-class="{ 'has-error' : registerForm.address.$invalid && !registerForm.address.$pristine }">-->
+                                <!--<label>{{"customer.account.profile.field.location.label" | translate }}</label>-->
+                                <!--<div class="controls">-->
+                                    <!--<input places-auto-complete size=80-->
+                                           <!--name="address"-->
+                                           <!--id="location"-->
+                                           <!--class="form-control"-->
+                                           <!--component-restrictions="{country:'sa'}"-->
+                                           <!--ng-model="$ctrl.customer.location.address"-->
+                                           <!--types="{{$ctrl.types}}"-->
+                                           <!--on-place-changed="$ctrl.placeChanged()" required/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<label class="error" for="address" ng-show="profileForm.address.$error.required && !profileForm.address.$pristine">-->
+                                <!--{{"customer.account.profile.field.location.required" | translate }}.-->
+                            <!--</label>-->
+                            <!--<div class="m-b-10" style="width:100%" map-lazy-load="{{$ctrl.googleMapsUrl}}">-->
+                                <!--<ng-map ng-show="!$ctrl.profileIsloading"  id="map" zoom="11"-->
+                                        <!--center="{{$ctrl.customer.location.coordinates}}">-->
+                                    <!--<marker position="{{$ctrl.customer.location.coordinates}}"-->
+                                            <!--title="Location"  animation="Animation.DROP"-->
+                                            <!--on-dragend="$ctrl.markerDragEnd()"-->
+                                            <!--draggable="true">-->
+                                    <!--</marker>-->
 
-                                </ng-map>
-                            </div>
-                        </div>
+                                <!--</ng-map>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                    </div>
-                </div>
+                    <!--</div>-->
+                <!--</div>-->
 
                 <p class="bold text-uppercase p-t-20 p-l-10">{{'customer.account.profile.text.acc_holder_info' | translate}}</p>
                 <div class="form-group-attached">

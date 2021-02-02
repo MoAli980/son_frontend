@@ -321,6 +321,21 @@ export default function customerConfig($stateProvider, $urlRouterProvider, $loca
         .state('app.customer.privacy', {
             url: '/privacy',
             templateUrl: 'app/customer/privacy.html'
+        })
+        .state('app.customer.account.branches', {
+            url: '/branches',
+            templateUrl: 'app/customer/account/branches/branches.html',
+            controller: 'CustomerListBranchesCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'customer.account.branches.branch',
+                skip: true // Never display this state in breadcrumb.
+            },
+            data: {
+                permissions: {
+                    only: ['manageAccount', 'manageCustomers'],
+                    redirectTo: AuthorizationMethods.redirectTo404()
+                }
+            }
         });
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/login');
