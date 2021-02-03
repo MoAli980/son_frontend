@@ -1,5 +1,8 @@
-function CreateBranchCtrl($rootScope, $translate, NgMap, $scope) {
+function CreateBranchCtrl($rootScope, $translate, NgMap) {
     const ctrl = this;
+
+    ctrl.types = "['establishment']";
+
     ctrl.$translate = $translate;
     ctrl.$onInit = () => {
         $.Pages.init();
@@ -15,10 +18,11 @@ function CreateBranchCtrl($rootScope, $translate, NgMap, $scope) {
             ctrl.place = this.getPlace();
             ctrl.branch.location
                 .coordinates = [ctrl.place.geometry.location.lat(),
-                ctrl.place.geometry.location.lng()];
+                    ctrl.place.geometry.location.lng()];
             // this.map.setCenter(this.place.geometry.location);
         });
     };
+
     ctrl.markerDragEnd = function (event) {
         ctrl.geocodeLatLng(event.latLng.lat(), event.latLng.lng());
         ctrl.branch.location.coordinates = [event.latLng.lat(), event.latLng.lng()];
@@ -28,9 +32,9 @@ function CreateBranchCtrl($rootScope, $translate, NgMap, $scope) {
         if (branchForm.$invalid) return;
 
         if (ctrl.mode === 'Save') {
-            ctrl.onSave({branch: ctrl.branch});
+            ctrl.onSave({ branch: ctrl.branch });
         } else if (ctrl.mode === 'Update') {
-            ctrl.onUpdate({branch: ctrl.branch});
+            ctrl.onUpdate({ branch: ctrl.branch });
         }
         $('#branchModal').modal('hide');
         if (ctrl.mode === 'Save') {
@@ -55,8 +59,8 @@ function CreateBranchCtrl($rootScope, $translate, NgMap, $scope) {
 
     ctrl.geocodeLatLng = (lat, lng) => {
         const geocoder = new google.maps.Geocoder();
-        const latlng = {lat, lng};
-        geocoder.geocode({location: latlng}, (results, status) => {
+        const latlng = { lat, lng };
+        geocoder.geocode({ location: latlng }, (results, status) => {
             if (status === 'OK') {
                 if (results[0]) {
                     ctrl.branch.location.address = results[0].formatted_address;
@@ -83,20 +87,22 @@ function CreateBranchCtrl($rootScope, $translate, NgMap, $scope) {
         setTimeout(() => {
             if (data.mode === 'Update') {
                 ctrl.branch = data;
+            } else if (data && !data.location) {
+                data.branch = {
+                    location: {
+                        coordinates: [46.5423373, 24.7255553]
+                    }
+                };
             } else {
-                if (data && data.location && data.location.coordinates && data.location.coordinates[0] === 0 && data.location.coordinates[1] === 0) {
-                    data.location.coordinates = [46.5423373, 24.7255553];
-                } else {
-                    ctrl.branch = {
-                        location: data.location
-                    };
-                }
+                ctrl.branch = {
+                    location: data.location
+                };
             }
         }, 10);
     }
 }
 
-CreateBranchCtrl.$inject = ['$rootScope', '$translate', 'NgMap', '$scope'];
+CreateBranchCtrl.$inject = ['$rootScope', '$translate', 'NgMap'];
 
 const CreateBranch = {
     bindings: {

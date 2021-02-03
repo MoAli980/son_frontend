@@ -88,36 +88,3 @@
     <!-- /.modal-dialog -->
 </div>
 
-
-<script>
-    $('#status, #role').on('select2:open',function(){
-        let that = $(this);
-        let flag = false;
-        if ( $(window).width() > 739) {
-            $(window).bind('wheel', function(e) {
-                // if(!flag && e.target.className === 'select2-results__option'){
-                //     // that.select2("close");
-                //     console.log('scroll');
-                // } else if(!flag &&  e.target.className !== 'select2-results__option'){
-                //     that.select2("open");
-                //     console.log('scroll');
-                // }
-            });
-        }
-        else {
-            $(window).bind('wheel', function(e) {
-                console.log(e.target);
-                if(!flag && e.target.className === 'select2-results__option'){
-                    // that.select2("close");
-                    console.log('scroll');
-                } else if(!flag &&  e.target.className !== 'select2-results__option'){
-                    that.select2("close");
-                    console.log('scroll');
-                }
-                else
-                    flag = true;
-            });
-        }
-    });
-</script>
-
