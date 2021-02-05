@@ -95,7 +95,6 @@ export default class CustomerListBranchesCtrl {
     setPage(pageNumber) {
         this.currentPage = pageNumber;
         this.searchCriteria.skip = (pageNumber - 1) * this.searchCriteria.limit;
-        this.searchCriteria.limit = pageNumber;
         this.getBranches(this.searchCriteria);
     }
 

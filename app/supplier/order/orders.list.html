@@ -11,7 +11,6 @@
 <div ng-repeat="(key, value) in $ctrl.orderList.orders | groupBy: 'order.updatedAtDay'">
     <p class="upper-case bold p-t-10 p-l-20 p-r-20">
       {{key}}
-
     </p>
 
     <div class="row p-l-20 p-r-20">
@@ -32,11 +31,11 @@
                 </div>
             </div>
             <div class="card-header clearfix">
-                <div class="card-footer-title"><a>{{card.order.customer.representativeName}}</a></div>
-                <div class="card-footer-title float-right"><a>{{card.order.branchName}}</a></div>
+                <div ><span class="card-footer-custom-title">{{card.order.customer.representativeName}} </span></div>
+                <div ng-if="card.order.city"><span  class="card-footer-custom-title">{{card.order.branchName}} ({{card.order.city}})</span></div>
+                <div ng-if="!card.order.city"><span class="card-footer-custom-title">{{card.order.branchName}}</span></div>
                 <div>
                     <ul class="reactions">
-                        <!--  <li><span am-time-ago="card.order.updatedAt |  amUtcOffset:'-0000' "></span></li>-->
                         <span class="label upper-case">{{card.order.updatedAt | amUtcOffset:'-0000' | amDateFormat:'DD-MM-YYYY'}}</span>
                         <span class="label upper-case">{{card.order.updatedAt | amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
                     </ul>
