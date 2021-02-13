@@ -7,8 +7,6 @@ function CreateBranchCtrl($rootScope, $translate, NgMap) {
     ctrl.$onInit = () => {
         $.Pages.init();
 
-        settingCoordinates(ctrl);
-
         ctrl.branchForm = {};
     };
 
@@ -18,7 +16,7 @@ function CreateBranchCtrl($rootScope, $translate, NgMap) {
             ctrl.place = this.getPlace();
             ctrl.branch.location
                 .coordinates = [ctrl.place.geometry.location.lat(),
-                    ctrl.place.geometry.location.lng()];
+                ctrl.place.geometry.location.lng()];
             // this.map.setCenter(this.place.geometry.location);
         });
     };
@@ -32,9 +30,12 @@ function CreateBranchCtrl($rootScope, $translate, NgMap) {
         if (branchForm.$invalid) return;
 
         if (ctrl.mode === 'Save') {
-            ctrl.onSave({ branch: ctrl.branch });
+            ctrl.onSave({branch: ctrl.branch});
         } else if (ctrl.mode === 'Update') {
-            ctrl.onUpdate({ branch: ctrl.branch });
+            ctrl.onUpdate({branch: ctrl.branch});
+            setTimeout(() => {
+                ctrl.resetForm(branchForm);
+            }, 2000);
         }
         $('#branchModal').modal('hide');
         if (ctrl.mode === 'Save') {
@@ -46,21 +47,15 @@ function CreateBranchCtrl($rootScope, $translate, NgMap) {
 
     ctrl.resetForm = (branchForm) => {
         if (ctrl.mode === 'Save') {
-            ctrl.branch.location.city = '';
-            ctrl.branch.branchName = '';
             branchForm.$setPristine();
             branchForm.$setUntouched();
         }
     };
-    ctrl.translateStatus = (key) => {
-        const item = ctrl.status.data.find(obj => obj.key === key);
-        return $translate.use() === 'ar' ? item.ar : item.en;
-    };
 
     ctrl.geocodeLatLng = (lat, lng) => {
         const geocoder = new google.maps.Geocoder();
-        const latlng = { lat, lng };
-        geocoder.geocode({ location: latlng }, (results, status) => {
+        const latlng = {lat, lng};
+        geocoder.geocode({location: latlng}, (results, status) => {
             if (status === 'OK') {
                 if (results[0]) {
                     ctrl.branch.location.address = results[0].formatted_address;
@@ -82,24 +77,6 @@ function CreateBranchCtrl($rootScope, $translate, NgMap) {
             }
         });
     };
-
-    function settingCoordinates(data) {
-        setTimeout(() => {
-            if (data.mode === 'Update') {
-                ctrl.branch = data;
-            } else if (data && !data.location) {
-                data.branch = {
-                    location: {
-                        coordinates: [46.5423373, 24.7255553]
-                    }
-                };
-            } else {
-                ctrl.branch = {
-                    location: data.location
-                };
-            }
-        }, 10);
-    }
 }
 
 CreateBranchCtrl.$inject = ['$rootScope', '$translate', 'NgMap'];
@@ -110,7 +87,8 @@ const CreateBranch = {
         onUpdate: '&',
         branch: '=',
         mode: '<',
-        location: '='
+        location: '=',
+        staff: '='
     },
     controller: CreateBranchCtrl,
     controllerAs: '$ctrl',

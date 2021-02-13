@@ -43,6 +43,22 @@
 
                                 </div>
 
+                                <div class="col-md-8 " style="z-index: 2;" >
+                                    <div class="form-group form-group-custom form-group-default form-group-default-select2"
+                                         ng-class="{ 'has-error' : branchForm.manager.$invalid && !branchForm.manager.$pristine }">
+                                        <label class="label-custom" for="manager">{{'component.create-branch.field.manager.label' | translate}}</label>
+                                        <select ng-model="$ctrl.branch.manager" name="manager" id="manager"
+                                                class="full-width" data-placeholder="Select Manager" data-disable-search="false" data-init-plugin="select2"
+                                                required ng-options="item as item.representativeName for item in $ctrl.staff.data track by item._id">
+                                        </select>
+                                    </div>
+                                    <div ng-messages="userForm.role.$error">
+                                    <span ng-message="required" ng-if="!userForm.role.$pristine">
+                                       {{'component.create-branch.field.manager.required' | translate}}
+                                    </span>
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-12">
                                     <div pg-form-group class="form-group form-group-default no-margin required" ng-class="{ 'has-error' : branchForm.address.$invalid && !branchForm.address.$pristine }">
                                         <label>{{"component.create-branch.field.location.label" | translate }}</label>

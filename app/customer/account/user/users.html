@@ -12,7 +12,7 @@
     </div>
     </div>
     <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3">
-        <button ng-click="$ctrl.openNewUserPopup()" class="btn btn-primary btn-block">
+        <button ng-if="!$ctrl.isStaff" ng-click="$ctrl.openNewUserPopup()" class="btn btn-primary btn-block">
             {{'customer.account.users.button.New_user' | translate}}
         </button>
     </div>
@@ -67,16 +67,16 @@
                             </tr></thead>
                             <tbody>
                             <tr ng-repeat="item in $ctrl.customerUsers" class="gradeX odd content-table-payment" role="row">
-                                <td class="sorting_1 p-l-15 mn-100">{{item.firstName}}</td>
-                                <td class="sorting_1 p-l-15 text-center mn-130">{{currentLanguage.language==='ar'?item.role.arabicName:item.role.englishName}}</td>
-                                <td class="sorting_1 p-l-15 mn-170">{{item.email}}</td>
+                                <td class="sorting_1 p-l-15 mn-100">{{item.user.firstName}}</td>
+                                <td class="sorting_1 p-l-15 text-center mn-130">{{currentLanguage.language==='ar' ? item.user.role.arabicName:item.user.role.englishName}}</td>
+                                <td class="sorting_1 p-l-15 mn-170">{{ item.user.email }}</td>
                                 <td class="sorting_1 p-l-15 mn-170">
-                                    <span ng-show="item.status === 'Active'">{{'customer.account.users.New_user.field.status_active' | translate}}</span>
-                                    <span ng-show="item.status === 'Blocked'">{{'customer.account.users.New_user.field.status_blocked' | translate}}</span>
+                                    <span ng-show="item.user.status === 'Active'">{{'customer.account.users.New_user.field.status_active' | translate}}</span>
+                                    <span ng-show="item.user.status === 'Blocked'">{{'customer.account.users.New_user.field.status_blocked' | translate}}</span>
                                 </td>
                                 <td class="sorting_1 p-l-15 text-center mn-80">
-                                    <a class="m-r-10" href=""  ng-click="$ctrl.openEditUserPopup(item)"><i class="fa fa-pencil" ></i></a>
-                                    <a href=""  ng-click="$ctrl.openResetPasswordPopup(item._id)"><i class="pg-settings_small"></i> </a>
+                                    <a class="m-r-10" href="" ng-if="!$ctrl.isStaff" ng-click="$ctrl.openEditUserPopup(item.user)"><i class="fa fa-pencil" ></i></a>
+                                    <a href="" ng-if="!$ctrl.isStaff"  ng-click="$ctrl.openResetPasswordPopup(item.user._id)"><i class="pg-settings_small"></i> </a>
                                 </td>
                             </tr>
                             </tbody>

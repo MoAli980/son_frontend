@@ -12,7 +12,7 @@
     </div>
     </div>
     <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3">
-        <button ng-click="$ctrl.openNewUserPopup()" class="btn btn-primary btn-block">
+        <button ng-if="!$ctrl.isStaff" ng-click="$ctrl.openNewUserPopup()" class="btn btn-primary btn-block">
             {{'customer.account.branches.button' | translate}}
         </button>
     </div>
@@ -60,7 +60,7 @@
                             <tbody>
                             <tr ng-repeat="item in $ctrl.branches" class="gradeX odd content-table-payment" role="row">
                                 <td class="sorting_1 p-l-15 mn-100">{{item.branchName}}</td>
-                                <td class="sorting_1 p-l-15 text-center mn-130">N/A</td>
+                                <td class="sorting_1 p-l-15 text-center mn-130">{{item.manager.representativeName || 'N/A'}}</td>
                                 <td class="sorting_1 p-l-15 mn-170">{{item.location.address}}</td>
                                 <td class="sorting_1 p-l-15 mn-100">{{item.location.city}}</td>
                                 <td class="sorting_1 p-l-15 mn-120">{{item.createdAt | amUtcOffset:'-0000' | amDateFormat:'DD-MM-YYYY'}}</td>
@@ -69,7 +69,7 @@
                                     <span ng-show="item.status === 'Blocked'">{{'customer.account.users.New_user.field.status_blocked' | translate}}</span>
                                 </td>
                                 <td class="sorting_1 p-l-15 text-center mn-80">
-                                    <a class="m-r-10" href=""  ng-click="$ctrl.openEditUserPopup(item)"><i class="fa fa-pencil" ></i></a>
+                                    <a class="m-r-10" ng-if="!$ctrl.isStaff" href=""  ng-click="$ctrl.openEditUserPopup(item)"><i class="fa fa-pencil" ></i></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -83,7 +83,7 @@
     </div>
 </div>
 
-<create-branch mode="$ctrl.mode" location="$ctrl.location" on-save="$ctrl.createBranch(branch)" on-update="$ctrl.updateBranch(branch)" branch="$ctrl.branch"></create-branch>
+<create-branch mode="$ctrl.mode" location="$ctrl.location" staff="$ctrl.staffs" on-save="$ctrl.createBranch(branch)" on-update="$ctrl.updateBranch(branch)" branch="$ctrl.branch"></create-branch>
 
 <script>
     $('#role , #status').on('select2:open',function(){

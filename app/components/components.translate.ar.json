@@ -20,6 +20,10 @@
                     "label": "موقعك",
                     "place_holder": "أدخل موقعًا",
                     "required" : "الموقع مطلوب"
+                },
+                "manager" : {
+                    "label" : "مدير",
+                    "required" : "مطلوب مدير"
                 }
             }
         },

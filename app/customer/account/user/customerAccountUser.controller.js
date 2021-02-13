@@ -7,6 +7,7 @@ export default class CustomerAccountUerCtrl {
         this.customerUsers = [];
         this.errors = [];
         this.totalPages = 0;
+        this.isStaff = false;
     }
 
     $onInit() {
@@ -43,6 +44,7 @@ export default class CustomerAccountUerCtrl {
             if (res.status === 200) {
                 this.customerUsers = res.data.data.staff;
                 this.totalPages = Math.ceil(res.data.data.count / this.searchCriteria.limit);
+                this.isStaff = res.data.data.isStaff;
             }
         };
         const _onError = (err) => {

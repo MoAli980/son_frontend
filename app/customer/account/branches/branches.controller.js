@@ -7,6 +7,8 @@ export default class CustomerListBranchesCtrl {
         this.customerUsers = [];
         this.errors = [];
         this.totalPages = 0;
+        this.isStaff = false;
+        this.staffs = [];
     }
 
     $onInit() {
@@ -54,6 +56,11 @@ export default class CustomerListBranchesCtrl {
             this.branches = res.data.data.branches;
             this.totalPages = Math.ceil(res.data.data.count / this.searchCriteria.limit);
             this.location = this.branches[0].location;
+            this.isStaff = res.data.data.isStaff;
+            this.staffs = {
+                placeholder: { ar: 'اختر الوظيفة', en: 'Select Role' },
+                data: res.data.data.staff
+            };
         };
         const _onError = (err) => {
             this.errors = err.data.data;
@@ -105,6 +112,14 @@ export default class CustomerListBranchesCtrl {
 
     openNewUserPopup() {
         this.mode = 'Save';
+        this.branch = {
+            branchName: '',
+            location: {
+                coordinates: [46.5423373, 24.7255553],
+                city: ''
+            },
+            manager: ''
+        };
         $('#branchModal').modal('show');
     }
 
