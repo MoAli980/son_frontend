@@ -57,9 +57,10 @@ export default class CustomerListBranchesCtrl {
             this.totalPages = Math.ceil(res.data.data.count / this.searchCriteria.limit);
             this.location = this.branches[0].location;
             this.isStaff = res.data.data.isStaff;
+            const defaultValue = [{ _id: null, representativeName: 'None' }]
             this.staffs = {
                 placeholder: { ar: 'اختر الوظيفة', en: 'Select Role' },
-                data: res.data.data.staff
+                data: [...defaultValue, ...res.data.data.staff]
             };
         };
         const _onError = (err) => {

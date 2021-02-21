@@ -24,7 +24,7 @@ const staging = 'http://dev.supplieson.com'; // 'http://dev.supplieson.com';
 const testEnv = 'http://167.71.169.109';
 const development = 'http://localhost:3000';
 
-const host = staging;
+const host =  staging;
 
 const servicesModule = angular.module('app.servicesModule', []);
 console.log('host', host);

@@ -49,7 +49,7 @@
                                         <label class="label-custom" for="manager">{{'component.create-branch.field.manager.label' | translate}}</label>
                                         <select ng-model="$ctrl.branch.manager" name="manager" id="manager"
                                                 class="full-width" data-placeholder="Select Manager" data-disable-search="false" data-init-plugin="select2"
-                                                required ng-options="item as item.representativeName for item in $ctrl.staff.data track by item._id">
+                                                ng-options="item as item.representativeName for item in $ctrl.staff.data track by item._id">
                                         </select>
                                     </div>
                                     <div ng-messages="userForm.role.$error">
