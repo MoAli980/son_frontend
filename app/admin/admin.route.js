@@ -402,6 +402,14 @@ export default function adminConfig(
                 label: 'admin.settings.units.systemUnits',
             },
         })
+        .state('app.admin.settings.cities', {
+            url: '/cities',
+            templateUrl: 'app/admin/settings/system.cities.html',
+            controller: 'SystemCityCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'admin.settings.cities.label',
+            }
+        })
         .state('app.admin.settings.templates', {
             url: '/templates',
             templateUrl: 'app/admin/settings/system.email.templates.html',

@@ -1076,6 +1076,34 @@
         "failure": "Can't remove unit assigned to product",
         "unexpectedFailure": "Unexpected Error"
       },
+      "cities" : {
+        "label" : "Cities",
+        "button" : {
+          "addCities" : "Add City"
+        },
+        "table" : {
+          "arabic": "Arabic",
+          "english": "English",
+          "op": "OP",
+          "status": "Status"
+        },
+        "popup" : {
+          "heading" : "New City",
+          "arabic": "Arabic",
+          "english": "English",
+          "englishHolder": "City in English",
+          "arabicHolder": "City in Arabic",
+          "englishRequired": "This field is required",
+          "arabicRequired": "This field is required",
+          "add" : "Add",
+          "close": "Close",
+          "location": "Location",
+          "edit" : "Edit City"
+        },
+        "success": "City removed Successfully",
+        "failure": "Can't remove city assigned to product",
+        "unexpectedFailure": "Unexpected Error"
+      },
       "templates": {
         "emailTemplates": "Email Templates",
         "warning": "warning",

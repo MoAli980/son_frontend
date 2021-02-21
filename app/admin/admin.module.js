@@ -33,6 +33,7 @@ import EmailTemplatesCtrl from './settings/system.email.templates.controller';
 import SystemUnitsCtrl from './settings/system.units.controller';
 import SystemCMSCtrl from './settings/system.cms.controller';
 import SystemConfigCtrl from './settings/system.config.controller';
+import SystemCityCtrl from './settings/system.cities.controller';
 /* 'ui.router', 'ipCookie', 'ngResource', 'oc.lazyLoad', 'ui.select'*/
 
 const adminModule = angular.module('app.adminModule', []);
@@ -86,5 +87,6 @@ adminModule.controller('EmailTemplatesCtrl', EmailTemplatesCtrl);
 adminModule.controller('SystemUnitsCtrl', SystemUnitsCtrl);
 adminModule.controller('SystemCMSCtrl', SystemCMSCtrl);
 adminModule.controller('SystemConfigCtrl', SystemConfigCtrl);
+adminModule.controller('SystemCityCtrl', SystemCityCtrl);
 
 export default adminModule;

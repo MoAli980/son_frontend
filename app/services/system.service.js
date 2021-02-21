@@ -172,6 +172,28 @@ export default class SystemService {
         request.method = 'GET';
         return this.retryRequest(request);
     }
+    getSystemCities() {
+        const request = {};
+        request.url = `${this._AppConstants.api}/systemCities/`;
+        request.method = 'GET';
+        request.headers = this._request.headers;
+        return this.retryRequest(request);
+    }
+    addSystemCity(data) {
+        const request = {};
+        request.url = `${this._AppConstants.api}/systemCities/`;
+        request.method = 'POST';
+        request.data = data;
+        request.headers = this._request.headers;
+        return this.retryRequest(request);
+    }
+    removeSystemCity(id) {
+        const request = {};
+        request.url = `${this._AppConstants.api}/systemCities/${id}`;
+        request.method = 'DELETE';
+        request.headers = this._request.headers;
+        return this.retryRequest(request);
+    }
 }
 
 SystemService.$inject = ['AppConstants', 'JwtService', 'RetryRequest'];

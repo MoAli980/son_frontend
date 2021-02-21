@@ -923,6 +923,34 @@
         "failure": "لا يمكن حذف وحدة مرتبطة بمنتجات",
         "unexpectedFailure": "حدث خطأ ما الرجاء اعادة المحاولة"
       },
+      "cities" : {
+        "label" : "مدن",
+        "button" : {
+          "addCities" : "أضف مدينة"
+        },
+        "table" : {
+          "arabic": "عربي",
+          "english": "الإنجليزية",
+          "op": "OP",
+          "status": "حالة"
+        },
+        "popup" : {
+          "heading" : "مدينة جديدة",
+          "arabic": "عربي",
+          "english": "الإنجليزية",
+          "englishHolder": "مدينة باللغة الإنجليزية",
+          "arabicHolder": "المدينة بالعربية",
+          "englishRequired": "هذه الخانة مطلوبه",
+          "arabicRequired": "هذه الخانة مطلوبه",
+          "add" : "يضيف",
+          "close": "قريب",
+          "location": "موقع",
+          "edit" : "تحرير المدينة"
+        },
+        "success": "تمت إزالة المدينة بنجاح",
+        "failure": "لا يمكن إزالة المدينة المخصصة للمنتج",
+        "unexpectedFailure": "خطأ غير متوقع"
+      },
       "templates": {
         "emailTemplates": "نماذج البريد الإلكتروني",
         "warning": "تحذير: ستؤثر ايه تغييرات علي إعدادات النظام",
