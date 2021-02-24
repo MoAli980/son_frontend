@@ -220,7 +220,8 @@
                     "address": {
                         "label": "العنوان",
                         "placeholder": "أدخل عنوانك",
-                        "required": "هذه الخانة مطلوبه"
+                        "required": "هذه الخانة مطلوبه",
+                        "city" : "مدينة"
                     }
                 },
                 "button": {

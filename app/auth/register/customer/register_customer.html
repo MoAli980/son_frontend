@@ -355,7 +355,18 @@
                 </div>
             </div>
             <div class="tab-pane slide-left padding-20 sm-no-padding" id="address">
+
                 <div class="row row-same-height">
+                    <div class="col-sm-6">
+                        <div style="z-index:1;"
+                             class="form-group form-group-custom form-group-default form-group-default-select2">
+                            <label>{{"auth.register.customer.field.address.city" | translate }}</label>
+                            <select ng-model="$ctrl.selectCity" name="selectCity" id="selectedCity"
+                                    class="full-width"  data-init-plugin="select2"
+                            >
+                            </select>
+                        </div>
+                    </div>
                     <div pg-form-group class="form-group form-group-default no-margin required"
                          ng-class="{ 'has-error' : registerForm.address.$invalid && !registerForm.address.$pristine }">
                         <label>{{"auth.register.customer.field.address.label" | translate }}</label>
@@ -466,6 +477,30 @@
 
         $(document).ready(function () {
 
+            $('#selectedCity').on('select2:open',function(){
+                let that = $(this);
+                let flag = false;
+                if ( $(window).width() > 739) {
+                    $(window).bind('wheel', function(e) {
+
+                    });
+                }
+                else {
+                    $(window).bind('wheel', function(e) {
+                        console.log(e.target);
+                        if(!flag && e.target.className === 'select2-results__option'){
+                            // that.select2("close");
+                            console.log('scroll');
+                        } else if(!flag &&  e.target.className !== 'select2-results__option'){
+                            that.select2("close");
+                            console.log('scroll');
+                        }
+                        else
+                            flag = true;
+                    });
+                }
+            });
+
             $('#rootwizard').bootstrapWizard({
                 onTabShow(tab, navigation, index) {
                     const $total = navigation.find('li').length;
@@ -537,5 +572,6 @@
         });
 
     })(window.jQuery);
+
 </script>
 

@@ -1,7 +1,6 @@
 export default class SystemCityCtrl {
 
 
-
     constructor(SystemService, $translate, NgMap, $rootScope) {
         this._SystemService = SystemService;
         this._$translate = $translate;
@@ -123,20 +122,22 @@ export default class SystemCityCtrl {
         });
     }
 
-    placeChanged() {
-        this.NgMap.getMap('map').then((map) => {
-            this.map = map;
-            this.place = this.getPlace();
-            this.location
-                .coordinates = [this.place.geometry.location.lat(),
-                    this.place.geometry.location.lng()];
+    placeChanged(event, ctrl) {
+        ctrl.NgMap.getMap('map').then((map) => {
+            ctrl.map = map;
+            ctrl.place = this.getPlace();
+            ctrl.location
+                .coordinates = [ctrl.place.geometry.location.lat(),
+                ctrl.place.geometry.location.lng()];
+            ctrl.getCodeLatLng(ctrl.place.geometry.location.lat(),
+                ctrl.place.geometry.location.lng());
         });
     }
 
     getCodeLatLng(lat, lng) {
         const geocoder = new google.maps.Geocoder();
-        const latlng = { lat, lng };
-        geocoder.geocode({ location: latlng }, (results, status) => {
+        const latlng = {lat, lng};
+        geocoder.geocode({location: latlng}, (results, status) => {
             if (status === 'OK') {
                 if (results[0]) {
                     this.address = results[0].formatted_address;

@@ -223,7 +223,8 @@
           "address": {
             "label": "Address",
             "placeholder": "Enter your address",
-            "required": "This field is required"
+            "required": "This field is required",
+            "city" : "City"
           }
         },
         "button": {

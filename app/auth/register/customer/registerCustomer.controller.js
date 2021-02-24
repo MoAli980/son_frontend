@@ -1,7 +1,7 @@
-import moment from "moment/moment";
+import moment from 'moment/moment';
 
 export default class RegisterCustomerCtrl {
-    constructor($scope, $state, CustomerService, NgMap, AppConstants, $rootScope, $translate, Upload) {
+    constructor($scope, $state, CustomerService, NgMap, AppConstants, $rootScope, $translate, Upload, SystemService) {
         const controller = this;
         this._$translate = $translate;
         this.$state = $state;
@@ -29,8 +29,8 @@ export default class RegisterCustomerCtrl {
                 this.map = map;
                 this.place = this.getPlace();
                 controller.customer
-            .coordinates = [this.place.geometry.location.lat(), this.place.geometry.location.lng()];
-       // this.map.setCenter(this.place.geometry.location);
+                    .coordinates = [this.place.geometry.location.lat(), this.place.geometry.location.lng()];
+                // this.map.setCenter(this.place.geometry.location);
             });
         };
         this.markerDragEnd = function (event) {
@@ -44,19 +44,20 @@ export default class RegisterCustomerCtrl {
             controller.geocodeLatLng(this.position.lat(), this.position.lng());
         };
         controller.geocodeLatLng(23.8859, 45.0792);
+        this._SystemService = SystemService;
     }
 
     $onInit() {
         this.dateMethod = 'Hijri';
         this.$rootScope.enlargePanel = true;
         this.loading = false;
-       // this.getCurrentPos();
+        // this.getCurrentPos();
         angular.element('#commercialRegisterExpireDateIslamic').calendarsPicker({
             calendar: $.calendars.instance('islamic'),
             monthsToShow: [1, 1],
             maxDate: '+5Y',
             showOtherMonths: false,
-            dateFormat:'yyyy-mmm-dd',
+            dateFormat: 'yyyy-mmm-dd',
             onSelect(date) {
                 document.getElementById('commercialRegisterExpireDateIslamic').value = date;
             }
@@ -71,6 +72,8 @@ export default class RegisterCustomerCtrl {
                 document.getElementById('commercialRegisterExpireDate').value = date;
             }
         });
+
+        this.getSystemCities();
 
         document.getElementById('commercialRegisterExpireDateIslamic').setAttribute('max', this.writeHijri());
         document.getElementById('commercialRegisterExpireDate').setAttribute('max', this.writeGregorian());
@@ -93,7 +96,8 @@ export default class RegisterCustomerCtrl {
         const ctrl = this;
         const latlng = { lat, lng };
         this.geocoder.geocode({
-            location: latlng }, (results, status) => {
+            location: latlng
+        }, (results, status) => {
             if (status === 'OK') {
                 if (results[0]) {
                     ctrl.customer.address = results[0].formatted_address;
@@ -220,33 +224,33 @@ export default class RegisterCustomerCtrl {
         const ctrl = this;
         this.errFile = errFiles && errFiles[0];
         if (file) {
-                file.upload = this.Upload.upload({
-                    url: ctrl.UPLOAD_URL,
-                    data: { image: file },
-                    disableProgress: true,
-                    headers: { Accept: 'application/json' }
-                });
-                file.upload.then((response) => {
-                    switch (imgFor) {
-                        case 'coverPhoto' : {
-                            this.customer.coverPhoto = response.data.data.filename;
-                            break;
-                        }
-                        case 'commercialRegisterPhoto' : {
-                            this.commercialPhoto = file.name;
-                            this.customer.commercialRegisterPhoto = response.data.data.path;
-                            this.registerLoading = false;
-                            break;
-                        }
-                        default:
+            file.upload = this.Upload.upload({
+                url: ctrl.UPLOAD_URL,
+                data: { image: file },
+                disableProgress: true,
+                headers: { Accept: 'application/json' }
+            });
+            file.upload.then((response) => {
+                switch (imgFor) {
+                    case 'coverPhoto' : {
+                        this.customer.coverPhoto = response.data.data.filename;
+                        break;
                     }
-                }, (response) => {
-                    if (response.status > 0) {
-                        this.errorMsg = `${response.status}: ${response.data}`;
+                    case 'commercialRegisterPhoto' : {
+                        this.commercialPhoto = file.name;
+                        this.customer.commercialRegisterPhoto = response.data.data.path;
+                        this.registerLoading = false;
+                        break;
                     }
-                }, (evt) => {
-                    file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-                });
+                    default:
+                }
+            }, (response) => {
+                if (response.status > 0) {
+                    this.errorMsg = `${response.status}: ${response.data}`;
+                }
+            }, (evt) => {
+                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
         }
     }
 
@@ -264,7 +268,24 @@ export default class RegisterCustomerCtrl {
         });
     }
 
+    getSystemCities() {
+        const _onSuccess = (res) => {
+            this.cityList = res.data.data;
+        };
+        const _onError = (err) => {
+            this.hasError = true;
+            if (err.data) {
+                this.errors = err.data.data;
+            }
+        };
+        const _onFinal = (err) => {
+
+        };
+        this._SystemService.getSystemCities()
+            .then(_onSuccess, _onError).finally(_onFinal);
+    }
+
 
 }
 RegisterCustomerCtrl.$inject = ['$scope', '$state', 'CustomerService',
-    'NgMap', 'AppConstants', '$rootScope', '$translate', 'Upload'];
+    'NgMap', 'AppConstants', '$rootScope', '$translate', 'Upload', 'SystemService'];

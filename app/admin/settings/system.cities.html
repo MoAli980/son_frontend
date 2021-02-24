@@ -71,7 +71,7 @@
                                 <div pg-form-group="" class="form-group form-group-default"  ng-class="{ 'has-error' : cityForm.englishCity.$invalid && !cityForm.englishCity.$pristine }">
                                     <label>{{"admin.settings.cities.popup.label" | translate }}</label>
                                     <input id="addEnglishCity" type="text" name="englishCity" ng-model="$ctrl.addEnglishCity" class="form-control"
-                                           placeholder='{{"admin.settings.cities.popup.englishHolder" | translate }}' required>
+                                           placeholder='{{"admin.settings.cities.popup.englishHolder" | translate }}' disabled required>
                                 </div>
                                 <div ng-messages="cityForm.englishCity.$error">
                                     <span class="error" ng-message="required" ng-if="!cityForm.englishCity.$pristine">
@@ -93,7 +93,7 @@
                                                component-restrictions="{country:'sa'}"
                                                ng-model="$ctrl.address"
                                                types="{{$ctrl.types}}"
-                                               on-place-changed="$ctrl.placeChanged()" required/>
+                                               on-place-changed="$ctrl.placeChanged($ctrl)" required/>
                                     </div>
                                 </div>
                                 <label class="error" ng-show="cityForm.address.$error.required && !cityForm.address.$pristine">

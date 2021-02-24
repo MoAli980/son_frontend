@@ -1098,7 +1098,8 @@
           "add" : "Add",
           "close": "Close",
           "location": "Location",
-          "edit" : "Edit City"
+          "edit" : "Edit City",
+          "label": "City"
         },
         "success": "City removed Successfully",
         "failure": "Can't remove city assigned to product",
