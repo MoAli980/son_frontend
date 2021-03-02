@@ -171,6 +171,10 @@ export default class UserService {
 
     checkSession() {
         const defer = this._$q.defer();
+        this.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this._JwtService.get()}`
+        };
         if (this._JwtService.get()) {
             const request = {
                 url: `${this._AppConstants.api}/auth/checkToken`,
