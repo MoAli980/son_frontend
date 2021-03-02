@@ -116,7 +116,7 @@ export default class LoginCtrl {
                     const custPermissions = this.PermPermissionStore.getStore() || {};
                     /* this._$state.go('app.customer.product', { reload: true });*/
                     if (this.$rootScope.returnToState === '/category/:supplierId') {
-                        this._$state.go('app.customer.product.list.category', { supplierId: this.$rootScope.returnToStateParams });
+                        this._$state.go('app.customer.product.list.category', {supplierId: this.$rootScope.returnToStateParams});
                     } else if (custPermissions.managePayments) {
                         this._$state.transitionTo('app.customer.payments', this.$stateParams, {
                             reload: true,
@@ -128,23 +128,23 @@ export default class LoginCtrl {
                             notify: true
                         });
                     } else {
-                           const custPermissions = this.PermPermissionStore.getStore() || {};
-                    if (custPermissions.managePayments) {
-                        this._$state.transitionTo('app.customer.payments', this.$stateParams, {
-                            reload: true,
-                            notify: true
-                        });
-                    } else if (custPermissions.manageOrders) {
-                        this._$state.transitionTo('app.customer.orders.list.orders', this.$stateParams, {
-                            reload: true,
-                            notify: true
-                        });
-                    } else {
-                        this._$state.transitionTo('app.customer.account.profile', this.$stateParams, {
-                            reload: true,
-                            notify: true
-                        });
-                    }             //     this._$state.transitionTo('app.customer.account.profile', this.$stateParams, {
+                        const custPermissions = this.PermPermissionStore.getStore() || {};
+                        if (custPermissions.managePayments) {
+                            this._$state.transitionTo('app.customer.payments', this.$stateParams, {
+                                reload: true,
+                                notify: true
+                            });
+                        } else if (custPermissions.manageOrders) {
+                            this._$state.transitionTo('app.customer.orders.list.orders', this.$stateParams, {
+                                reload: true,
+                                notify: true
+                            });
+                        } else {
+                            this._$state.transitionTo('app.customer.account.profile', this.$stateParams, {
+                                reload: true,
+                                notify: true
+                            });
+                        }             //     this._$state.transitionTo('app.customer.account.profile', this.$stateParams, {
                         //     reload: true,
                         //     notify: true
                         // });

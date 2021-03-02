@@ -17,6 +17,11 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
                     only: ['supplier'],
                     redirectTo: AuthorizationMethods.redirectToLogin()
                 }
+            },
+            resolve: {
+                deps: ['UserService', function (UserService) {
+                    UserService.checkSessionOn();
+                }]
             }
         })
         .state('app.supplier.profile', {

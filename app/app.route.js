@@ -45,7 +45,7 @@ export default function appConfig(
             templateUrl: 'website/index.html',
             resolve: {
                 check($location) {
-                    window.location.href = "/website/index.html";
+                    window.location.href = '/website/index.html';
                 }
             }
         });
