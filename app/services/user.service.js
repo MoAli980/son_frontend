@@ -171,10 +171,6 @@ export default class UserService {
 
     checkSession() {
         const defer = this._$q.defer();
-        this.headers = {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this._JwtService.get()}`
-        };
         if (this._JwtService.get()) {
             const request = {
                 url: `${this._AppConstants.api}/auth/checkToken`,
@@ -299,6 +295,10 @@ export default class UserService {
     checkSessionOn() {
         const defer = this._$q.defer();
         if (this._JwtService.get()) {
+            this.headers = {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this._JwtService.get()}`
+            };
             const request = {
                 url: `${this._AppConstants.api}/auth/checkToken`,
                 method: 'GET',
@@ -315,11 +315,7 @@ export default class UserService {
                     // on Error
                     (err) => {
                         if (this._JwtService.get()) {
-                            this.headers = {
-                                'Content-Type': 'application/json',
-                                Authorization: `Bearer ${this._JwtService.get()}`
-                            };
-                            console.log(this.headers)
+                            console.log(this.headers);
                             // this.$rootScope.message = { type: 'success', text: this.$translate.instant('auth.logged_out') };
                             // this.$rootScope.logout = true;
                             // this._$state.go('app.auth.login', {}, { reload: true });
