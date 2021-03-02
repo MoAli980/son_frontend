@@ -310,16 +310,18 @@ export default class UserService {
                     },
                     // on Error
                     (err) => {
-                        this.$rootScope.message = { type: 'success', text: this.$translate.instant('auth.logged_out') };
-                        this.$rootScope.logout = true;
-                        this._$state.go('app.auth.login', {}, { reload: true });
-                        this.$timeout(() => {
-                            window.location.reload(true);
-                            this._JwtService.destroy();
-                            this.$window.localStorage.clear();
-                            this.PermPermissionStore.clearStore();
-                            this.currentUser = null;
-                        }, 200);
+                        console.log('12', this.headers);
+                        console.log(this._JwtService.get())
+                        // this.$rootScope.message = { type: 'success', text: this.$translate.instant('auth.logged_out') };
+                        // this.$rootScope.logout = true;
+                        // this._$state.go('app.auth.login', {}, { reload: true });
+                        // this.$timeout(() => {
+                        //     window.location.reload(true);
+                        //     this._JwtService.destroy();
+                        //     this.$window.localStorage.clear();
+                        //     this.PermPermissionStore.clearStore();
+                        //     this.currentUser = null;
+                        // }, 200);
                         defer.reject(false);
                     }
                 );
