@@ -76,11 +76,6 @@ export default class UserService {
             this.currentUser = null;
         }, 200);
 
-
-      /*  this._$state.transitionTo('app.auth.login', null, {
-            reload: true,
-            notify: true
-        });*/
     }
     changePassword(oldPassword, newPassword) {
         const request = {};
@@ -191,7 +186,7 @@ export default class UserService {
                         }
                     },
                     // on Error
-                    () => {
+                    (err) => {
                         defer.reject(false);
                     }
                 );
@@ -296,6 +291,51 @@ export default class UserService {
                 });
             }
         }
+    }
+    checkSessionOn() {
+        const defer = this._$q.defer();
+        if (this._JwtService.get()) {
+            this.headers = {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this._JwtService.get()}`
+            };
+            const request = {
+                url: `${this._AppConstants.api}/auth/checkToken`,
+                method: 'GET',
+                headers: this.headers
+            };
+            this.retryRequest(request)
+                .then(
+                    // on Success
+                    (res) => {
+                        if (!res.data.data.expired) { defer.resolve(true); } else {
+                            defer.reject(false);
+                        }
+                    },
+                    // on Error
+                    (err) => {
+                        if (this._JwtService.get()) {
+                            this.$rootScope.message = {
+                                type: 'success',
+                                text: this.$translate.instant('auth.logged_out')
+                            };
+                            this.$rootScope.logout = true;
+                            this._$state.go('app.auth.login', {}, {reload: true});
+                            this.$timeout(() => {
+                                window.location.reload(true);
+                                this._JwtService.destroy();
+                                this.$window.localStorage.clear();
+                                this.PermPermissionStore.clearStore();
+                                this.currentUser = null;
+                            }, 200);
+                        }
+                        defer.reject(false);
+                    }
+                );
+        } else {
+            defer.reject(false);
+        }
+        return defer.promise;
     }
 
 }

@@ -13,6 +13,9 @@ export default function customerConfig($stateProvider, $urlRouterProvider, $loca
                 skip: true // Never display this state in breadcrumb.
             },
             resolve: {
+                deps: ['UserService', function (UserService) {
+                    UserService.checkSessionOn();
+                }],
                 suppliersResolve: ['SupplierService', SupplierService => SupplierService.getSuppliers({
                     skip: 0,
                     limit: 10,
@@ -302,7 +305,7 @@ export default function customerConfig($stateProvider, $urlRouterProvider, $loca
                     ], {
                         insertBefore: '#lazyload_placeholder'
                     }).then(() => true// $ocLazyLoad.load('assets/js/controllers/forms_elements.js');
-                        );
+                    );
                 }],
                 suppliersResolve: ['SupplierService', SupplierService => SupplierService.getSuppliers({
                     skip: 0,

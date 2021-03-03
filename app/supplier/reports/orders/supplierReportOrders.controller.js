@@ -94,7 +94,7 @@ export default class SupplierReportOrdersCtrl {
     getCustomersLookup() {
         this.cusSearchCriteria = {
             skip: 0,
-            limit: 50,
+            limit: 1000,
             customerName: ''
         };
         const _onSuccess = (res) => {

@@ -311,7 +311,7 @@
                                             <input ng-show="$ctrl.productViewMode === 'editMode'" type="number"
                                                    ng-model="item.quantity" min="1"
                                                    style="max-width: 80px;margin: auto;" class="form-control input-sm"
-                                                   ng-blur="$ctrl.order.status == 'Pending' ? $ctrl.editProductInOrder(item._id, item.quantity) : $ctrl.editProductInRecurringOrder(item._id, item.quantity, $ctrl.order._id)">
+                                                   ng-change="$ctrl.order.status == 'Pending' ? $ctrl.editProductInOrder(item._id, item.quantity) : $ctrl.editProductInRecurringOrder(item._id, item.quantity, $ctrl.order._id)">
                                             <small ng-if="$ctrl.productViewMode === 'viewMode'">{{
                                                 currentLanguage.language === 'ar'? item.product.unit.arabicName :
                                                 item.product.unit.englishName}}
