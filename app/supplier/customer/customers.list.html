@@ -83,6 +83,8 @@
                             <tr role="row">
                                 <th>{{'supplier.customers.list.table.header.status' | translate}}</th>
                                 <th>{{'supplier.customers.list.table.header.name' | translate}}</th>
+                                <th>{{'supplier.customers.list.table.header.city' | translate}}</th>
+                                <th>{{'supplier.customers.list.table.header.repName' | translate}}</th>
                                 <th>{{'supplier.customers.list.table.header.balance' | translate}}</th>
                                 <th>{{'supplier.customers.list.table.header.remainingTillLimit' | translate}}</th>
                                 <th>{{'supplier.customers.list.table.header.paymentDue' | translate}}</th>
@@ -102,6 +104,8 @@
                                           class="label label-important upper-case">{{"supplier.account.customer.blocked" | translate}}</span>
                                 </td>
                                 <td class="mn-130 sorting_1"><a ui-sref="app.supplier.customer.detail({customerId:customer._id})">{{customer.representativeName}}</a></td>
+                                <td class="mn-130 sorting_1">{{customer.location.city.englishName  || 'N/A'}}</td>
+                                <td class="mn-130 sorting_1">{{customer.user.firstName + ' ' +  customer.user.lastName || 'N/A'}}</td>
                                 <td class="mn-100 sorting_1">{{customer.balance | currency : "" : 2}} <small>{{"supplier.account.payment.sar" | translate }}</small></td>
                                 <td class="mn-120 sorting_1">{{customer.remainingTillLimit | currency : "" : 2}} <small>{{"supplier.account.payment.sar" | translate }}</small></td>
                                 <td class="mn-90 sorting_1" ng-class="{ 'text-danger' : customer.dueDateMissed }">{{customer.nextPaymentDueDate | amDateFormat:'DD-MM-YYYY'}}</td>

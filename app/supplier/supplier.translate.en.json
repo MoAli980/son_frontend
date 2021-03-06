@@ -677,7 +677,9 @@
             "status": "Status",
             "balance": "Balance",
             "remainingTillLimit": "Remaining till limit",
-            "paymentDue": "Payment Due"
+            "paymentDue": "Payment Due",
+            "city": "City",
+            "repName": "Representative Name"
           }
         },
         "view": {

@@ -674,7 +674,9 @@
             "status": "الحالة",
             "balance": "الرصيد",
             "remainingTillLimit": "المتبقي حتى الحد الأقصى",
-            "paymentDue": "تاريخ استحقاق الدفع"
+            "paymentDue": "تاريخ استحقاق الدفع",
+            "city": "مدينة",
+            "repName": "اسم الممثل"
           }
         },
         "view": {
