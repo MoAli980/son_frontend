@@ -10,7 +10,7 @@ import LoginCtrl from './login/login.controller';
 
 
 // Create the auth module where our functionality can attach to
-const authModule = angular.module('app.authModule', []);
+const authModule = angular.module('app.authModule', ['oc.lazyLoad', 'willcrisis.angular-select2']);
 
 // Include our UI-Router config settings
 authModule.config(authConfig)

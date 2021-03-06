@@ -1,5 +1,5 @@
 export default class CustomerListBranchesCtrl {
-    constructor(UserService, CustomerService, RoleService, $translate, BranchService) {
+    constructor(UserService, CustomerService, RoleService, $translate, BranchService, SystemService) {
         this._UserService = UserService;
         this._CustomerService = CustomerService;
         this._BranchService = BranchService;
@@ -9,6 +9,8 @@ export default class CustomerListBranchesCtrl {
         this.totalPages = 0;
         this.isStaff = false;
         this.staffs = [];
+        this.cityList = [];
+        this._SystemService = SystemService;
     }
 
     $onInit() {
@@ -28,6 +30,7 @@ export default class CustomerListBranchesCtrl {
             ]
         };
         this.selectedStatus = this.status.data[0];
+        this.getSystemCities();
         this.getBranches(this.searchCriteria);
     }
 
@@ -46,6 +49,9 @@ export default class CustomerListBranchesCtrl {
         const _onFinal = () => {
 
         };
+
+        branch.location.cityId = branch.location._id;
+        branch.location.city = branch.location.englishName;
         this._BranchService.createBranch(branch)
             .then(_onSuccess, _onError)
             .finally(_onFinal);
@@ -57,7 +63,7 @@ export default class CustomerListBranchesCtrl {
             this.totalPages = Math.ceil(res.data.data.count / this.searchCriteria.limit);
             this.location = this.branches[0].location;
             this.isStaff = res.data.data.isStaff;
-            const defaultValue = [{ _id: null, representativeName: 'None' }]
+            const defaultValue = [{ _id: null, representativeName: 'None' }];
             this.staffs = {
                 placeholder: { ar: 'اختر الوظيفة', en: 'Select Role' },
                 data: [...defaultValue, ...res.data.data.staff]
@@ -88,6 +94,10 @@ export default class CustomerListBranchesCtrl {
         const _onFinal = () => {
 
         };
+
+        branch.location.cityId = branch.location._id;
+        branch.location.city = branch.location.englishName;
+
         this._BranchService.updateBranch(branch._id, branch)
             .then(_onSuccess, _onError)
             .finally(_onFinal);
@@ -111,20 +121,23 @@ export default class CustomerListBranchesCtrl {
         return this._$translate.use() === 'ar' ? item.ar : item.en;
     }
 
-    openNewUserPopup() {
+    openNewBranchPopup() {
         this.mode = 'Save';
         this.branch = {
             branchName: '',
             location: {
                 coordinates: [46.5423373, 24.7255553],
-                city: ''
+                city: '',
+                cityId: null,
+                address: ''
             },
-            manager: ''
+            manager: '',
         };
         $('#branchModal').modal('show');
     }
 
-    openEditUserPopup(branch) {
+    openEditBranchPopup(branch) {
+        branch.location._id = branch.location.cityId;
         this.branch = branch;
         this.mode = 'Update';
         $('#branchModal').modal('show');
@@ -143,6 +156,23 @@ export default class CustomerListBranchesCtrl {
                 .show();
         });
     }
+
+    getSystemCities() {
+        const _onSuccess = (res) => {
+            this.cityList = res.data.data;
+        };
+        const _onError = (err) => {
+            this.hasError = true;
+            if (err.data) {
+                this.errors = err.data.data;
+            }
+        };
+        const _onFinal = (err) => {
+
+        };
+        this._SystemService.getSystemCities()
+            .then(_onSuccess, _onError).finally(_onFinal);
+    }
 }
 
-CustomerListBranchesCtrl.$inject = ['UserService', 'CustomerService', 'RoleService', '$translate', 'BranchService'];
+CustomerListBranchesCtrl.$inject = ['UserService', 'CustomerService', 'RoleService', '$translate', 'BranchService', 'SystemService'];

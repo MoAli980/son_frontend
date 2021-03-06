@@ -24,6 +24,7 @@ export default class RegisterCustomerCtrl {
         };
         this.place = null;
         this.$rootScope = $rootScope;
+        this.selectedCity = null;
         this.placeChanged = function () {
             NgMap.getMap('map').then((map) => {
                 this.map = map;
@@ -94,7 +95,7 @@ export default class RegisterCustomerCtrl {
 
     geocodeLatLng(lat, lng) {
         const ctrl = this;
-        const latlng = { lat, lng };
+        const latlng = {lat, lng};
         this.geocoder.geocode({
             location: latlng
         }, (results, status) => {
@@ -208,27 +209,15 @@ export default class RegisterCustomerCtrl {
             return;
         }
 
-        // switch (imgFor) {
-        //     case 'coverPhoto' : {
-        //         this.customer.coverPhoto = null;
-        //         break;
-        //     }
-        //     case 'commercialRegisterPhoto' : {
-        //         this.customer.commercialRegisterPhoto = null;
-        //         this.commercialRegisterPhoto = null;
-        //         break;
-        //     }
-        //     default:
-        // }
         this.registerLoading = true;
         const ctrl = this;
         this.errFile = errFiles && errFiles[0];
         if (file) {
             file.upload = this.Upload.upload({
                 url: ctrl.UPLOAD_URL,
-                data: { image: file },
+                data: {image: file},
                 disableProgress: true,
-                headers: { Accept: 'application/json' }
+                headers: {Accept: 'application/json'}
             });
             file.upload.then((response) => {
                 switch (imgFor) {
@@ -283,6 +272,12 @@ export default class RegisterCustomerCtrl {
         };
         this._SystemService.getSystemCities()
             .then(_onSuccess, _onError).finally(_onFinal);
+    }
+
+    onChangeCity() {
+        this.customer.coordinates = this.selectedCity.coordinates;
+        this.customer.address = this.selectedCity.address;
+        this.customer.cityId = this.selectedCity._id;
     }
 
 

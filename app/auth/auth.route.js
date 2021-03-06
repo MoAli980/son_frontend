@@ -34,6 +34,7 @@ function authConfig($stateProvider, $urlRouterProvider) {
                         'timepicker',
                         'inputMask',
                         'autonumeric',
+                        'switchery',
                         'select'
                     ], {
                         insertBefore: '#lazyload_placeholder'
@@ -48,6 +49,18 @@ function authConfig($stateProvider, $urlRouterProvider) {
             controller: 'RegisterCustomerCtrl as $ctrl',
             ncyBreadcrumb: {
                 label: 'auth.register.customer.create_account_title'
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        'switchery',
+                        'select',
+                    ], {
+                        insertBefore: '#lazyload_placeholder'
+                    })
+                        .then(() => true// $ocLazyLoad.load('assets/js/controllers/forms_elements.js');
+                        );
+                }]
             }
         })
         .state('app.auth.register.supplier', {

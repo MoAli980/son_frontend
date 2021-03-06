@@ -36,8 +36,6 @@
                                 {{"supplier.account.customer.block" | translate}}</a></li>
                         </ul>
                     </div>
-
-
                 </div>
             </div>
 
@@ -48,6 +46,16 @@
             <P class="w300 padding-0 no-margin">{{"supplier.account.payment.email" | translate }}: <span class="w600">{{$ctrl.customer.user.email}}</span>
             </p>
             <p class="bold text-capitalize compact-text-20 p-b-10">{{$ctrl.customer.location.address}}</p>
+
+            <div class="col-sm-12">
+                <div style="z-index:1;" class="form-group form-group-custom form-group-default form-group-default-select2">
+                    <label class="label-custom">{{"supplier.account.customer.city" | translate }}</label>
+                    <select ng-model="$ctrl.customer.location.city" id="selectedCity"
+                            ng-options="item as item.englishName for item in $ctrl.cityList track by item._id"
+                            class="full-width" ng-change="$ctrl.onChangeCity()" data-placeholder="Select City" data-init-plugin="select2">
+                    </select>
+                </div>
+            </div>
 
         </div>
         <div class="col-sm-6">
@@ -510,3 +518,31 @@
         }
     });
 </script>
+
+<script>
+    $('#selectedCity').on('select2:open',function(){
+        let that = $(this);
+        let flag = false;
+        if ( $(window).width() > 739) {
+            $(window).bind('wheel', function(e) {
+
+            });
+        }
+        else {
+            $(window).bind('wheel', function(e) {
+                console.log(e.target);
+                if(!flag && e.target.className === 'select2-results__option'){
+                    // that.select2("close");
+                    console.log('scroll');
+                } else if(!flag &&  e.target.className !== 'select2-results__option'){
+                    that.select2("close");
+                    console.log('scroll');
+                }
+                else
+                    flag = true;
+            });
+        }
+    });
+
+</script>
+

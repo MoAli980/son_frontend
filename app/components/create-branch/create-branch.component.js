@@ -17,7 +17,6 @@ function CreateBranchCtrl($rootScope, $translate, NgMap) {
             ctrl.branch.location
                 .coordinates = [ctrl.place.geometry.location.lat(),
                 ctrl.place.geometry.location.lng()];
-            // this.map.setCenter(this.place.geometry.location);
         });
     };
 
@@ -88,7 +87,8 @@ const CreateBranch = {
         branch: '=',
         mode: '<',
         location: '=',
-        staff: '='
+        staff: '=',
+        citylist: '='
     },
     controller: CreateBranchCtrl,
     controllerAs: '$ctrl',

@@ -7,7 +7,8 @@ export default class SupplierCustomerDetailCtrl {
         TransactionsService,
         ProductService,
         $rootScope,
-        PermPermissionStore
+        PermPermissionStore,
+        SystemService
     ) {
         this._CustomerService = CustomerService;
         this._SupplierService = SupplierService;
@@ -17,29 +18,33 @@ export default class SupplierCustomerDetailCtrl {
         this._ProductService = ProductService;
         this._$rootScope = $rootScope;
         this.PermPermissionStore = PermPermissionStore;
+        this._SystemService = SystemService;
     }
+
     $onInit() {
         const permissions = this.PermPermissionStore.getStore() || {};
         this.searchCriteria = {
             skip: 0,
             limit: 10
         };
+        this.cityList = [];
+        this.getSystemCities();
         this.periods = [
-            { interval: 'Month', frequency: 1 },
-            { interval: 'Month', frequency: 2 },
-            { interval: 'Month', frequency: 3 },
-            { interval: 'Month', frequency: 4 },
-            { interval: 'Month', frequency: 5 },
-            { interval: 'Month', frequency: 6 },
-            { interval: 'Month', frequency: 7 },
-            { interval: 'Month', frequency: 8 },
-            { interval: 'Month', frequency: 9 },
-            { interval: 'Month', frequency: 10 },
-            { interval: 'Month', frequency: 11 },
-            { interval: 'Month', frequency: 12 }
+            {interval: 'Month', frequency: 1},
+            {interval: 'Month', frequency: 2},
+            {interval: 'Month', frequency: 3},
+            {interval: 'Month', frequency: 4},
+            {interval: 'Month', frequency: 5},
+            {interval: 'Month', frequency: 6},
+            {interval: 'Month', frequency: 7},
+            {interval: 'Month', frequency: 8},
+            {interval: 'Month', frequency: 9},
+            {interval: 'Month', frequency: 10},
+            {interval: 'Month', frequency: 11},
+            {interval: 'Month', frequency: 12}
         ];
 
-        this.selectPeriod = { interval: 'Month', frequency: 1 };
+        this.selectPeriod = {interval: 'Month', frequency: 1};
 
         if (this._$stateParams.customerId) {
             this.customerId = this._$stateParams.customerId;
@@ -77,8 +82,8 @@ export default class SupplierCustomerDetailCtrl {
             }
             this.getCustomerSpecialPrices(this.customerSpecialPricesQuery);
             this.getProducts();
-        } else {
         }
+
         this.specialPriceMode = 'viewMode';
         this._$rootScope.$on('acceptPayment', (evt, data) => {
             this.getBillingHistory(this.billingHistoryQuery);
@@ -89,10 +94,14 @@ export default class SupplierCustomerDetailCtrl {
             this.getCustomerPaymentClaims(this.customerPaymentClaimsQuery);
         });
     }
+
     getCustomer($customerId) {
         const _onSuccess = (res) => {
             if (res.data) {
                 this.customer = res.data.data;
+                this.customer.location.city = {
+                    _id: this.customer.location.city
+                };
             }
         };
         const _onError = (err) => {
@@ -107,6 +116,7 @@ export default class SupplierCustomerDetailCtrl {
         };
         this._CustomerService.getCustomer($customerId).then(_onSuccess, _onError).finally(_onFinal);
     }
+
     getBillingHistory(query) {
         const _onSuccess = (res) => {
             if (res.status === 200) {
@@ -130,11 +140,13 @@ export default class SupplierCustomerDetailCtrl {
         this._CustomerService.getSupplierCustomerBillingHistory(query.customerId, query)
             .then(_onSuccess, _onError).finally(_onFinal);
     }
+
     setBillingHistoryPage(pageNumber) {
         this.billingHistoryQuery.currentPage = pageNumber;
         this.billingHistoryQuery.skip = (pageNumber - 1) * this.billingHistoryQuery.limit;
         this.getBillingHistory(this.billingHistoryQuery);
     }
+
     getCustomerPaymentClaims(query) {
         const _onSuccess = (res) => {
             if (res.status === 200) {
@@ -153,6 +165,7 @@ export default class SupplierCustomerDetailCtrl {
         this._CustomerService.getCustomerPaymentClaims(query)
             .then(_onSuccess, _onError).finally(_onFinal);
     }
+
     setPaymentClaimsPage(pageNumber) {
         this.customerPaymentClaimsQuery.currentPage = pageNumber;
         this.customerPaymentClaimsQuery.skip = (pageNumber - 1) *
@@ -181,12 +194,14 @@ export default class SupplierCustomerDetailCtrl {
         this.paymentItem = null;
         $('#payment').modal('show');
     }
+
     openShowDetails(paymentId, payment) {
         this.disableRecordPaymentForm = true;
         this.paymentItem = payment;
         this._$rootScope.$broadcast('onPaymentChanged', payment, this.disableRecordPaymentForm);
         $('#payment').modal('show');
     }
+
     openBillingShowDetails(paymentId, billItem) {
         this.billItem = billItem;
         $('#view-payment').modal('show');
@@ -214,12 +229,14 @@ export default class SupplierCustomerDetailCtrl {
         this._CustomerService.getSupplierCustomerSpecialPrices(query.customerId, query)
             .then(_onSuccess, _onError).finally(_onFinal);
     }
+
     setSpecialPricesPage(pageNumber) {
         this.customerSpecialPricesQuery.currentPage = pageNumber;
         this.customerSpecialPricesQuery.skip = (pageNumber - 1) *
             this.customerSpecialPricesQuery.limit;
         this.getCustomerSpecialPrices(this.customerSpecialPricesQuery);
     }
+
     addPayment(payment) {
         payment.customerId = this._$stateParams.customerId;
         $('#payment').modal('hide');
@@ -243,6 +260,7 @@ export default class SupplierCustomerDetailCtrl {
             .then(_onSuccess, _onError)
             .finally(_onFinal);
     }
+
     notify(message, type, timeout) {
         this.$translate(message).then((translation) => {
             $('body').pgNotification({
@@ -254,6 +272,7 @@ export default class SupplierCustomerDetailCtrl {
             }).show();
         });
     }
+
     getInvoiceSum(transactions) {
         let sum = 0;
         angular.forEach(transactions, (transaction) => {
@@ -291,9 +310,10 @@ export default class SupplierCustomerDetailCtrl {
         this.balanceDetails.status = status;
         this.updateBalanceDetails();
     }
+
     customOp(item) {
         return this.$translate.instant('supplier.account.payment.every')
-         + this.$translate.instant(`supplier.account.payment.${item.interval}`, { value: item.frequency });
+            + this.$translate.instant(`supplier.account.payment.${item.interval}`, {value: item.frequency});
     }
 
     addSpecialPrice() {
@@ -320,6 +340,7 @@ export default class SupplierCustomerDetailCtrl {
         this._CustomerService.addCustomerSpecialPrices(this.updatePacket)
             .then(_onSuccess, _onError);
     }
+
     updateSpecialPrice(item) {
         const _onSuccess = (res) => {
             this.notify('supplier.account.payment.specialPricesTable.updated', 'success', 1000);
@@ -339,13 +360,16 @@ export default class SupplierCustomerDetailCtrl {
             .updateCustomerSpecialPrices(item.product._id, this.customerId, item.price)
             .then(_onSuccess, _onError);
     }
+
     setSpecialPriceMode(mode) {
         this.specialPriceMode = mode;
     }
+
     cancelEditSpecialPrice() {
         this.setSpecialPriceMode('viewMode');
         this.getCustomerSpecialPrices(this.customerSpecialPricesQuery);
     }
+
     deleteSpecialPrice(item) {
         const _onSuccess = (res) => {
             this.notify('supplier.account.payment.specialPricesTable.deleted', 'success', 1000);
@@ -364,9 +388,13 @@ export default class SupplierCustomerDetailCtrl {
         this._CustomerService.deleteCustomerSpecialPrices(item.product._id, this.customerId)
             .then(_onSuccess, _onError);
     }
+
     downloadSpecialPrices() {
-        if (this.customerId) { this._CustomerService.downloadSpecialPrices(this.customerId); }
+        if (this.customerId) {
+            this._CustomerService.downloadSpecialPrices(this.customerId);
+        }
     }
+
     uploadSpecialPrices(file) {
         if (this.customerId && file) {
             this._CustomerService.uploadSpecialPrices(this.customerId, file).then(
@@ -374,7 +402,7 @@ export default class SupplierCustomerDetailCtrl {
                     let message = '';
                     const successCount = res.data.data.Success.count;
                     const failedCount = res.data.data.Failed.count;
-                   // this.notify('supplier.customer.message.uploadSpecialPriceSuccess', 'success', '5000');
+                    // this.notify('supplier.customer.message.uploadSpecialPriceSuccess', 'success', '5000');
                     if (this.$translate.use() === 'ar') {
                         message = `تم رفع الاسعار الخاصة بنجاح ${successCount}`;
                     } else {
@@ -394,10 +422,47 @@ export default class SupplierCustomerDetailCtrl {
                 });
         }
     }
+
     exportSpecialPrices(type, query) {
         this._CustomerService.exportSupplierCustomerSpecialPricesList(type, query.customerId, query);
     }
 
+    getSystemCities() {
+        const _onSuccess = (res) => {
+            this.cityList = res.data.data;
+        };
+        const _onError = (err) => {
+            this.hasError = true;
+            if (err.data) {
+                this.errors = err.data.data;
+            }
+        };
+        const _onFinal = (err) => {
+
+        };
+        this._SystemService.getSystemCities()
+            .then(_onSuccess, _onError).finally(_onFinal);
+    }
+
+    onChangeCity() {
+        this.updateCustomer = {
+            cityId: this.customer.location.city._id
+        };
+        const _onSuccess = (res) => {
+            this.notify('supplier.account.customer.cityUpdated', 'success', 1000);
+            this.getCustomer(this.customerId);
+        };
+        const _onError = (err) => {
+            if (err.code === 500) {
+                this.hasError = true;
+            } else if (err.code === 501) {
+                this.noInternetConnection = true;
+            }
+        };
+        this._CustomerService.updateCustomerCity(this.customerId, this.updateCustomer)
+            .then(_onSuccess, _onError);
+    }
+
 }
 
-SupplierCustomerDetailCtrl.$inject = ['CustomerService', 'SupplierService', '$translate', '$stateParams', 'TransactionsService', 'ProductService', '$rootScope', 'PermPermissionStore'];
+SupplierCustomerDetailCtrl.$inject = ['CustomerService', 'SupplierService', '$translate', '$stateParams', 'TransactionsService', 'ProductService', '$rootScope', 'PermPermissionStore', 'SystemService'];

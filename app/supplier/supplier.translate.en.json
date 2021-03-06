@@ -329,7 +329,9 @@
         "blocked": "Blocked",
         "activate": "Activate",
         "block": "Block",
-        "suspend": "Suspend"
+        "suspend": "Suspend",
+        "city": "City",
+        "cityUpdated": "City updated successfully."
       }
     },
     "menu": {

@@ -80,5 +80,4 @@ app.run(runConfig);
 app.config(appConfig);
 app.config(lazyLoadConfig);
 
-
 export default app;

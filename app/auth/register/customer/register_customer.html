@@ -357,13 +357,12 @@
             <div class="tab-pane slide-left padding-20 sm-no-padding" id="address">
 
                 <div class="row row-same-height">
-                    <div class="col-sm-12">
-                        <div style="z-index:1;"
-                             class="form-group form-group-custom form-group-default form-group-default-select2">
-                            <label>{{"auth.register.customer.field.address.city" | translate }}</label>
-                            <select  data-init-plugin="select2" id="selectedCity"
-                                    class="full-width"
-                            >
+                    <div class="col-sm-6">
+                        <div style="z-index:1;" class="form-group form-group-custom form-group-default form-group-default-select2">
+                            <label class="label-custom">{{"auth.register.customer.field.address.city" | translate }}</label>
+                            <select select2 ng-model="$ctrl.selectedCity" id="selectedCity"
+                                    ng-options="item as item.englishName for item in $ctrl.cityList track by item._id"
+                                    class="full-width" ng-change="$ctrl.onChangeCity()" data-placeholder="Select City" data-init-plugin="select2">
                             </select>
                         </div>
                     </div>
@@ -476,31 +475,6 @@
         'use strict';
 
         $(document).ready(function () {
-
-            $('#selectedCity').on('select2:open',function(){
-                let that = $(this);
-                let flag = false;
-                if ( $(window).width() > 739) {
-                    $(window).bind('wheel', function(e) {
-
-                    });
-                }
-                else {
-                    $(window).bind('wheel', function(e) {
-                        console.log(e.target);
-                        if(!flag && e.target.className === 'select2-results__option'){
-                            // that.select2("close");
-                            console.log('scroll');
-                        } else if(!flag &&  e.target.className !== 'select2-results__option'){
-                            that.select2("close");
-                            console.log('scroll');
-                        }
-                        else
-                            flag = true;
-                    });
-                }
-            });
-
             $('#rootwizard').bootstrapWizard({
                 onTabShow(tab, navigation, index) {
                     const $total = navigation.find('li').length;
@@ -572,6 +546,33 @@
         });
 
     })(window.jQuery);
+
+</script>
+
+<script>
+    $('#selectedCity').on('select2:open',function(){
+        let that = $(this);
+        let flag = false;
+        if ( $(window).width() > 739) {
+            $(window).bind('wheel', function(e) {
+
+            });
+        }
+        else {
+            $(window).bind('wheel', function(e) {
+                console.log(e.target);
+                if(!flag && e.target.className === 'select2-results__option'){
+                    // that.select2("close");
+                    console.log('scroll');
+                } else if(!flag &&  e.target.className !== 'select2-results__option'){
+                    that.select2("close");
+                    console.log('scroll');
+                }
+                else
+                    flag = true;
+            });
+        }
+    });
 
 </script>
 

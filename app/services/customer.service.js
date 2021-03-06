@@ -13,6 +13,7 @@ export default class CustomerService {
             Authorization: `Bearer ${this._JwtService.get()}`
         };
     }
+
     createCustomer(data) {
         const request = {};
         request.url = `${this.url}`;
@@ -23,6 +24,7 @@ export default class CustomerService {
         };
         return this.retryRequest(request);
     }
+
     getCustomerStaff(searchCriteria) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/staff?skip=${searchCriteria.skip}&limit=${searchCriteria.limit}`;
@@ -97,6 +99,7 @@ export default class CustomerService {
         request.url = url;
         return this.retryRequest(request);
     }
+
     getCustomer(id) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/${id}`;
@@ -104,6 +107,7 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     updateCustomer(data) {
         debugger;
         const request = {};
@@ -116,6 +120,7 @@ export default class CustomerService {
         request.data = data;
         return this.retryRequest(request);
     }
+
     inviteCustomer(data) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/invite`;
@@ -124,6 +129,7 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     getCustomerBillingHistory(query) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/billingHistory?skip=${query.skip}&limit=${query.limit}`;
@@ -131,6 +137,7 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     getSupplierCustomerBillingHistory(id, query) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/billingHistory/${id}?skip=${query.skip}&limit=${query.limit}`;
@@ -138,6 +145,7 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     getCustomerPaymentClaims(query) {
         let url = `${this._AppConstants.api}/payments?`;
         const request = {};
@@ -165,6 +173,7 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     getCustomerSpecialPrices(query) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/specialPrices?skip=${query.skip}&limit=${query.limit}`;
@@ -172,6 +181,7 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     getSupplierCustomerSpecialPrices(id, query) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/specialPrices?customerId=${id}&skip=${query.skip}&limit=${query.limit}`;
@@ -179,6 +189,7 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     getCustomerSupplierSpecialPrices(id, query, type) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/specialPrices?supplierId=${id}&skip=${query.skip}&limit=${query.limit}`;
@@ -192,13 +203,14 @@ export default class CustomerService {
         const res = this.retryRequest(request);
         if (type) {
             return res.then(
-            (result) => {
-                suppliesOnHelper.createBlob(result, 'SupOn-Report', type);
-            }
-         );
+                (result) => {
+                    suppliesOnHelper.createBlob(result, 'SupOn-Report', type);
+                }
+            );
         }
         return res;
     }
+
     addCustomerSpecialPrices(details) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/specialPrices`;
@@ -211,6 +223,7 @@ export default class CustomerService {
         request.data = details;
         return this.retryRequest(request);
     }
+
     updateCustomerRelation(customerId, details) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/supplier/${customerId}`;
@@ -219,6 +232,16 @@ export default class CustomerService {
         request.data = details;
         return this.retryRequest(request);
     }
+
+    updateCustomerCity(customerId, details) {
+        const request = {};
+        request.url = `${this._AppConstants.api}/customers/city/update/${customerId}`;
+        request.method = 'PUT';
+        request.headers = this._request.headers;
+        request.data = details;
+        return this.retryRequest(request);
+    }
+
     getCurrentCustomer() {
         const request = {};
         request.method = 'GET';
@@ -229,6 +252,7 @@ export default class CustomerService {
         request.url = `${this._AppConstants.api}/customers/current`;
         return this.retryRequest(request);
     }
+
     exportCustomerList(type, searchCriteria) {
         let url = `${this._AppConstants.api}/customers`;
         if (type === 'pdf') {
@@ -267,6 +291,7 @@ export default class CustomerService {
             }
         );
     }
+
     updateCustomerSpecialPrices(productId, customer, priceTotal) {
         const request = {
             url: `${this._AppConstants.api}/customers/specialPrices/${productId}`,
@@ -275,10 +300,11 @@ export default class CustomerService {
                 Authorization: `Bearer ${this._JwtService.get()}`
             },
             method: 'PUT',
-            data: { 'customerId': customer, 'price': priceTotal }
+            data: {'customerId': customer, 'price': priceTotal}
         };
         return this.retryRequest(request);
     }
+
     deleteCustomerSpecialPrices(productId, customerId) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/specialPrices/${productId}?customerId=${customerId}`;
@@ -286,13 +312,14 @@ export default class CustomerService {
         request.headers = this._request.headers;
         return this.retryRequest(request);
     }
+
     downloadSpecialPrices(customerId) {
         const request = {
             url: `${this._AppConstants.api}/customers/download/specialPrices`,
             headers: this._request.headers,
             responseType: 'arraybuffer',
             method: 'POST',
-            data: { customerId }
+            data: {customerId}
         };
         return this.retryRequest(request).then(
             (result) => {
@@ -300,16 +327,18 @@ export default class CustomerService {
             }
         );
     }
+
     uploadSpecialPrices(customerId, file) {
         const upload = this.Upload.upload({
             method: 'PUT',
             url: `${this._AppConstants.api}/customers/upload/specialPrices/${customerId}`,
-            data: { file },
+            data: {file},
             disableProgress: true,
             headers: this._request.headers
         });
         return upload;
     }
+
     exportSupplierCustomerSpecialPricesList(type, id, query) {
         const request = {};
         request.url = `${this._AppConstants.api}/customers/specialPrices?customerId=${id}&skip=${query.skip}&limit=${query.limit}&export=${type}`;
@@ -325,44 +354,48 @@ export default class CustomerService {
         }
         return res;
     }
+
     uploadCoverPhoto(photo) {
         const upload = this.Upload.upload({
             url: this._AppConstants.UPLOAD_URL,
-            data: { image: photo },
+            data: {image: photo},
             disableProgress: true,
-            headers: { Accept: 'application/json' }
+            headers: {Accept: 'application/json'}
         });
         return upload;
     }
+
     uploadCommercialRegisterPhoto(photo) {
         const upload = this.Upload.upload({
             url: this._AppConstants.UPLOAD_URL,
-            data: { image: photo },
+            data: {image: photo},
             disableProgress: true,
-            headers: { Accept: 'application/json' }
+            headers: {Accept: 'application/json'}
         });
         return upload;
     }
+
     getCommercialRegisterPhoto(photoId) {
         // const request = {};
-        const url =`${this._AppConstants.UPLOAD_URL}/${photoId}`;
+        const url = `${this._AppConstants.UPLOAD_URL}/${photoId}`;
         // request.url = `${this._AppConstants.UPLOAD_URL}/${photoId}`;
         // request.method = 'GET';
         // return this.retryRequest(request).then(
         // (result) => {
-            // const file = new Blob([result], { type: result.headers('content-type') });
-            // const fileURL = URL.createObjectURL(file);
-            window.open(url, '_blank', 'Download');
-            // const a = document.createElement('a');
-            // document.body.appendChild(a);
-            // a.style = 'display: none';
-            // a.href = fileURL;  // For chrome,firefox,opera and safari
-            // const extension = file.type.split('/')[1];
-            // a.download = `${photoId}.${extension}`;
-            // a.click();
+        // const file = new Blob([result], { type: result.headers('content-type') });
+        // const fileURL = URL.createObjectURL(file);
+        window.open(url, '_blank', 'Download');
+        // const a = document.createElement('a');
+        // document.body.appendChild(a);
+        // a.style = 'display: none';
+        // a.href = fileURL;  // For chrome,firefox,opera and safari
+        // const extension = file.type.split('/')[1];
+        // a.download = `${photoId}.${extension}`;
+        // a.click();
         // }
         //  );
     }
+
     exportFile(type, reportType, searchCriteria) {
         let url = `${this._AppConstants.api}/orders/reports`;
         console.log(url);

@@ -328,7 +328,9 @@
           "blocked": "محظور",
           "activate": "تنشيط",
           "block": "حظر",
-          "suspend": "تعليق"
+          "suspend": "تعليق",
+          "city": "مدينة",
+          "cityUpdated": "تم تحديث المدينة بنجاح."
         }
       }
     },
