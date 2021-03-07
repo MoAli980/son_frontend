@@ -169,8 +169,8 @@
           "first_name": {
             "invalid": "Contains invalid characters",
             "required": "This field is required and minimum length 2 chars",
-            "placeholder": "First name",
-            "label": "C. R First name",
+            "placeholder": "C. R Name",
+            "label": "C. R Name",
             "minLength": "minimum length 2 chars",
             "maxLength": "Max length 10 chars"
           },
