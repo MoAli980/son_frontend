@@ -582,7 +582,7 @@
         "unexpectedError": "unexpected Error",
         "noOrders": "No Orders Found",
         "success": "operation done successfully",
-        "error": "Sorry, some issue accrued, please try again",
+        "error": "Sorry, some issue occrued, please try again",
         "cancelConfirmation": "Are you sure you want to cancel the order?"
       },
       "view": {

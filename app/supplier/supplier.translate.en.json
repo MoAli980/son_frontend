@@ -508,7 +508,7 @@
     "order": {
       "message" : {
         "success" : "operation done successfully",
-        "error" : "Sorry, some issue accrued, please try again "
+        "error" : "Sorry, some issue occrued, please try again "
       },
       "list" : {
         "overview" : "Orders Overview",

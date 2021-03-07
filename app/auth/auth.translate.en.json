@@ -170,14 +170,14 @@
             "invalid": "Contains invalid characters",
             "required": "This field is required and minimum length 2 chars",
             "placeholder": "first name",
-            "label": "First name",
+            "label": "C. R First name",
             "minLength": "minimum length 2 chars",
             "maxLength": "Max length 10 chars"
           },
           "last_name": {
             "invalid": "Contains invalid characters ",
             "placeholder": "Last name",
-            "label": "Last name",
+            "label": "C. R Last name",
             "required": "This field is required and minimum length 2 chars",
             "minLength": "minimum length 2 chars",
             "maxLength": "Max length 10 chars"
