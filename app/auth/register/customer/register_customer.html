@@ -67,7 +67,7 @@
                             <div class="col-sm-6">
 
                                 <!-- START Form Control-->
-                                <div pg-form-group class="form-group form-group-default  required"
+                                <div pg-form-group class="form-group form-group-default"
                                      ng-class="{ 'has-error' : registerForm.userLastName.$invalid && !registerForm.userLastName.$pristine }">
                                     <label>{{"auth.register.customer.field.last_name.label" | translate }}</label>
                                     <div class="controls">
@@ -79,22 +79,22 @@
                                         >
                                     </div>
                                 </div>
-                                <label id="userLastNameInvalid" class="error" for="userLastName"
-                                       ng-show="registerForm.userLastName.$error.pattern  && !registerForm.userLastName.$pristine">
-                                    - {{"auth.register.customer.field.last_name.invalid" | translate }}.
-                                </label>
-                                <label id="userLastNameRequired" class="error" for="userLastName"
-                                       ng-show="registerForm.userLastName.$error.required  && !registerForm.userLastName.$pristine">
-                                    - {{"auth.register.customer.field.last_name.required" | translate }}.
-                                </label>
-                                <label id="userLastNameMinLength" class="error" for="userLastName"
-                                       ng-show="registerForm.userLastName.$error.minlength  && !registerForm.userLastName.$pristine">
-                                    - {{"auth.register.customer.field.last_name.minLength" | translate }}.
-                                </label>
-                                <label id="userLastNameMaxLength" class="error" for="userLastName"
-                                       ng-show="registerForm.userLastName.$error.maxlength  && !registerForm.userLastName.$pristine">
-                                    - {{"auth.register.customer.field.last_name.maxLength" | translate }}.
-                                </label>
+                                <!--<label id="userLastNameInvalid" class="error" for="userLastName"-->
+                                       <!--ng-show="registerForm.userLastName.$error.pattern  && !registerForm.userLastName.$pristine">-->
+                                    <!-- - {{"auth.register.customer.field.last_name.invalid" | translate }}.-->
+                                <!--</label>-->
+                                <!--<label id="userLastNameRequired" class="error" for="userLastName"-->
+                                       <!--ng-show="registerForm.userLastName.$error.required  && !registerForm.userLastName.$pristine">-->
+                                    <!-- - {{"auth.register.customer.field.last_name.required" | translate }}.-->
+                                <!--</label>-->
+                                <!--<label id="userLastNameMinLength" class="error" for="userLastName"-->
+                                       <!--ng-show="registerForm.userLastName.$error.minlength  && !registerForm.userLastName.$pristine">-->
+                                    <!-- - {{"auth.register.customer.field.last_name.minLength" | translate }}.-->
+                                <!--</label>-->
+                                <!--<label id="userLastNameMaxLength" class="error" for="userLastName"-->
+                                       <!--ng-show="registerForm.userLastName.$error.maxlength  && !registerForm.userLastName.$pristine">-->
+                                    <!-- - {{"auth.register.customer.field.last_name.maxLength" | translate }}.-->
+                                <!--</label>-->
                                 <!-- END Form Control-->
                             </div>
                             <div class="col-sm-12">
