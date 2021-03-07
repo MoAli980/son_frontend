@@ -28,12 +28,13 @@
                             <li ng-if="$ctrl.balanceDetails.status === 'Blocked' || $ctrl.balanceDetails.status === 'Suspended' || $ctrl.balanceDetails.status === 'invited'">
                                 <a ng-click="$ctrl.changeStatus('Active')"><i class="fa fa-check"></i>
                                     {{"supplier.account.customer.activate" | translate}}</a></li>
-                          <!--  <li ng-if="$ctrl.customer.status === 'Blocked' || $ctrl.customer.status === 'Active'"><a
-                                    ng-click="$ctrl.changeStatus('Suspended')"><i class="fa fa-close"></i>
-                                {{"supplier.account.customer.suspend" | translate}}</a></li>-->
-                            <li ng-if="$ctrl.balanceDetails.status === 'Active' || $ctrl.balanceDetails.status === 'Suspended'"><a
-                                    ng-click="$ctrl.changeStatus('Blocked')"><i class="fa fa-ban"></i>
-                                {{"supplier.account.customer.block" | translate}}</a></li>
+                            <!--  <li ng-if="$ctrl.customer.status === 'Blocked' || $ctrl.customer.status === 'Active'"><a
+                                      ng-click="$ctrl.changeStatus('Suspended')"><i class="fa fa-close"></i>
+                                  {{"supplier.account.customer.suspend" | translate}}</a></li>-->
+                            <li ng-if="$ctrl.balanceDetails.status === 'Active' || $ctrl.balanceDetails.status === 'Suspended'">
+                                <a
+                                        ng-click="$ctrl.changeStatus('Blocked')"><i class="fa fa-ban"></i>
+                                    {{"supplier.account.customer.block" | translate}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -48,12 +49,20 @@
             <p class="bold text-capitalize compact-text-20 p-b-10">{{$ctrl.customer.location.address}}</p>
 
             <div class="col-sm-12">
-                <div style="z-index:1;" class="form-group form-group-custom form-group-default form-group-default-select2">
+                <div style="z-index:1;"
+                     class="form-group form-group-custom form-group-default form-group-default-select2">
                     <label class="label-custom">{{"supplier.account.customer.city" | translate }}</label>
                     <select ng-model="$ctrl.customer.location.city" id="selectedCity"
                             ng-options="item as item.englishName for item in $ctrl.cityList track by item._id"
-                            class="full-width" ng-change="$ctrl.onChangeCity()" data-placeholder="Select City" data-init-plugin="select2">
+                            class="full-width" ng-change="$ctrl.onChangeCity()" data-placeholder="Select City"
+                            data-init-plugin="select2">
                     </select>
+                </div>
+
+                <div>
+                    <button ng-disabled="$ctrl.disableUpdate" ng-click="$ctrl.onAddressUpdate()" class="btn btn-primary pull-right" style="margin-bottom: 5%;">
+                        {{"supplier.account.customer.updateAddress" | translate }}
+                    </button>
                 </div>
             </div>
 
@@ -63,7 +72,9 @@
                 <ng-map ng-if="$ctrl.customerIsLoaded" id="map" zoom="11"
                         center="{{$ctrl.customer.location.coordinates}}">
                     <marker position="{{$ctrl.customer.location.coordinates}}"
-                            title="Location">
+                            title="Location" animation="Animation.DROP"
+                            on-dragend="$ctrl.markerDragEnd($ctrl);"
+                            draggable="true">
                     </marker>
                 </ng-map>
             </div>
@@ -215,7 +226,8 @@
                                         </thead>
                                         <tbody>
                                         <tr ng-repeat="item in $ctrl.billingHistory"
-                                            class="gradeX odd content-table-payment cursor" role="row" ng-click="$ctrl.openBillingShowDetails(item._id,item)">
+                                            class="gradeX odd content-table-payment cursor" role="row"
+                                            ng-click="$ctrl.openBillingShowDetails(item._id,item)">
                                             <td class="mn-140">
                                                 <span class="label upper-case">{{item.createdAt | amUtcOffset:'-0000' | amDateFormat:'DD-MM-YYYY'}}</span>
                                                 <span class="label upper-case">{{item.createdAt | amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
@@ -247,10 +259,11 @@
                                                 | currency : "" : 2}}
                                                 <small>{{"supplier.account.payment.sar" | translate }}</small>
                                             </td>
-                                        <!--<td>{{item.close | currency : "" : 2}} <small ng-if="item.type != 'invoice'">{{"supplier.account.payment.sar" | translate }}</small>
+                                            <!--<td>{{item.close | currency : "" : 2}} <small ng-if="item.type != 'invoice'">{{"supplier.account.payment.sar" | translate }}</small>
 
-                                            </td>-->
-                                            <td class="mn-100"><a href="" ng-click="$ctrl.openBillingShowDetails(item._id,item)">{{"supplier.account.payment.details"
+                                                </td>-->
+                                            <td class="mn-100"><a href=""
+                                                                  ng-click="$ctrl.openBillingShowDetails(item._id,item)">{{"supplier.account.payment.details"
                                                 | translate }}</a></td>
                                         </tr>
                                         </tbody>
@@ -264,7 +277,8 @@
                         </div>
                     </div>
                 </div>
-                <div permission permission-only="'managePayments'" class="m-t-50 m-b-30" ng-if="$ctrl.paymentsClaimsIsLoaded && $ctrl.paymentsClaims.length > 0">
+                <div permission permission-only="'managePayments'" class="m-t-50 m-b-30"
+                     ng-if="$ctrl.paymentsClaimsIsLoaded && $ctrl.paymentsClaims.length > 0">
                     <div class="row">
                         <div class="col-sm-7 col-md-7 col-lg-8 col-xl-9 m-t-10">
                             <div class="bold text-uppercase">
@@ -278,7 +292,8 @@
                         </div>
                     </div>
                 </div>
-                <div permission permission-only="'managePayments'" class="row" ng-if="$ctrl.paymentsClaimsIsLoaded && $ctrl.paymentsClaims.length > 0">
+                <div permission permission-only="'managePayments'" class="row"
+                     ng-if="$ctrl.paymentsClaimsIsLoaded && $ctrl.paymentsClaims.length > 0">
                     <div class="card-block-normal">
                         <div class="col-md-12  padding-0">
                             <div class="dataTables_wrapper no-footer ">
@@ -299,7 +314,8 @@
                                         </thead>
                                         <tbody>
                                         <tr ng-repeat="item in $ctrl.paymentsClaims"
-                                            class="gradeX odd content-table-payment cursor" role="row"  ng-click="$ctrl.openShowDetails(item._id,item)">
+                                            class="gradeX odd content-table-payment cursor" role="row"
+                                            ng-click="$ctrl.openShowDetails(item._id,item)">
                                             <td class="mn-150 sorting_1">
                                                 <span class="label upper-case">{{item.updateAt | amUtcOffset:'-0000' | amDateFormat:'DD-MM-YYYY'}}</span>
                                                 <span class="label upper-case">{{item.updateAt | amUtcOffset:'-0000' | amDateFormat:'HH:mm:ss'}}</span>
@@ -358,18 +374,25 @@
                             {{"supplier.account.payment.specialPrices" | translate }}
                         </div>
                         <!--<div class="card-description">-->
-                            <!--<br>-->
+                        <!--<br>-->
                         <!--</div>-->
                     </div>
                     <div class="col-lg-9 col-xl-7">
                         <div class="d-flex flex-wrap">
                             <span class="m-r-5 m-t-5 m-b-5">{{"supplier.customer.label.bulkOperations" | translate}}: </span>
                             <div class="btn-group btn-group-sm d-flex flex-wrap" dir="ltr">
-                                <button type="button" style="flex:1" class="btn btn-transparent m-b-5" ng-click="$ctrl.downloadSpecialPrices()"><i class="fa fa-download"></i> <span class="bold">{{"supplier.customer.button.downloadSpecialPrices" | translate}}</span></button>
-                                <button type="button" style="flex:1" class="btn btn-primary m-b-5 no-box-shadow" onclick="document.getElementById('file').click();"><i class="fa fa-cloud-upload">
+                                <button type="button" style="flex:1" class="btn btn-transparent m-b-5"
+                                        ng-click="$ctrl.downloadSpecialPrices()"><i class="fa fa-download"></i> <span
+                                        class="bold">{{"supplier.customer.button.downloadSpecialPrices" | translate}}</span>
+                                </button>
+                                <button type="button" style="flex:1" class="btn btn-primary m-b-5 no-box-shadow"
+                                        onclick="document.getElementById('file').click();"><i
+                                        class="fa fa-cloud-upload">
 
                                 </i> <span class="bold">{{"supplier.customer.button.uploadSpecialPrices" | translate}}
-                                    <input id="file" name="file" type="file" style="display: none"  ngf-select="$ctrl.uploadSpecialPrices($file)" ng-model="$ctrl.file"></span></button>
+                                    <input id="file" name="file" type="file" style="display: none"
+                                           ngf-select="$ctrl.uploadSpecialPrices($file)" ng-model="$ctrl.file"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -387,7 +410,8 @@
                                     <div class="form-group form-group-custom form-group-default form-group-default-select2">
                                         <label class="label-custom">{{"supplier.account.payment.specialPricesTable.productName"
                                             | translate}}</label>
-                                        <select class="full-width" id="productSelect2" data-placeholder="Select Product" data-init-plugin="select2"
+                                        <select class="full-width" id="productSelect2" data-placeholder="Select Product"
+                                                data-init-plugin="select2"
                                                 ng-model="$ctrl.selectedProduct">
                                             <option value="">Select Product</option>
                                             <option ng-repeat="item in $ctrl.products" ng-value="item">{{
@@ -402,7 +426,7 @@
                                     <div class="form-group form-group-default" ng-if="$ctrl.billingHistoryIsLoaded">
                                         <label>{{"supplier.account.payment.specialPricesTable.specialPrice" | translate
                                             }}</label>
-                                        <input type="number" ng-model="$ctrl.specialPrice"  min="1"
+                                        <input type="number" ng-model="$ctrl.specialPrice" min="1"
                                                placeholder="{{$ctrl.balanceDetails.creditLimit | currency : '' : 1}}"
                                                class="form-control">
                                     </div>
@@ -439,24 +463,39 @@
                                         role="row">
                                         <td class="sorting_1">
                                             <a ui-sref="app.supplier.product.detail({productId : item.product._id})">
-                                            {{ currentLanguage.language === 'ar'?
-                                            item.product.arabicName : item.product.englishName }}
+                                                {{ currentLanguage.language === 'ar'?
+                                                item.product.arabicName : item.product.englishName }}
                                             </a>
                                         </td>
                                         <td width="100px" class="padding-0 align-middle">
-                                             <span ng-if="$ctrl.specialPriceMode === 'viewMode'">{{item.price | currency : "" : 2}}</span>
-                                            <input ng-if="$ctrl.specialPriceMode === 'editMode'" type="number" ng-model="item.price"  min="1" class="form-control">
-                                            <small ng-if="$ctrl.specialPriceMode === 'viewMode'">{{"supplier.account.payment.sar" | translate }}</small>
+                                            <span ng-if="$ctrl.specialPriceMode === 'viewMode'">{{item.price | currency : "" : 2}}</span>
+                                            <input ng-if="$ctrl.specialPriceMode === 'editMode'" type="number"
+                                                   ng-model="item.price" min="1" class="form-control">
+                                            <small ng-if="$ctrl.specialPriceMode === 'viewMode'">
+                                                {{"supplier.account.payment.sar" | translate }}
+                                            </small>
                                         </td>
                                         <td class="sorting_1">
                                             {{item.product.price | currency : "" : 2}}
                                             <small>{{"supplier.account.payment.sar" | translate }}</small>
                                         </td>
                                         <td width="150px">
-                                            <a ng-if="$ctrl.specialPriceMode === 'viewMode'" class="no-animate p-l-10 p-r-10" href="" ng-click="$ctrl.setSpecialPriceMode('editMode')">{{"supplier.account.payment.edit" | translate }}</a>
-                                            <a ng-if="$ctrl.specialPriceMode === 'editMode'" class="no-animate p-l-10 p-r-10" href="" ng-click="$ctrl.updateSpecialPrice(item)">{{"supplier.account.payment.save" | translate }}</a>
-                                            <a ng-if="$ctrl.specialPriceMode === 'editMode'" class="no-animate p-l-10 p-r-10" href="" ng-click="$ctrl.cancelEditSpecialPrice()">{{"supplier.account.payment.cancel" | translate }}</a>
-                                            <a ng-if="$ctrl.specialPriceMode === 'viewMode'" class="no-animate p-l-10 p-r-10" href="" ng-click="$ctrl.deleteSpecialPrice(item)">{{"supplier.account.payment.delete" | translate }}</a>
+                                            <a ng-if="$ctrl.specialPriceMode === 'viewMode'"
+                                               class="no-animate p-l-10 p-r-10" href=""
+                                               ng-click="$ctrl.setSpecialPriceMode('editMode')">{{"supplier.account.payment.edit"
+                                                | translate }}</a>
+                                            <a ng-if="$ctrl.specialPriceMode === 'editMode'"
+                                               class="no-animate p-l-10 p-r-10" href=""
+                                               ng-click="$ctrl.updateSpecialPrice(item)">{{"supplier.account.payment.save"
+                                                | translate }}</a>
+                                            <a ng-if="$ctrl.specialPriceMode === 'editMode'"
+                                               class="no-animate p-l-10 p-r-10" href=""
+                                               ng-click="$ctrl.cancelEditSpecialPrice()">{{"supplier.account.payment.cancel"
+                                                | translate }}</a>
+                                            <a ng-if="$ctrl.specialPriceMode === 'viewMode'"
+                                               class="no-animate p-l-10 p-r-10" href=""
+                                               ng-click="$ctrl.deleteSpecialPrice(item)">{{"supplier.account.payment.delete"
+                                                | translate }}</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -466,21 +505,21 @@
                                              current-page="$ctrl.customerSpecialPricesQuery.currentPage"
                                              on-page-click="$ctrl.setSpecialPricesPage(pageNumber)"></list-pagination>
                             <!--<div class="pull-right">-->
-                                <!--{{"supplier.customer.label.export" | translate}}:-->
-                                <!--<div class="btn-group btn-group-sm" dir="ltr">-->
-                                <!--<button type="button" class="btn btn-transparent" ng-click="$ctrl.exportSpecialPrices('pdf', $ctrl.customerSpecialPricesQuery)">PDF</button>-->
-                                <!--<button type="button" class="btn btn-transparent" ng-click="$ctrl.exportSpecialPrices('xls', $ctrl.customerSpecialPricesQuery)">XLS</button>-->
+                            <!--{{"supplier.customer.label.export" | translate}}:-->
+                            <!--<div class="btn-group btn-group-sm" dir="ltr">-->
+                            <!--<button type="button" class="btn btn-transparent" ng-click="$ctrl.exportSpecialPrices('pdf', $ctrl.customerSpecialPricesQuery)">PDF</button>-->
+                            <!--<button type="button" class="btn btn-transparent" ng-click="$ctrl.exportSpecialPrices('xls', $ctrl.customerSpecialPricesQuery)">XLS</button>-->
                             <!--</div>-->
-                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
+
         </div>
+
     </div>
+</div>
 </div>
 <payment-record on-save="$ctrl.addPayment(payment)" customer-flag="false" view-mode="$ctrl.disableRecordPaymentForm"
                 hide-button="false" payment="$ctrl.paymentItem"></payment-record>
@@ -488,11 +527,11 @@
 <transactions is-admin-fees="false" customer="$ctrl.customerId"></transactions>
 
 <script>
-    $('#periodSelect , #productSelect2').on('select2:open',function(){
+    $('#periodSelect , #productSelect2').on('select2:open', function () {
         let that = $(this);
         let flag = false;
-        if ( $(window).width() > 739) {
-            $(window).bind('wheel', function(e) {
+        if ($(window).width() > 739) {
+            $(window).bind('wheel', function (e) {
                 // if(!flag && e.target.className === 'select2-results__option'){
                 //     // that.select2("close");
                 //     console.log('scroll');
@@ -503,12 +542,12 @@
             });
         }
         else {
-            $(window).bind('wheel', function(e) {
+            $(window).bind('wheel', function (e) {
                 console.log(e.target);
-                if(!flag && e.target.className === 'select2-results__option'){
+                if (!flag && e.target.className === 'select2-results__option') {
                     // that.select2("close");
                     console.log('scroll');
-                } else if(!flag &&  e.target.className !== 'select2-results__option'){
+                } else if (!flag && e.target.className !== 'select2-results__option') {
                     that.select2("close");
                     console.log('scroll');
                 }
@@ -520,21 +559,21 @@
 </script>
 
 <script>
-    $('#selectedCity').on('select2:open',function(){
+    $('#selectedCity').on('select2:open', function () {
         let that = $(this);
         let flag = false;
-        if ( $(window).width() > 739) {
-            $(window).bind('wheel', function(e) {
+        if ($(window).width() > 739) {
+            $(window).bind('wheel', function (e) {
 
             });
         }
         else {
-            $(window).bind('wheel', function(e) {
+            $(window).bind('wheel', function (e) {
                 console.log(e.target);
-                if(!flag && e.target.className === 'select2-results__option'){
+                if (!flag && e.target.className === 'select2-results__option') {
                     // that.select2("close");
                     console.log('scroll');
-                } else if(!flag &&  e.target.className !== 'select2-results__option'){
+                } else if (!flag && e.target.className !== 'select2-results__option') {
                     that.select2("close");
                     console.log('scroll');
                 }

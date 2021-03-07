@@ -242,6 +242,15 @@ export default class CustomerService {
         return this.retryRequest(request);
     }
 
+    updateCustomerAddress(customerId, details) {
+        const request = {};
+        request.url = `${this._AppConstants.api}/customers/address/update/${customerId}`;
+        request.method = 'PUT';
+        request.headers = this._request.headers;
+        request.data = details;
+        return this.retryRequest(request);
+    }
+
     getCurrentCustomer() {
         const request = {};
         request.method = 'GET';

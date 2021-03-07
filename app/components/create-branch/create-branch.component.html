@@ -36,7 +36,7 @@
                                 <div class="col-md-6 m-b-10">
                                     <div style="z-index:1;" class="form-group form-group-custom form-group-default form-group-default-select2">
                                         <label class="label-custom">{{"component.create-branch.field.city.label" | translate }}</label>
-                                        <select ng-model="$ctrl.branch.location" id="selectedCity"
+                                        <select ng-model="$ctrl.branch.citySelected" id="selectedCity"
                                                 ng-options="item as item.englishName for item in $ctrl.citylist track by item._id"
                                                 class="full-width" data-placeholder="{{'component.create-branch.field.city.place_holder' | translate}}" data-init-plugin="select2">
                                         </select>
@@ -73,7 +73,7 @@
                                                    on-place-changed="$ctrl.placeChanged()" required/>
                                         </div>
                                     </div>
-                                    <label class="error" for="address" ng-show="branchForm.address.$error.required && !branchForm.address.$pristine">
+                                    <label class="error" ng-show="branchForm.address.$error.required && !branchForm.address.$pristine">
                                         {{"component.create-branch.field.location.required" | translate }}.
                                     </label>
                                     <div class="m-b-10" style="width:100%" map-lazy-load="{{$ctrl.googleMapsUrl}}">

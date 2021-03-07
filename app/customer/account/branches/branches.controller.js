@@ -22,11 +22,11 @@ export default class CustomerListBranchesCtrl {
             status: 'All'
         };
         this.status = {
-            placeholder: { ar: 'اختر الحاله', en: 'Select Status' },
+            placeholder: {ar: 'اختر الحاله', en: 'Select Status'},
             data: [
-                { key: 'All', ar: 'الكل', en: 'All' },
-                { key: 'Active', ar: 'نشط', en: 'Active' },
-                { key: 'Blocked', ar: 'محظور', en: 'Blocked' }
+                {key: 'All', ar: 'الكل', en: 'All'},
+                {key: 'Active', ar: 'نشط', en: 'Active'},
+                {key: 'Blocked', ar: 'محظور', en: 'Blocked'}
             ]
         };
         this.selectedStatus = this.status.data[0];
@@ -63,9 +63,9 @@ export default class CustomerListBranchesCtrl {
             this.totalPages = Math.ceil(res.data.data.count / this.searchCriteria.limit);
             this.location = this.branches[0].location;
             this.isStaff = res.data.data.isStaff;
-            const defaultValue = [{ _id: null, representativeName: 'None' }];
+            const defaultValue = [{_id: null, representativeName: 'None'}];
             this.staffs = {
-                placeholder: { ar: 'اختر الوظيفة', en: 'Select Role' },
+                placeholder: {ar: 'اختر الوظيفة', en: 'Select Role'},
                 data: [...defaultValue, ...res.data.data.staff]
             };
         };
@@ -95,8 +95,8 @@ export default class CustomerListBranchesCtrl {
 
         };
 
-        branch.location.cityId = branch.location._id;
-        branch.location.city = branch.location.englishName;
+        branch.location.cityId = branch.citySelected._id;
+        branch.location.city = branch.citySelected.englishName;
 
         this._BranchService.updateBranch(branch._id, branch)
             .then(_onSuccess, _onError)
@@ -132,12 +132,15 @@ export default class CustomerListBranchesCtrl {
                 address: ''
             },
             manager: '',
+            citySelected: {}
         };
         $('#branchModal').modal('show');
     }
 
     openEditBranchPopup(branch) {
-        branch.location._id = branch.location.cityId;
+        branch.citySelected = {
+            _id: branch.location.cityId
+        };
         this.branch = branch;
         this.mode = 'Update';
         $('#branchModal').modal('show');
@@ -155,6 +158,10 @@ export default class CustomerListBranchesCtrl {
                 })
                 .show();
         });
+    }
+
+    onCityUpdate() {
+
     }
 
     getSystemCities() {

@@ -331,7 +331,9 @@
         "block": "Block",
         "suspend": "Suspend",
         "city": "City",
-        "cityUpdated": "City updated successfully."
+        "cityUpdated": "City updated successfully.",
+        "updateAddress": "Update Address",
+        "addressUpdated": "Address updated successfully."
       }
     },
     "menu": {
@@ -679,7 +681,7 @@
             "remainingTillLimit": "Remaining till limit",
             "paymentDue": "Payment Due",
             "city": "City",
-            "repName": "Representative Name"
+            "repName": "C.R Name"
           }
         },
         "view": {

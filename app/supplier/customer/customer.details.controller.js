@@ -27,6 +27,7 @@ export default class SupplierCustomerDetailCtrl {
             skip: 0,
             limit: 10
         };
+        this.disableUpdate = true;
         this.cityList = [];
         this.getSystemCities();
         this.periods = [
@@ -462,6 +463,52 @@ export default class SupplierCustomerDetailCtrl {
         this._CustomerService.updateCustomerCity(this.customerId, this.updateCustomer)
             .then(_onSuccess, _onError);
     }
+
+    onAddressUpdate() {
+        this.updateCustomer = {
+            address: this.customer.location.address,
+            coordinates: this.customer.location.coordinates
+        };
+        const _onSuccess = (res) => {
+            this.notify('supplier.account.customer.addressUpdated', 'success', 1000);
+            this.getCustomer(this.customerId);
+            this.disableUpdate = true;
+        };
+        const _onError = (err) => {
+            if (err.code === 500) {
+                this.hasError = true;
+            } else if (err.code === 501) {
+                this.noInternetConnection = true;
+            }
+        };
+        this._CustomerService.updateCustomerAddress(this.customerId, this.updateCustomer)
+            .then(_onSuccess, _onError);
+    }
+
+    geoCodeLatLng(lat, lng) {
+        this.disableUpdate = false;
+        const geocoder = new google.maps.Geocoder();
+        const latlng = {lat, lng};
+        geocoder.geocode({location: latlng}, (results, status) => {
+            if (status === 'OK') {
+                if (results[0]) {
+                    this.customer.location.address = results[0].formatted_address;
+
+                    this._$rootScope.$digest();
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert(`Geocoder failed due to: ${status}`);
+            }
+        });
+    }
+
+    markerDragEnd(event, ctrl) {
+        ctrl.geoCodeLatLng(event.latLng.lat(), event.latLng.lng());
+        ctrl.customer.location.coordinates = [event.latLng.lat(), event.latLng.lng()];
+    }
+
 
 }
 
