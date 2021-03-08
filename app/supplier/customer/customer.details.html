@@ -40,12 +40,28 @@
                 </div>
             </div>
 
-            <P class="w300 padding-0 text-capitalize no-margin">{{"supplier.account.payment.repName" | translate }}:
+            <p class="w300 padding-0 text-capitalize no-margin">{{"supplier.account.payment.repName" | translate }}:
                 <span class="w600">{{$ctrl.customer.user.firstName}} {{$ctrl.customer.user.lastName}}</span></p>
-            <P class="w300 padding-0 no-margin">{{"supplier.account.payment.phone" | translate }}: <span class="w600">{{$ctrl.customer.user.mobileNumber}}</span>
+            <p class="w300 padding-0 no-margin">{{"supplier.account.payment.phone" | translate }}: <span class="w600">{{$ctrl.customer.user.mobileNumber}}</span>
             </p>
-            <P class="w300 padding-0 no-margin">{{"supplier.account.payment.email" | translate }}: <span class="w600">{{$ctrl.customer.user.email}}</span>
+            <p class="w300 padding-0 no-margin">{{"supplier.account.payment.email" | translate }}: <span class="w600">{{$ctrl.customer.user.email}}</span>
             </p>
+
+            <div style="display: flex;">
+                <div style="width: 200px;">
+                    <p class="w300 padding-0 no-margin">{{"supplier.account.customer.branch.branchCount" | translate }}:
+                        <span class="w600">{{$ctrl.customer.branchCount}}</span>
+                    </p>
+                </div>
+
+                <div style="  flex: 1;">
+                    <button class="btn btn-primary pull-right"
+                            ui-sref="app.supplier.customer.branches({customerId:$ctrl.customer._id})"
+                            style="margin-bottom: 5%;">
+                        {{"supplier.account.customer.branch.viewBranches" | translate }}
+                    </button>
+                </div>
+            </div>
             <p class="bold text-capitalize compact-text-20 p-b-10">{{$ctrl.customer.location.address}}</p>
 
             <div class="col-sm-12">
@@ -60,7 +76,8 @@
                 </div>
 
                 <div>
-                    <button ng-disabled="$ctrl.disableUpdate" ng-click="$ctrl.onAddressUpdate()" class="btn btn-primary pull-right" style="margin-bottom: 5%;">
+                    <button ng-disabled="$ctrl.disableUpdate" ng-click="$ctrl.onAddressUpdate()"
+                            class="btn btn-primary pull-right" style="margin-bottom: 5%;">
                         {{"supplier.account.customer.updateAddress" | translate }}
                     </button>
                 </div>

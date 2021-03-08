@@ -71,6 +71,16 @@ export default class BranchService {
         return this.retryRequest(request);
     }
 
+    getCustomersBranchesList(searchCriteria) {
+        const request = {};
+
+        request.url = `${this._AppConstants.api}/branches/${searchCriteria.customerId}/${searchCriteria.skip}/${searchCriteria.limit}`;
+
+        request.method = 'GET';
+        request.headers = this._request.headers;
+        return this.retryRequest(request);
+    }
+
 }
 BranchService.$inject = ['AppConstants', 'JwtService', 'RetryRequest'];
 

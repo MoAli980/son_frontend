@@ -332,7 +332,20 @@
           "city": "مدينة",
           "cityUpdated": "تم تحديث المدينة بنجاح.",
           "updateAddress": "تحديث العنوان",
-          "addressUpdated": "تم تحديث العنوان بنجاح."
+          "addressUpdated": "تم تحديث العنوان بنجاح.",
+          "branch" : {
+            "branchCount": "عدد الفروع",
+            "viewBranches": "مشاهدة الفروع",
+            "branch": "الفروع",
+            "label": "فرع",
+            "manager": "مدير",
+            "location" : "موقع",
+            "city" : "مدينة",
+            "date" : "تاريخ",
+            "status" : "حالة",
+            "status_active": "نشيط",
+            "status_blocked": "ممنوع"
+          }
         }
       }
     },

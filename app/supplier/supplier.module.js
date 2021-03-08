@@ -36,6 +36,7 @@ import ingredientFormComponent from './inventories/ingredient-form/ingredient-fo
 import editIngredientFormComponent from './inventories/ingredient-form/edit-ingredient-form.component';
 import editReceiptFormComponent from './inventories/receipt-form/edit-receipt-form.component';
 import selectIngredientFormComponent from './inventories/ingredient-form/select-ingredient-form.component';
+import customerListBranchesCtrl from './customer/branches/branches.controller';
 import addIngredientQuantityComponent
     from './inventories/ingredients-items-list/addIngredientQuantity.controller';
 import editIngredientListingFormComponent
@@ -80,6 +81,7 @@ supplierModule.controller(
     'SupplierRecipesItemDetailCtrl',
     SupplierRecipesItemDetailCtrl
 );
+supplierModule.controller('CustomerListBranchesCtrl', customerListBranchesCtrl);
 
 supplierModule.component('supplierReceiptFormComponent', ReceiptFormComponent);
 supplierModule.component('supplierIngredientFormComponent', ingredientFormComponent);
@@ -88,6 +90,7 @@ supplierModule.component('supplierEditRecipeFormComponent', editReceiptFormCompo
 supplierModule.component('supplierSelectIngredientForm', selectIngredientFormComponent);
 supplierModule.component('supplierAddIngredientQuantity', addIngredientQuantityComponent);
 supplierModule.component('supplierEditIngredientListingForm', editIngredientListingFormComponent);
+
 
 
 export default supplierModule;

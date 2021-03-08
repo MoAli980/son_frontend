@@ -333,7 +333,20 @@
         "city": "City",
         "cityUpdated": "City updated successfully.",
         "updateAddress": "Update Address",
-        "addressUpdated": "Address updated successfully."
+        "addressUpdated": "Address updated successfully.",
+        "branch" : {
+          "branchCount": "Branch Count",
+          "viewBranches": "View Branches",
+          "branch": "Branches",
+          "label": "Branch",
+          "manager": "Manager",
+          "location" : "Location",
+          "city" : "City",
+          "date" : "Date",
+          "status" : "Status",
+          "status_active": "Active",
+          "status_blocked": "Blocked"
+        }
       }
     },
     "menu": {

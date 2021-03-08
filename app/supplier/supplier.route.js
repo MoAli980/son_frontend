@@ -463,16 +463,16 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'switchery',
-                                    'select',
-                                    'moment',
-                                    'datepicker',
-                                    'daterangepicker',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => true);
                     },
@@ -498,16 +498,16 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'switchery',
-                                    'select',
-                                    'moment',
-                                    'datepicker',
-                                    'daterangepicker',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => true);
                     },
@@ -536,23 +536,37 @@ export default function supplierConfig($stateProvider, $urlRouterProvider, $loca
                     function ($ocLazyLoad) {
                         return $ocLazyLoad
                             .load(
-                                [
-                                    'switchery',
-                                    'select',
-                                    'moment',
-                                    'datepicker',
-                                    'daterangepicker',
-                                ],
-                                {
-                                    insertBefore: '#lazyload_placeholder',
-                                }
+                            [
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker',
+                                'daterangepicker',
+                            ],
+                            {
+                                insertBefore: '#lazyload_placeholder',
+                            }
                             )
                             .then(() => true);
                     },
                 ],
             }
         })
-        .state('app.supplier.privacy', {
+        .state('app.supplier.customer.branches', {
+            url: '/branches/:customerId',
+            templateUrl: 'app/supplier/customer/branches/branches.html',
+            controller: 'CustomerListBranchesCtrl as $ctrl',
+            ncyBreadcrumb: {
+                label: 'supplier.customer.branch.label',
+                skip: true // Never display this state in breadcrumb.
+            },
+            data: {
+                permissions: {
+                    only: ['manageCustomers'],
+                    redirectTo: AuthorizationMethods.redirectTo404()
+                }
+            }
+        }).state('app.supplier.privacy', {
             url: '/privacy',
             templateUrl: 'app/supplier/privacy.html'
         });
